@@ -30,7 +30,7 @@ class ExpenseTracker:
 
 
 # --- Streamlit App ---
-st.title("💰 Expense Tracking and Budgeting App")
+st.title("Expense Tracking and Budgeting App")
 
 # Initialize tracker
 tracker = ExpenseTracker()
@@ -53,19 +53,19 @@ with st.form(key="expense_form"):
         st.success("Expense added successfully!")
 
 # --- Summary ---
-st.subheader("📊 Expense Summary by Category")
+st.subheader(" Expense Summary by Category")
 summary = tracker.expense_summary_by_category()
 for cat, amt in summary.items():
     st.write(f"{cat}: {amt:.2f}")
 
-st.subheader("💵 Total Expenses")
+st.subheader(" Total Expenses")
 st.write(f"{tracker.total_expenses():.2f}")
 
-st.subheader("📈 Budget Analysis")
+st.subheader(" Budget Analysis")
 monthly_budget = st.number_input("Enter your monthly budget", min_value=0.0, format="%.2f")
 if monthly_budget > 0:
     st.write(tracker.budget_analysis(monthly_budget))
 
-st.subheader("📝 All Expenses")
+st.subheader(" All Expenses")
 for exp in sorted(tracker.expenses, key=lambda x: x['date'], reverse=True):
     st.write(f"{exp['date']} - {exp['category']}: {exp['amount']:.2f}")
