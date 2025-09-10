@@ -151,7 +151,7 @@ def create_growth_chart(yearly_data):
 
 # Main Streamlit App
 def main():
-    st.markdown('<h1 class="main-header">📊 Advanced SIP Calculator</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header"> Advanced SIP Calculator</h1>', unsafe_allow_html=True)
     st.markdown("**Calculate SIP returns with step-up, inflation adjustment, and interactive visualizations**")
 
     # Sidebar for inputs
