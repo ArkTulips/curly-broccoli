@@ -50,7 +50,7 @@ for i, tool in enumerate(tools):
             f"""
             <div style="padding:20px; border-radius:15px; background-color:#f9f9f9;
                         margin:10px; text-align:center; box-shadow:0px 4px 8px rgba(0,0,0,0.1);">
-                <div style="font-size:60px; margin-bottom:10px;">{tool['icon']}</div>
+                <div style="font-size:120px; margin-bottom:10px;">{tool['icon']}</div>
                 <h4 style="margin-bottom:5px;">{tool['name']}</h4>
                 <p style="font-size:14px; color:#555;">{tool['desc']}</p>
                 <a href="{tool['link']}" target="_blank"
