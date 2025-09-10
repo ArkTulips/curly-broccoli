@@ -2,9 +2,7 @@
 streamlit
 pandas
 numpy
-streamlit-calendar
-datetime
-uuid
+
 
 # Visualization
 matplotlib
