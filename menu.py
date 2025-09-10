@@ -22,5 +22,11 @@ st.subheader("4️⃣ EMI calculator")
 st.write("Calculate your EMI.")
 st.markdown("[➡️ Go to EMI calculator](https://emicalculatorsj.streamlit.app/)")
 
+st.subheader("5️⃣ Expense Calculator")
+st.write("Calculate your monthly and overall expenses.")
+st.markdown("[➡️ Go to Expense calculator](https://expensetrac.streamlit.app/)")
+
+
+
 st.markdown("---")
 st.info("Each tool opens in a new tab on Streamlit Cloud.")
