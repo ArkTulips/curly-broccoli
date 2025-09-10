@@ -1,24 +1,22 @@
 import streamlit as st
 
-# --- MENU SETUP ---
-st.sidebar.title("📌 Finance Tools")
-menu = st.sidebar.radio(
-    "Navigate",
-    ["🏦 SIP Calculator", "💳 Credit Score Estimator", "🧾 Tax Calculator"]
-)
+st.set_page_config(page_title="Finance Tools", layout="centered")
+st.title("💰 Finance Tools Dashboard")
+st.write("Welcome! Use the links below to navigate to your preferred financial tool.")
 
-# --- PAGE HANDLER ---
-if menu == "🏦 SIP Calculator":
-    st.title("🏦 SIP Calculator")
-    st.write("Calculate SIP returns with profit percentage.")
-    # import or call your SIP calculator code here
+st.markdown("---")
 
-elif menu == "💳 Credit Score Estimator":
-    st.title("💳 Credit Score Estimator")
-    st.write("Estimate your credit score based on CIBIL-like logic.")
-    # import or call your Credit Score code here
+st.subheader("1️⃣ SIP Calculator")
+st.write("Calculate SIP returns and profit percentage.")
+st.markdown("[➡️ Go to SIP Calculator](https://financialreach.streamlit.app/)")
 
-elif menu == "🧾 Tax Calculator":
-    st.title("🧾 Tax Calculator")
-    st.write("Calculate your income tax under the new regime.")
-    # import or call your Tax Calculator code here
+st.subheader("2️⃣ Credit Score Estimator")
+st.write("Estimate your credit score based on CIBIL-like logic.")
+st.markdown("[➡️ Go to Credit Score Estimator](https://creditscores.streamlit.app/)")
+
+st.subheader("3️⃣ Tax Calculator")
+st.write("Calculate your income tax under the new regime.")
+st.markdown("[➡️ Go to Tax Calculator](https://yourname-tax.streamlit.app)")
+
+st.markdown("---")
+st.info("Each tool opens in a new tab on Streamlit Cloud.")
