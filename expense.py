@@ -2,7 +2,7 @@ import streamlit as st
 import datetime
 
 class ExpenseTracker:
-    def _init_(self):
+    def __init__(self):
         self.expenses = []
 
     def add_expense(self, amount, category, date):
@@ -12,19 +12,12 @@ class ExpenseTracker:
         return sum(exp["amount"] for exp in self.expenses)
 
     def monthly_expenses(self, year, month):
-        total = 0
-        for exp in self.expenses:
-            if exp["date"].year == year and exp["date"].month == month:
-                total += exp["amount"]
-        return total
+        return sum(exp["amount"] for exp in self.expenses if exp["date"].year == year and exp["date"].month == month)
 
     def expense_summary_by_category(self):
         summary = {}
         for exp in self.expenses:
-            if exp["category"] in summary:
-                summary[exp["category"]] += exp["amount"]
-            else:
-                summary[exp["category"]] = exp["amount"]
+            summary[exp["category"]] = summary.get(exp["category"], 0) + exp["amount"]
         return summary
 
     def budget_analysis(self, monthly_budget):
@@ -35,17 +28,20 @@ class ExpenseTracker:
         else:
             return f"Within budget. Remaining: {monthly_budget - current_month_expense:.2f}"
 
-# Streamlit UI
-st.title("Expense Tracking and Budgeting App")
 
+# --- Streamlit App ---
+st.title("💰 Expense Tracking and Budgeting App")
+
+# Initialize tracker
 tracker = ExpenseTracker()
 
-# Use session state to persist expenses
+# Session state for persistence
 if "expenses" not in st.session_state:
     st.session_state["expenses"] = []
 
 tracker.expenses = st.session_state["expenses"]
 
+# --- Add Expense Form ---
 with st.form(key="expense_form"):
     amount = st.number_input("Expense Amount", min_value=0.0, format="%.2f")
     category = st.text_input("Category")
@@ -54,23 +50,22 @@ with st.form(key="expense_form"):
 
     if submit_button:
         tracker.add_expense(amount, category, date)
-        st.session_state["expenses"].append({"amount": amount, "category": category, "date": date})
         st.success("Expense added successfully!")
 
-st.subheader("Expense Summary by Category")
+# --- Summary ---
+st.subheader("📊 Expense Summary by Category")
 summary = tracker.expense_summary_by_category()
 for cat, amt in summary.items():
     st.write(f"{cat}: {amt:.2f}")
 
-st.subheader("Total Expenses")
+st.subheader("💵 Total Expenses")
 st.write(f"{tracker.total_expenses():.2f}")
 
-st.subheader("Budget Analysis")
+st.subheader("📈 Budget Analysis")
 monthly_budget = st.number_input("Enter your monthly budget", min_value=0.0, format="%.2f")
 if monthly_budget > 0:
-    budget_status = tracker.budget_analysis(monthly_budget)
-    st.write(budget_status)
+    st.write(tracker.budget_analysis(monthly_budget))
 
-st.subheader("All Expenses")
-for exp in tracker.expenses:
+st.subheader("📝 All Expenses")
+for exp in sorted(tracker.expenses, key=lambda x: x['date'], reverse=True):
     st.write(f"{exp['date']} - {exp['category']}: {exp['amount']:.2f}")
