@@ -26,7 +26,7 @@ def sip_growth_table(monthly_investment, annual_rate, years):
 
 # -------------------- Streamlit UI --------------------
 st.set_page_config(page_title="SIP Calculator", layout="centered")
-st.title("💰 SIP Calculator")
+st.title(" SIP Calculator")
 
 monthly = st.number_input("Monthly SIP (₹)", min_value=100, value=5000, step=500)
 rate = st.number_input("Expected Annual Return (%)", min_value=1.0, value=12.0, step=0.5)
@@ -35,14 +35,14 @@ years = st.number_input("Investment Duration (Years)", min_value=1, value=10, st
 if st.button("Calculate"):
     invested, fv, gain, pct = sip_calculator(monthly, rate, years)
 
-    st.subheader("📊 Results")
+    st.subheader(" Results")
     st.write(f"**Total Invested Amount:** ₹{invested:,.2f}")
     st.write(f"**Future Value (Maturity):** ₹{fv:,.2f}")
     st.write(f"**Total Returns (Profit):** ₹{gain:,.2f}")
     st.write(f"**Profit Percentage:** {pct:.2f}%")
 
     # Year-wise growth
-    st.subheader("📈 Yearly Growth")
+    st.subheader(" Yearly Growth")
     df = sip_growth_table(monthly, rate, years)
     st.dataframe(df.style.format({"Invested (₹)": "{:,.2f}", "Future Value (₹)": "{:,.2f}", "Profit (₹)": "{:,.2f}"}))
 
@@ -53,7 +53,7 @@ if st.button("Calculate"):
 st.markdown(
     """
     ---
-    👉 Want to check your credit score?  
+     Want to check your credit score?  
     [Go to CIBIL Score Estimator](https://credscore.streamlit.app/)  
     """,
     unsafe_allow_html=True
