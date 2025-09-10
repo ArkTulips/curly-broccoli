@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Finance Tools", layout="wide")
 
-st.title("💰 Finance Tools Dashboard")
+st.title(" Finance Tools Dashboard")
 st.write("Welcome! Select a tool below to get started:")
 
 st.markdown("---")
