@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 st.set_page_config(
     page_title="Finance Tools - Your Financial Companion", 
     layout="wide",
-    page_icon="💰",
+    page_icon="",
     initial_sidebar_state="collapsed"
 )
 
