@@ -54,7 +54,7 @@ st.markdown(
     """
     ---
     👉 Want to check your credit score?  
-    [Go to CIBIL Score Estimator](https://yourname-cibil.streamlit.app)  
+    [Go to CIBIL Score Estimator](https://https://credscore.streamlit.app/)  
     """,
     unsafe_allow_html=True
 )
