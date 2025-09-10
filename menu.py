@@ -18,5 +18,9 @@ st.subheader("3️⃣ Tax Calculator")
 st.write("Calculate your income tax under the new regime.")
 st.markdown("[➡️ Go to Tax Calculator](https://yourname-tax.streamlit.app)")
 
+st.subheader("4️⃣ EMI calculator")
+st.write("Calculate your EMI.")
+st.markdown("[➡️ Go to EMI calculator](https://emicalculatorsj.streamlit.app/)")
+
 st.markdown("---")
 st.info("Each tool opens in a new tab on Streamlit Cloud.")
