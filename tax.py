@@ -16,7 +16,7 @@ st.markdown("""
         --primary: #2c3e50;
         --secondary: #3498db;
         --accent: #e74c3c;
-        --light: #ecf0f1;
+        --light: #1f2324;
         --dark: #2c3e50;
         --success: #2ecc71;
         --warning: #f39c12;
