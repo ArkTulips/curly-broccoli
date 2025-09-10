@@ -63,11 +63,11 @@ class EnhancedExpenseTracker:
         current_month_expense = self.monthly_expenses(today.year, today.month)
 
         if current_month_expense > monthly_budget:
-            return f"⚠️ Over budget by ${current_month_expense - monthly_budget:.2f}", "danger"
+            return f"⚠️ Over budget by ₹{current_month_expense - monthly_budget:.2f}", "danger"
         else:
             remaining = monthly_budget - current_month_expense
             percentage_used = (current_month_expense / monthly_budget) * 100 if monthly_budget > 0 else 0
-            return f"✅ Within budget. Remaining: ${remaining:.2f} ({percentage_used:.1f}% used)", "success"
+            return f"✅ Within budget. Remaining: ₹{remaining:.2f} ({percentage_used:.1f}% used)", "success"
 
     def get_expenses_df(self):
         if not self.expenses:
@@ -163,16 +163,16 @@ if page == "🏠 Dashboard":
 
     with col1:
         total_exp = st.session_state.enhanced_tracker.total_expenses()
-        st.metric("💸 Total Expenses", f"${total_exp:.2f}")
+        st.metric("💸 Total Expenses", f"₹{total_exp:.2f}")
 
     with col2:
         today = datetime.date.today()
         current_month_exp = st.session_state.enhanced_tracker.monthly_expenses(today.year, today.month)
-        st.metric("📅 This Month", f"${current_month_exp:.2f}")
+        st.metric("📅 This Month", f"₹{current_month_exp:.2f}")
 
     with col3:
         daily_exp = st.session_state.enhanced_tracker.daily_expenses(today)
-        st.metric("📆 Today", f"${daily_exp:.2f}")
+        st.metric("📆 Today", f"₹{daily_exp:.2f}")
 
     with col4:
         expense_count = len(st.session_state.enhanced_tracker.expenses)
@@ -200,7 +200,7 @@ if page == "🏠 Dashboard":
         for exp in recent_expenses:
             st.markdown(f"""
             <div class="expense-card">
-                <strong>{exp['category']}</strong> - ${exp['amount']:.2f}<br>
+                <strong>{exp['category']}</strong> - ₹{exp['amount']:.2f}<br>
                 <small>{exp['description']} | {exp['date']} | {exp['payment_method']}</small>
             </div>
             """, unsafe_allow_html=True)
@@ -215,7 +215,7 @@ elif page == "➕ Add Expense":
         col1, col2 = st.columns(2)
 
         with col1:
-            amount = st.number_input("💰 Amount ($)", min_value=0.01, format="%.2f", step=0.01)
+            amount = st.number_input("💰 Amount (₹)", min_value=0.01, format="%.2f", step=0.01)
             category = st.selectbox("📂 Category", CATEGORIES)
             payment_method = st.selectbox("💳 Payment Method", PAYMENT_METHODS)
 
@@ -237,7 +237,7 @@ elif page == "➕ Add Expense":
                 amount, category, description, expense_date, payment_method
             )
             st.session_state.expenses = st.session_state.enhanced_tracker.expenses
-            st.success(f"✅ Added ${amount:.2f} expense for {category}")
+            st.success(f"✅ Added ₹{amount:.2f} expense for {category}")
             st.balloons()
 
 # Calendar View Page
@@ -251,7 +251,7 @@ elif page == "📅 Calendar View":
         calendar_events = []
         for exp in st.session_state.enhanced_tracker.expenses:
             calendar_events.append({
-                "title": f"{exp['category']}: ${exp['amount']:.2f}",
+                "title": f"{exp['category']}: ₹{exp['amount']:.2f}",
                 "start": exp['date'].strftime("%Y-%m-%d"),
                 "color": "#FF6B6B" if exp['amount'] > 100 else "#4ECDC4",
                 "extendedProps": {
@@ -309,10 +309,10 @@ elif page == "📅 Calendar View":
 
             if day_expenses:
                 total_day = sum(exp['amount'] for exp in day_expenses)
-                st.metric("Daily Total", f"${total_day:.2f}")
+                st.metric("Daily Total", f"₹{total_day:.2f}")
 
                 for exp in day_expenses:
-                    st.write(f"• **{exp['category']}**: ${exp['amount']:.2f} - {exp['description']}")
+                    st.write(f"• **{exp['category']}**: ₹{exp['amount']:.2f} - {exp['description']}")
             else:
                 st.info("No expenses recorded for this date.")
 
@@ -349,7 +349,7 @@ elif page == "📈 Analytics":
                     x=list(category_summary.keys()),
                     y=list(category_summary.values()),
                     title="Category-wise Spending",
-                    labels={'x': 'Category', 'y': 'Amount ($)'}
+                    labels={'x': 'Category', 'y': 'Amount (₹)'}
                 )
                 fig_bar.update_layout(xaxis_tickangle=-45)
                 st.plotly_chart(fig_bar, use_container_width=True)
@@ -365,7 +365,7 @@ elif page == "📈 Analytics":
                     x=list(monthly_summary.keys()),
                     y=list(monthly_summary.values()),
                     title="Monthly Spending Trend",
-                    labels={'x': 'Month', 'y': 'Amount ($)'}
+                    labels={'x': 'Month', 'y': 'Amount (₹)'}
                 )
                 st.plotly_chart(fig_line, use_container_width=True)
 
@@ -376,7 +376,7 @@ elif page == "📈 Analytics":
                         x=list(weekly_summary.keys()),
                         y=list(weekly_summary.values()),
                         title="Weekly Spending Pattern",
-                        labels={'x': 'Week Starting', 'y': 'Amount ($)'}
+                        labels={'x': 'Week Starting', 'y': 'Amount (₹)'}
                     )
                     st.plotly_chart(fig_weekly, use_container_width=True)
 
@@ -405,19 +405,19 @@ elif page == "📈 Analytics":
             if top_expenses:
                 st.write("💸 **Highest Expenses:**")
                 for i, exp in enumerate(top_expenses, 1):
-                    st.write(f"{i}. {exp['category']}: ${exp['amount']:.2f} - {exp['description']}")
+                    st.write(f"{i}. {exp['category']}: ₹{exp['amount']:.2f} - {exp['description']}")
 
             # Category insights
             category_summary = st.session_state.enhanced_tracker.expense_summary_by_category()
             if category_summary:
                 highest_category = max(category_summary, key=category_summary.get)
-                st.info(f"💡 **Insight**: Your highest spending category is **{highest_category}** with ${category_summary[highest_category]:.2f}")
+                st.info(f"💡 **Insight**: Your highest spending category is **{highest_category}** with ₹{category_summary[highest_category]:.2f}")
 
                 # Average per category
                 avg_per_category = {cat: amount/len([e for e in st.session_state.enhanced_tracker.expenses if e['category'] == cat]) 
                                   for cat, amount in category_summary.items()}
                 highest_avg_category = max(avg_per_category, key=avg_per_category.get)
-                st.info(f"📊 **Average Insight**: **{highest_avg_category}** has the highest average expense of ${avg_per_category[highest_avg_category]:.2f} per transaction")
+                st.info(f"📊 **Average Insight**: **{highest_avg_category}** has the highest average expense of ₹{avg_per_category[highest_avg_category]:.2f} per transaction")
 
 # Budget Goals Page
 elif page == "🎯 Budget Goals":
@@ -428,7 +428,7 @@ elif page == "🎯 Budget Goals":
     with col1:
         st.subheader("📅 Monthly Budget")
         monthly_budget = st.number_input(
-            "Set Monthly Budget ($)", 
+            "Set Monthly Budget (₹)", 
             min_value=0.0, 
             value=st.session_state.goals.get('monthly_budget', 1000.0),
             step=50.0
@@ -436,23 +436,23 @@ elif page == "🎯 Budget Goals":
 
         if st.button("💾 Save Monthly Budget"):
             st.session_state.goals['monthly_budget'] = monthly_budget
-            st.success(f"Monthly budget set to ${monthly_budget:.2f}")
+            st.success(f"Monthly budget set to ₹{monthly_budget:.2f}")
 
         # Category-wise budgets
         st.subheader("📂 Category Budgets")
         selected_category = st.selectbox("Select Category for Budget", CATEGORIES)
-        category_budget = st.number_input(f"Budget for {selected_category} ($)", min_value=0.0, step=10.0)
+        category_budget = st.number_input(f"Budget for {selected_category} (₹)", min_value=0.0, step=10.0)
 
         if st.button("💾 Save Category Budget"):
             if 'category_budgets' not in st.session_state.goals:
                 st.session_state.goals['category_budgets'] = {}
             st.session_state.goals['category_budgets'][selected_category] = category_budget
-            st.success(f"Budget for {selected_category} set to ${category_budget:.2f}")
+            st.success(f"Budget for {selected_category} set to ₹{category_budget:.2f}")
 
     with col2:
         st.subheader("🎯 Savings Goals")
         savings_goal = st.number_input(
-            "Monthly Savings Target ($)", 
+            "Monthly Savings Target (₹)", 
             min_value=0.0, 
             value=st.session_state.goals.get('savings_goal', 500.0),
             step=25.0
@@ -460,12 +460,12 @@ elif page == "🎯 Budget Goals":
 
         if st.button("💾 Save Savings Goal"):
             st.session_state.goals['savings_goal'] = savings_goal
-            st.success(f"Savings goal set to ${savings_goal:.2f}")
+            st.success(f"Savings goal set to ₹{savings_goal:.2f}")
 
         # Daily spending limit
         st.subheader("📆 Daily Spending Limit")
         daily_limit = st.number_input(
-            "Daily Spending Limit ($)", 
+            "Daily Spending Limit (₹)", 
             min_value=0.0, 
             value=st.session_state.goals.get('daily_limit', 50.0),
             step=5.0
@@ -473,7 +473,7 @@ elif page == "🎯 Budget Goals":
 
         if st.button("💾 Save Daily Limit"):
             st.session_state.goals['daily_limit'] = daily_limit
-            st.success(f"Daily spending limit set to ${daily_limit:.2f}")
+            st.success(f"Daily spending limit set to ₹{daily_limit:.2f}")
 
     # Goals Overview
     if st.session_state.goals:
@@ -489,7 +489,7 @@ elif page == "🎯 Budget Goals":
             monthly_progress = min(current_month_exp / monthly_budget, 1.0) if monthly_budget > 0 else 0
             st.metric(
                 "📅 Monthly Budget Progress", 
-                f"${current_month_exp:.2f} / ${monthly_budget:.2f}",
+                f"₹{current_month_exp:.2f} / ₹{monthly_budget:.2f}",
                 f"{monthly_progress*100:.1f}% used"
             )
             st.progress(monthly_progress)
@@ -498,9 +498,9 @@ elif page == "🎯 Budget Goals":
         if 'daily_limit' in st.session_state.goals:
             daily_limit = st.session_state.goals['daily_limit']
             if daily_exp > daily_limit:
-                st.error(f"⚠️ Today's spending (${daily_exp:.2f}) exceeds daily limit (${daily_limit:.2f})")
+                st.error(f"⚠️ Today's spending (₹{daily_exp:.2f}) exceeds daily limit (₹{daily_limit:.2f})")
             else:
-                st.success(f"✅ Today's spending (${daily_exp:.2f}) is within daily limit (${daily_limit:.2f})")
+                st.success(f"✅ Today's spending (₹{daily_exp:.2f}) is within daily limit (₹{daily_limit:.2f})")
 
 # All Expenses Page
 elif page == "📋 All Expenses":
@@ -553,14 +553,14 @@ elif page == "📋 All Expenses":
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                st.metric("Total Amount", f"${sum(exp['amount'] for exp in filtered_expenses):.2f}")
+                st.metric("Total Amount", f"₹{sum(exp['amount'] for exp in filtered_expenses):.2f}")
 
             with col2:
                 st.metric("Number of Transactions", len(filtered_expenses))
 
             with col3:
                 avg_amount = sum(exp['amount'] for exp in filtered_expenses) / len(filtered_expenses)
-                st.metric("Average Amount", f"${avg_amount:.2f}")
+                st.metric("Average Amount", f"₹{avg_amount:.2f}")
         else:
             st.warning("No expenses match the current filters.")
 
