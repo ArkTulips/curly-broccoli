@@ -32,17 +32,17 @@ if st.button("Calculate CIBIL Score"):
     st.success(f"Your Estimated CIBIL Score: {score}")
 
     if score >= 750:
-        st.write("✅ Excellent: Eligible for best loans & cards")
+        st.write(" Excellent: Eligible for best loans & cards")
     elif score >= 700:
-        st.write("🙂 Good: Eligible for most loans")
+        st.write(" Good: Eligible for most loans")
     elif score >= 650:
-        st.write("😐 Fair: Might face higher interest rates")
+        st.write(" Fair: Might face higher interest rates")
     else:
-        st.write("❌ Poor: Loan approval chances low")
+        st.write(" Poor: Loan approval chances low")
 st.markdown(
     """
     ---
-    🔙 [Back to SIP Calculator](https://financialreach.streamlit.app/)
+     [Back to SIP Calculator](https://financialreach.streamlit.app/)
     """,
     unsafe_allow_html=True
 )
