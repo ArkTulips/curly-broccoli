@@ -238,7 +238,7 @@ elif page == "➕ Add Expense":
             )
             st.session_state.expenses = st.session_state.enhanced_tracker.expenses
             st.success(f"✅ Added ₹{amount:.2f} expense for {category}")
-            st.balloons()
+            
 
 # Calendar View Page
 elif page == "📅 Calendar View":
