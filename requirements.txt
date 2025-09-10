@@ -9,3 +9,146 @@ plotly
 
 # Date handling (Expense tracker, SIP, etc.)
 python-dateutil
+# Create requirements.txt file
+requirements = """streamlit>=1.28.0
+plotly>=5.15.0
+pandas>=2.0.0
+streamlit-calendar>=0.1.6
+datetime
+uuid"""
+
+with open("requirements.txt", "w") as f:
+    f.write(requirements)
+
+# Create installation guide
+installation_guide = """# Enhanced Expense Tracker - Installation Guide
+
+## 📋 Prerequisites
+- Python 3.7 or higher
+- pip package manager
+
+## 🚀 Quick Setup
+
+### Step 1: Install Required Packages
+```bash
+pip install -r requirements.txt
+```
+
+Or install packages individually:
+```bash
+pip install streamlit plotly pandas streamlit-calendar
+```
+
+### Step 2: Run the Application
+```bash
+streamlit run enhanced_expense_tracker.py
+```
+
+The app will open in your default web browser at `http://localhost:8501`
+
+## ✨ New Features Overview
+
+### 🏠 Dashboard
+- Real-time financial overview with key metrics
+- Budget analysis with progress tracking
+- Recent expenses display
+
+### ➕ Enhanced Expense Entry
+- 20+ predefined categories with emojis
+- Multiple payment method options
+- Tags and notes for better organization
+- Optional receipt upload
+
+### 📅 Interactive Calendar View
+- Visual daily expense tracking
+- Color-coded expenses (red for high amounts, teal for low)
+- Click on dates to see detailed breakdowns
+- Monthly, weekly, and list views
+
+### 📈 Advanced Analytics
+- **Category Analysis**: Pie charts and bar charts for spending distribution
+- **Time Trends**: Line graphs showing monthly and weekly patterns
+- **Payment Methods**: Donut charts for payment analysis
+- **Smart Insights**: AI-like recommendations and top expense analysis
+
+### 🎯 Budget Goals & Management
+- Monthly budget setting with progress tracking
+- Category-specific budgets
+- Daily spending limits
+- Savings goal tracking
+
+### 📋 Advanced Expense Management
+- Multi-filter search (category, payment method, date range)
+- Sortable data tables
+- Export capabilities
+- Summary statistics for filtered data
+
+## 🛠️ Technical Improvements
+
+1. **Enhanced Data Structure**: More comprehensive expense tracking with additional fields
+2. **Session State Management**: Persistent data during app sessions
+3. **Modern UI/UX**: Custom CSS styling with professional design
+4. **Interactive Visualizations**: Plotly charts for better data representation
+5. **Calendar Integration**: Full calendar component for daily tracking
+6. **Smart Analytics**: Automated insights and spending pattern analysis
+
+## 🎨 UI/UX Enhancements
+
+- Emoji-based category system for visual appeal
+- Color-coded metrics and alerts
+- Progress bars for budget tracking
+- Card-based layouts for better organization
+- Responsive design for different screen sizes
+
+## 📊 Visualization Features
+
+- **Pie Charts**: Category distribution analysis
+- **Bar Charts**: Comparative spending analysis
+- **Line Graphs**: Time-based trend analysis
+- **Donut Charts**: Payment method distribution
+- **Progress Bars**: Budget utilization tracking
+
+## 🔄 Data Management
+
+- Automatic data persistence during sessions
+- Excel-like filtering and sorting
+- Real-time calculations and updates
+- Smart categorization suggestions
+- Historical data analysis
+
+## 🚀 Getting Started Tips
+
+1. **Start with Dashboard**: Get an overview of your financial status
+2. **Set Budget Goals**: Define monthly and daily spending limits
+3. **Add Your First Expense**: Use the enhanced form with detailed information
+4. **Explore Calendar View**: Visualize your daily spending patterns
+5. **Analyze Trends**: Use the analytics page for deeper insights
+
+## 🔧 Troubleshooting
+
+If you encounter issues:
+
+1. **Package Installation**: Make sure all required packages are installed
+2. **Python Version**: Ensure you're using Python 3.7+
+3. **Browser Compatibility**: Use Chrome, Firefox, or Edge for best experience
+4. **Port Issues**: If port 8501 is busy, Streamlit will suggest an alternative
+
+## 📱 Usage Best Practices
+
+1. **Regular Updates**: Add expenses daily for accurate tracking
+2. **Detailed Descriptions**: Use clear, searchable descriptions
+3. **Proper Categories**: Choose appropriate categories for better analysis
+4. **Set Realistic Budgets**: Use historical data to set achievable goals
+5. **Review Analytics**: Check insights regularly to optimize spending
+"""
+
+with open("INSTALLATION_GUIDE.md", "w") as f:
+    f.write(installation_guide)
+
+print("✅ Additional files created:")
+print("📄 requirements.txt - All required Python packages")
+print("📖 INSTALLATION_GUIDE.md - Comprehensive setup and usage guide")
+print("\nFiles created:")
+print("1. enhanced_expense_tracker.py - Main application")
+print("2. requirements.txt - Dependencies")
+print("3. INSTALLATION_GUIDE.md - Setup guide")
