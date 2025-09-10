@@ -800,7 +800,7 @@ st.markdown("""
 <div class="logo-container">
     <div class="logo">💵</div>
 </div>
-<h1 class="main-title">Finance Hub </h1>
+<h1 class="main-title">Capital Compass </h1>
 <p class="subtitle"><strong>All your financial solution in one place</strong></p>
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
@@ -808,7 +808,7 @@ st.markdown("""
 # Enhanced description section
 st.markdown("""
 <div class="features-section">
-    <h2 class="features-title">🌟 What Makes Finance Hub Unique?</h2>
+    <h2 class="features-title">🌟 What Makes Capital Compass Unique?</h2>
     <div class="features-list">        
         <div class="feature-item">
             <div class="feature-title">⚡ <strong>Lightning Fast</strong></div>
