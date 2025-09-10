@@ -50,12 +50,12 @@ for i, tool in enumerate(tools):
             f"""
             <div style="padding:20px; border-radius:15px; background-color:#f9f9f9;
                         margin:10px; text-align:center; box-shadow:0px 4px 8px rgba(0,0,0,0.1);">
-                <h2 style="font-size:30px;">{tool['icon']}</h2>
+                <div style="font-size:60px; margin-bottom:10px;">{tool['icon']}</div>
                 <h4 style="margin-bottom:5px;">{tool['name']}</h4>
                 <p style="font-size:14px; color:#555;">{tool['desc']}</p>
                 <a href="{tool['link']}" target="_blank"
-                   style="display:inline-block; padding:8px 16px; background:#4CAF50; color:white;
-                          border-radius:8px; text-decoration:none; margin-top:10px;">
+                   style="display:inline-block; padding:10px 18px; background:#4CAF50; color:white;
+                          border-radius:8px; text-decoration:none; margin-top:10px; font-weight:bold;">
                    Open Tool ➡️
                 </a>
             </div>
