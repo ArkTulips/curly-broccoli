@@ -575,7 +575,7 @@ tools = [
         "desc": "Take complete control of your finances by tracking daily expenses, setting smart budgets, and analyzing detailed spending patterns.",
         "link": "https://expensetrac.streamlit.app/",
         "icon": "💵"
-    }
+    },
     {
         "name": "Retirement plan",
         "desc": "Plan your retirement with this interactive calculator. ",
