@@ -809,8 +809,7 @@ st.markdown("""
 st.markdown("""
 <div class="features-section">
     <h2 class="features-title">🌟 What Makes Finance Hub Unique?</h2>
-    <div class="features-list">
-        
+    <div class="features-list">        
         <div class="feature-item">
             <div class="feature-title">⚡ <strong>Lightning Fast</strong></div>
             <div class="feature-desc">Get instant results with our optimized calculation engine - no waiting, no delays</div>
