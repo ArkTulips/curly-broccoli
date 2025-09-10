@@ -24,7 +24,7 @@ tools = [
     {
         "name": "Tax Calculator",
         "desc": "Calculate your income tax under the new regime.",
-        "link": "https://yourname-tax.streamlit.app",
+        "link": "https://taxreturncalc.streamlit.app/",
         "icon": "🧾"
     },
     {
