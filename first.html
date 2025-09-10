@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinScore - Financial Health Assessment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .card-icon {
+            font-size: 2.2rem;
+            margin-right: 15px;
+            color: var(--secondary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .status-pending {
+            background-color: #ffeaa7;
+            color: #d35400;
+        }
+        
+        .status-approved {
+            background-color: #d1f7c4;
+            color: #27ae60;
+        }
+        
+        .status-rejected {
+            background-color: #ffcfd2;
+            color: #c0392b;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .progress-container {
+            margin: 40px 0;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 35px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .result-container {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .result-success {
+            background-color: #d1f7c4;
+            border-left: 5px solid #27ae60;
+        }
+        
+        .result-warning {
+            background-color: #ffeaa7;
+            border-left: 5px solid #f39c12;
+        }
+        
+        .result-danger {
+            background-color: #ffcfd2;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .factor-container {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .factor-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .factor-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .factor-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .factor-input input {
+            flex: 1;
+        }
+        
+        .factor-percentage {
+            font-weight: 600;
+            color: var(--secondary);
+            min-width: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 25px 20px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <i class="fas fa-chart-line logo-icon"></i>
+                <div class="logo">FinScore</div>
+            </div>
+            <div class="tagline">Comprehensive Financial Health Assessment for Inclusive Credit Scoring</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span>Loan Eligibility Progress</span>
+                <span id="progressPercent">0%</span>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h2 class="card-title">Credit Assessment</h2>
+                </div>
+                <div class="card-content">
+                    <p>Calculate your credit score based on payment history, credit utilization, length of credit history, new credit, and credit mix.</p>
+                    <p class="status status-pending" id="creditStatus">Pending</p>
+                </div>
+                <button class="btn" onclick="openModal('creditModal')"><i class="fas fa-calculator"></i>Calculate Credit Score</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h2 class="card-title">Tax Calculation</h2>
+                </div>
+                <div class="card-content">
+                    <p>Calculate your tax bracket, net vs gross income, and tax obligations.</p>
+                    <p class="status status-pending" id="taxStatus">Pending</p>
+                </div>
+                <button class="btn" onclick="openModal('taxModal')"><i class="fas fa-percent"></i>Calculate Tax</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="card-title">Insurance Coverage</h2>
+                </div>
+                <div class="card-content">
+                    <p>Review your insurance coverage across health, auto, home, and life policies.</p>
+                    <p class="status status-pending" id="insuranceStatus">Pending</p>
+                </div>
+                <button class="btn" onclick="openModal('insuranceModal')"><i class="fas fa-clipboard-check"></i>Check Insurance</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 style="margin-bottom: 15px;">Loan Eligibility Result</h2>
+            <p id="loanResult">Complete all assessments above to determine your loan eligibility.</p>
+            <button class="btn" id="finalCheckBtn" onclick="checkEligibility()" disabled><i class="fas fa-task-list"></i>Check Eligibility</button>
+        </div>
+    </div>
+    
+    <!-- Credit Assessment Modal -->
+    <div class="modal" id="creditModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('creditModal')">&times;</span>
+            <h2><i class="fas fa-credit-card"></i> Credit Score Calculation</h2>
+            <p>Enter your financial information to calculate your credit score (300-850 range)</p>
+            
+            <!-- Payment History -->
+            <div class="factor-container">
+                <div class="factor-title">Payment History (35%)</div>
+                <div class="factor-description">Your track record of making timely payments</div>
+                <div class="form-group">
+                    <label for="paymentHistory">On-time payment percentage (0-100%)</label>
+                    <input type="number" id="paymentHistory" min="0" max="100" placeholder="e.g., 95">
+                </div>
+            </div>
+            
+            <!-- Credit Utilization -->
+            <div class="factor-container">
+                <div class="factor-title">Credit Utilization (30%)</div>
+                <div class="factor-description">Your outstanding balances relative to your total credit limits</div>
+                <div class="form-group">
+                    <label for="creditUtilization">Credit utilization ratio (0-100%)</label>
+                    <input type="number" id="creditUtilization" min="0" max="100" placeholder="e.g., 25">
+                </div>
+            </div>
+            
+            <!-- Length of Credit History -->
+            <div class="factor-container">
+                <div class="factor-title">Length of Credit History (15%)</div>
+                <div class="factor-description">How long you've had credit accounts</div>
+                <div class="form-group">
+                    <label for="creditHistory">Credit history length (in years)</label>
+                    <input type="number" id="creditHistory" min="0" max="50" placeholder="e.g., 5">
+                </div>
+            </div>
+            
+            <!-- New Credit -->
+            <div class="factor-container">
+                <div class="factor-title">New Credit (10%)</div>
+                <div class="factor-description">Recent credit inquiries and new accounts</div>
+                <div class="form-group">
+                    <label for="newCredit">Number of new credit accounts in past year</label>
+                    <input type="number" id="newCredit" min="0" max="20" placeholder="e.g., 2">
+                </div>
+            </div>
+            
+            <!-- Credit Mix -->
+            <div class="factor-container">
+                <div class="factor-title">Credit Mix (10%)</div>
+                <div class="factor-description">Variety of credit types (credit cards, mortgage, auto loans, etc.)</div>
+                <div class="form-group">
+                    <label for="creditMix">Number of different credit types</label>
+                    <input type="number" id="creditMix" min="0" max="10" placeholder="e.g., 3">
+                </div>
+            </div>
+            
+            <button class="btn" onclick="calculateCreditScore()"><i class="fas fa-calculator"></i> Calculate Credit Score</button>
+            <div class="result-container" id="creditResult"></div>
+        </div>
+    </div>
+    
+    <!-- Tax Calculation Modal -->
+    <div class="modal" id="taxModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('taxModal')">&times;</span>
+            <h2><i class="fas fa-calculator"></i> Tax Calculation</h2>
+            <div class="form-group">
+                <label for="annualIncome">Annual Gross Income ($)</label>
+                <input type="number" id="annualIncome" placeholder="Enter your annual income">
+            </div>
+            <div class="form-group">
+                <label for="filingStatus">Filing Status</label>
+                <select id="filingStatus">
+                    <option value="single">Single</option>
+                    <option value="married">Married Filing Jointly</option>
+                    <option value="head">Head of Household</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="deductions">Total Deductions ($)</label>
+                <input type="number" id="deductions" placeholder="Enter your deductions">
+            </div>
+            <button class="btn" onclick="calculateTax()"><i class="fas fa-calculator"></i> Calculate Tax</button>
+            <div class="result-container" id="taxResult"></div>
+        </div>
+    </div>
+    
+    <!-- Insurance Modal -->
+    <div class="modal" id="insuranceModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('insuranceModal')">&times;</span>
+            <h2><i class="fas fa-shield-alt"></i> Insurance Coverage</h2>
+            <div class="form-group">
+                <label for="healthInsurance">Health Insurance Coverage</label>
+                <select id="healthInsurance">
+                    <option value="none">No Coverage</option>
+                    <option value="basic">Basic Coverage</option>
+                    <option value="comprehensive">Comprehensive Coverage</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="autoInsurance">Auto Insurance Coverage</label>
+                <select id="autoInsurance">
+                    <option value="none">No Coverage</option>
+                    <option value="liability">Liability Only</option>
+                    <option value="full">Full Coverage</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="homeInsurance">Home Insurance Coverage</label>
+                <select id="homeInsurance">
+                    <option value="none">No Coverage</option>
+                    <option value="renters">Renters Insurance</option>
+                    <option value="homeowners">Homeowners Insurance</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="lifeInsurance">Life Insurance Coverage</label>
+                <select id="lifeInsurance">
+                    <option value="none">No Coverage</option>
+                    <option value="term">Term Life</option>
+                    <option value="whole">Whole Life</option>
+                </select>
+            </div>
+            <button class="btn" onclick="calculateInsurance()"><i class="fas fa-clipboard-check"></i> Evaluate Coverage</button>
+            <div class="result-container" id="insuranceResult"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>FinScore - Alternative Credit Scoring for Financial Inclusion</p>
+            <p>DSS INNOVATERS - Digital Dawn Track | Providing financial assistance to the masses</p>
+            <p>Team: Divyanshu, Sukrit Pal, Shaurya Jha, Samarth Singh</p>
+        </div>
+    </footer>
+
+    <script>
+        // Track completed assessments
+        const completedAssessments = {
+            credit: false,
+            tax: false,
+            insurance: false
+        };
+        
+        // Open modal function
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        
+        // Close modal function
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
+        
+        // Update progress bar
+        function updateProgress() {
+            const completedCount = Object.values(completedAssessments).filter(Boolean).length;
+            const progressPercentage = (completedCount / 3) * 100;
+            
+            document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+            document.getElementById('progressPercent').textContent = `${Math.round(progressPercentage)}%`;
+            
+            // Enable final check button if all assessments are complete
+            if (completedCount === 3) {
+                document.getElementById('finalCheckBtn').disabled = false;
+            }
+        }
+        
+        // Credit Score Calculation based on the 5 factors
+        function calculateCreditScore() {
+            // Get values from inputs
+            const paymentHistory = parseInt(document.getElementById('paymentHistory').value) || 0;
+            const creditUtilization = parseInt(document.getElementById('creditUtilization').value) || 0;
+            const creditHistory = parseInt(document.getElementById('creditHistory').value) || 0;
+            const newCredit = parseInt(document.getElementById('newCredit').value) || 0;
+            const creditMix = parseInt(document.getElementById('creditMix').value) || 0;
+            
+            // Validate inputs
+            if (paymentHistory < 0 || paymentHistory > 100 || 
+                creditUtilization < 0 || creditUtilization > 100 ||
+                creditHistory < 0 || creditHistory > 50 ||
+                newCredit < 0 || newCredit > 20 ||
+                creditMix < 0 || creditMix > 10) {
+                alert('Please enter valid values for all fields');
+                return;
+            }
+            
+            // Calculate individual factor scores
+            const paymentScore = (paymentHistory / 100) * 35 * 10; // Convert to 0-350 scale
+            const utilizationScore = (1 - Math.min(creditUtilization, 100) / 100) * 30 * 10; // Lower utilization is better
+            const historyScore = (Math.min(creditHistory, 30) / 30) * 15 * 10; // Cap at 30 years for scoring
+            const newCreditScore = (1 - Math.min(newCredit, 10) / 10) * 10 * 10; // Fewer new accounts is better
+            const mixScore = (Math.min(creditMix, 5) / 5) * 10 * 10; // Cap at 5 types for scoring
+            
+            // Calculate total score (300-850 range)
+            let totalScore = 300 + paymentScore + utilizationScore + historyScore + newCreditScore + mixScore;
+            totalScore = Math.round(Math.min(Math.max(totalScore, 300), 850));
+            
+            // Determine rating
+            let rating, ratingColor;
+            if (totalScore >= 800) {
+                rating = "Excellent";
+                ratingColor = "#27ae60";
+            } else if (totalScore >= 740) {
+                rating = "Very Good";
+                ratingColor = "#2ecc71";
+            } else if (totalScore >= 670) {
+                rating = "Good";
+                ratingColor = "#f39c12";
+            } else if (totalScore >= 580) {
+                rating = "Fair";
+                ratingColor = "#e67e22";
+            } else {
+                rating = "Poor";
+                ratingColor = "#e74c3c";
+            }
+            
+            // Display results
+            const resultDiv = document.getElementById('creditResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>Credit Score Results</h3>
+                <div style="font-size: 2.5rem; font-weight: bold; color: ${ratingColor}; margin: 15px 0;">
+                    ${totalScore}
+                </div>
+                <div style="color: ${ratingColor}; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px;">
+                    ${rating}
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px;">
+                    <div>Payment History: <b>${Math.round(paymentScore/3.5)}/100</b></div>
+                    <div>Credit Utilization: <b>${Math.round(utilizationScore/3)}/100</b></div>
+                    <div>Credit History: <b>${Math.round(historyScore/1.5)}/100</b></div>
+                    <div>New Credit: <b>${Math.round(newCreditScore)}/100</b></div>
+                    <div>Credit Mix: <b>${Math.round(mixScore)}/100</b></div>
+                </div>
+            `;
+            
+            if (totalScore >= 670) {
+                resultDiv.className = 'result-container result-success';
+            } else if (totalScore >= 580) {
+                resultDiv.className = 'result-container result-warning';
+            } else {
+                resultDiv.className = 'result-container result-danger';
+            }
+            
+            // Mark as completed
+            completedAssessments.credit = true;
+            document.getElementById('creditStatus').textContent = 'Completed';
+            document.getElementById('creditStatus').className = 'status status-approved';
+            updateProgress();
+        }
+        
+        // Tax Calculation
+        function calculateTax() {
+            const annualIncome = parseFloat(document.getElementById('annualIncome').value);
+            const filingStatus = document.getElementById('filingStatus').value;
+            const deductions = parseFloat(document.getElementById('deductions').value) || 0;
+            
+            if (!annualIncome) {
+                alert('Please enter your annual income');
+                return;
+            }
+            
+            const taxableIncome = annualIncome - deductions;
+            
+            // Simplified tax brackets for demonstration
+            let taxBracket, taxAmount;
+            
+            if (filingStatus === 'single') {
+                if (taxableIncome <= 11000) {
+                    taxBracket = '10%';
+                    taxAmount = taxableIncome * 0.1;
+                } else if (taxableIncome <= 44725) {
+                    taxBracket = '12%';
+                    taxAmount = 1100 + (taxableIncome - 11000) * 0.12;
+                } else if (taxableIncome <= 95375) {
+                    taxBracket = '22%';
+                    taxAmount = 5147 + (taxableIncome - 44725) * 0.22;
+                } else {
+                    taxBracket = '24%+';
+                    taxAmount = 16290 + (taxableIncome - 95375) * 0.24;
+                }
+            } else if (filingStatus === 'married') {
+                if (taxableIncome <= 22000) {
+                    taxBracket = '10%';
+                    taxAmount = taxableIncome * 0.1;
+                } else if (taxableIncome <= 89450) {
+                    taxBracket = '12%';
+                    taxAmount = 2200 + (taxableIncome - 22000) * 0.12;
+                } else if (taxableIncome <= 190750) {
+                    taxBracket = '22%';
+                    taxAmount = 10294 + (taxableIncome - 89450) * 0.22;
+                } else {
+                    taxBracket = '24%+';
+                    taxAmount = 32580 + (taxableIncome - 190750) * 0.24;
+                }
+            } else { // head of household
+                if (taxableIncome <= 15700) {
+                    taxBracket = '10%';
+                    taxAmount = taxableIncome * 0.1;
+                } else if (taxableIncome <= 59850) {
+                    taxBracket = '12%';
+                    taxAmount = 1570 + (taxableIncome - 15700) * 0.12;
+                } else if (taxableIncome <= 95350) {
+                    taxBracket = '22%';
+                    taxAmount = 6868 + (taxableIncome - 59850) * 0.22;
+                } else {
+                    taxBracket = '24%+';
+                    taxAmount = 14678 + (taxableIncome - 95350) * 0.24;
+                }
+            }
+            
+            const netIncome = annualIncome - taxAmount;
+            
+            const resultDiv = document.getElementById('taxResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result-container result-success';
+            
+            resultDiv.innerHTML = `
+                <h3>Tax Calculation Results</h3>
+                <p><strong>Gross Income:</strong> $${annualIncome.toLocaleString()}</p>
+                <p><strong>Taxable Income:</strong> $${taxableIncome.toLocaleString()}</p>
+                <p><strong>Tax Bracket:</strong> ${taxBracket}</p>
+                <p><strong>Estimated Tax:</strong> $${taxAmount.toLocaleString()}</p>
+                <p><strong>Net Income:</strong> $${netIncome.toLocaleString()}</p>
+            `;
+            
+            // Mark as completed
+            completedAssessments.tax = true;
+            document.getElementById('taxStatus').textContent = 'Completed';
+            document.getElementById('taxStatus').className = 'status status-approved';
+            updateProgress();
+        }
+        
+        // Insurance Calculation
+        function calculateInsurance() {
+            const healthInsurance = document.getElementById('healthInsurance').value;
+            const autoInsurance = document.getElementById('autoInsurance').value;
+            const homeInsurance = document.getElementById('homeInsurance').value;
+            const lifeInsurance = document.getElementById('lifeInsurance').value;
+            
+            let coverageScore = 0;
+            let recommendations = [];
+            
+            // Evaluate health insurance
+            if (healthInsurance === 'none') {
+                recommendations.push('Consider getting health insurance to protect against medical costs');
+            } else if (healthInsurance === 'basic') {
+                coverageScore += 25;
+            } else {
+                coverageScore += 35;
+            }
+            
+            // Evaluate auto insurance
+            if (autoInsurance === 'none') {
+                recommendations.push('Auto insurance is legally required in most states');
+            } else if (autoInsurance === 'liability') {
+                coverageScore += 15;
+            } else {
+                coverageScore += 20;
+            }
+            
+            // Evaluate home insurance
+            if (homeInsurance === 'none') {
+                recommendations.push('Consider getting home/renters insurance to protect your property');
+            } else if (homeInsurance === 'renters') {
+                coverageScore += 15;
+            } else {
+                coverageScore += 25;
+            }
+            
+            // Evaluate life insurance
+            if (lifeInsurance === 'none') {
+                recommendations.push('Consider life insurance if you have dependents');
+            } else if (lifeInsurance === 'term') {
+                coverageScore += 15;
+            } else {
+                coverageScore += 20;
+            }
+            
+            const resultDiv = document.getElementById('insuranceResult');
+            resultDiv.style.display = 'block';
+            
+            if (coverageScore >= 70) {
+                resultDiv.className = 'result-container result-success';
+            } else if (coverageScore >= 40) {
+                resultDiv.className = 'result-container result-warning';
+            } else {
+                resultDiv.className = 'result-container result-danger';
+            }
+            
+            let recommendationsHTML = '';
+            if (recommendations.length > 0) {
+                recommendationsHTML = '<h4>Recommendations:</h4><ul>';
+                recommendations.forEach(rec => {
+                    recommendationsHTML += `<li>${rec}</li>`;
+                });
+                recommendationsHTML += '</ul>';
+            }
+            
+            resultDiv.innerHTML = `
+                <h3>Insurance Coverage Results</h3>
+                <p><strong>Coverage Score:</strong> ${coverageScore}/100</p>
+                ${recommendationsHTML}
+            `;
+            
+            // Mark as completed
+            completedAssessments.insurance = true;
+            document.getElementById('insuranceStatus').textContent = 'Completed';
+            document.getElementById('insuranceStatus').className = 'status status-approved';
+            updateProgress();
+        }
+        
+        // Final eligibility check
+        function checkEligibility() {
+            const creditScore = parseInt(document.getElementById('paymentHistory').value) ? 
+                (300 + 
+                 (parseInt(document.getElementById('paymentHistory').value)/100 * 35 * 10) +
+                 ((1 - Math.min(parseInt(document.getElementById('creditUtilization').value), 100)/100) * 30 * 10) +
+                 (Math.min(parseInt(document.getElementById('creditHistory').value), 30)/30 * 15 * 10) +
+                 ((1 - Math.min(parseInt(document.getElementById('newCredit').value), 10)/10) * 10 * 10) +
+                 (Math.min(parseInt(document.getElementById('creditMix').value), 5)/5 * 10 * 10)
+                ) : 0;
+            
+            const annualIncome = parseFloat(document.getElementById('annualIncome').value) || 0;
+            
+            let eligible = true;
+            let reasons = [];
+            
+            if (creditScore < 580) {
+                eligible = false;
+                reasons.push('Credit score is too low (below 580)');
+            } else if (creditScore < 670) {
+                reasons.push('Credit score is fair, which may result in higher interest rates');
+            }
+            
+            if (annualIncome < 30000) {
+                reasons.push('Income is relatively low, which may limit loan amount');
+            }
+            
+            const resultDiv = document.getElementById('loanResult');
+            
+            if (eligible) {
+                resultDiv.innerHTML = `
+                    <h3 style="color: var(--success);">Congratulations! You are eligible for a loan.</h3>
+                    <p>Based on your financial assessment, you meet our criteria for loan approval.</p>
+                    <p>Next steps: A loan officer will contact you to discuss options and amounts.</p>
+                    ${reasons.length ? '<p>Notes: <ul>' + reasons.map(reason => `<li>${reason}</li>`).join('') + '</ul></p>' : ''}
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <h3 style="color: var(--danger);">Currently not eligible for a loan.</h3>
+                    <p>Reasons:</p>
+                    <ul>
+                        ${reasons.map(reason => `<li>${reason}</li>`).join('')}
+                    </ul>
+                    <p>Please work on improving these areas and check back later.</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
