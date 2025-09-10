@@ -3,9 +3,9 @@ import streamlit as st
 
 # Page configuration
 st.set_page_config(
-    page_title="FinanceHub Pro - Your Ultimate Financial Companion", 
+    page_title="FinanceHub - Your Ultimate Financial Companion", 
     layout="wide",
-    page_icon="💎",
+    page_icon="",
     initial_sidebar_state="collapsed"
 )
 
