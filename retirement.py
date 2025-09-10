@@ -352,18 +352,19 @@ else:
     # Sample chart placeholder using Streamlit's native chart
     st.subheader("The Power of Compound Interest")
     
-    # Sample data for demonstration
-    years = list(range(65))
-    savings_early = [100000 * (1.08)**y for y in years]
-    savings_late = [0] * 25 + [100000 * (1.08)(y-25) for y in range(25, 65)]
-    
-    df_compound = pd.DataFrame({
-        'Age': [25 + y for y in years],
-        'Starting at 25': savings_early,
-        'Starting at 50': savings_late
-    })
-    
-    st.line_chart(df_compound.set_index('Age'))
+ # Sample data for demonstration
+years = list(range(65))
+savings_early = [100000 * (1.08)**y for y in years]
+savings_late = [0] * 25 + [100000 * (1.08)**(y-25) for y in range(25, 65)]
+
+df_compound = pd.DataFrame({
+    'Age': [25 + y for y in years],
+    'Starting at 25': savings_early,
+    'Starting at 50': savings_late
+})
+
+st.line_chart(df_compound.set_index('Age'))
+
 
 # Footer
 st.markdown("---")
