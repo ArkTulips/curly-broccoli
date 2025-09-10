@@ -800,7 +800,7 @@ st.markdown("""
 <div class="logo-container">
     <div class="logo">💎</div>
 </div>
-<h1 class="main-title">FinanceHub </h1>
+<h1 class="main-title">Finance Hub </h1>
 <p class="subtitle"><strong>Your Ultimate Financial Intelligence Platform</strong></p>
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
