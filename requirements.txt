@@ -1,0 +1,11 @@
+# Core
+streamlit
+pandas
+numpy
+
+# Visualization
+matplotlib
+plotly
+
+# Date handling (Expense tracker, SIP, etc.)
+python-dateutil
