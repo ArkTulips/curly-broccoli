@@ -576,6 +576,12 @@ tools = [
         "link": "https://expensetrac.streamlit.app/",
         "icon": "💵"
     }
+    {
+        "name": "Retirement plan",
+        "desc": "Plan your retirement with this interactive calculator. ",
+        "link": "https://retirementtrack.streamlit.app/",
+        "icon": "💵"
+    }
 ]
 
 # Create tools grid with enhanced cards
