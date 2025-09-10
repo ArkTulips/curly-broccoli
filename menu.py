@@ -836,37 +836,37 @@ st.markdown("---")
 tools = [
     {
         "name": "SIP Calculator",
-        "desc": "**Master Systematic Investment Planning** with advanced projections, goal-based planning, and wealth growth analysis. Calculate returns for mutual funds, equity SIPs, and index funds with Indian market data.",
+        "desc": "Master Systematic Investment Planning with advanced projections, goal-based planning, and wealth growth analysis. Calculate returns for mutual funds, equity SIPs, and index funds with Indian market data.",
         "link": "https://financialreach.streamlit.app/",
         "icon": "📈"
     },
     {
         "name": "Credit Score Estimator", 
-        "desc": "**AI-Powered Credit Analysis** using CIBIL-compatible algorithms. Get accurate score estimates, improvement strategies, and loan eligibility insights with personalized action plans.",
+        "desc": "AI-Powered Credit Analysis using CIBIL-compatible algorithms. Get accurate score estimates, improvement strategies, and loan eligibility insights with personalized action plans.",
         "link": "https://creditscores.streamlit.app/",
         "icon": "💳"
     },
     {
         "name": "Tax Calculator",
-        "desc": "**Smart Tax Optimization** for India's new tax regime. Calculate income tax liability, compare old vs new regimes, and discover maximum savings with HRA, 80C, and other deductions.",
+        "desc": "Smart Tax Optimization for India's new tax regime. Calculate income tax liability, compare old vs new regimes, and discover maximum savings with HRA, 80C, and other deductions.",
         "link": "https://taxreturncalc.streamlit.app/",
         "icon": "🧾"
     },
     {
         "name": "EMI Calculator",
-        "desc": "**Complete Loan Planning Suite** with advanced EMI calculations, amortization schedules, prepayment analysis, and comparison tools for home loans, personal loans, and vehicle financing.",
+        "desc": "Complete Loan Planning Suite with advanced EMI calculations, amortization schedules, prepayment analysis, and comparison tools for home loans, personal loans, and vehicle financing.",
         "link": "https://emicalculatorsj.streamlit.app/",
         "icon": "🏦"
     },
     {
         "name": "Expense Tracker",
-        "desc": "**Intelligent Expense Management** with AI-powered categorization, smart budgeting, spending pattern analysis, and financial health insights to optimize your money flow.",
+        "desc": "Intelligent Expense Management with AI-powered categorization, smart budgeting, spending pattern analysis, and financial health insights to optimize your money flow.",
         "link": "https://expensetrac.streamlit.app/",
         "icon": "💵"
     },
     {
         "name": "Retirement Planner",
-        "desc": "**Strategic Retirement Planning** with inflation-adjusted calculations, corpus estimation, pension planning, and lifestyle maintenance analysis for a secure financial future.",
+        "desc": "Strategic Retirement Planning with inflation-adjusted calculations, corpus estimation, pension planning, and lifestyle maintenance analysis for a secure financial future.",
         "link": "https://retirementtrack.streamlit.app/",
         "icon": "👨‍🦳"
     }
