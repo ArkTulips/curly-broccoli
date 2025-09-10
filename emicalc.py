@@ -500,3 +500,4 @@ st.markdown('''
 Actual loan terms may vary based on lender policies, credit score, and other factors.
 
 **Advanced EMI Calculator** - Make informed financial decisions
+''')
