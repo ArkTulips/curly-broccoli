@@ -321,9 +321,7 @@ def main():
             fig_pie = create_tax_breakdown_chart(result)
             if fig_pie:
                 st.plotly_chart(fig_pie, use_container_width=True)
-        else:
-            st.success("🎉 No Tax Liability!")
-            st.balloons()
+        
 
     # Detailed breakdown table
     st.markdown('<h3 class="sub-header">📋 Detailed Tax Breakdown</h3>', unsafe_allow_html=True)
