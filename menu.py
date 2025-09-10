@@ -1,92 +1,163 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
-# ----------------------------
-# PAGE CONFIG
-# ----------------------------
-st.set_page_config(page_title="Finance Tools", layout="centered")
+# Page config
+st.set_page_config(
+    page_title="Finance Tools - Your Financial Companion",
+    layout="wide",
+    page_icon="💰",
+    initial_sidebar_state="expanded",
+)
 
-# ----------------------------
-# SESSION STATE FOR THEME
-# ----------------------------
-if "theme" not in st.session_state:
-    st.session_state["theme"] = "light"
+# Initialize theme state in session
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
 
-# ----------------------------
-# THEME TOGGLE BUTTON + SCRIPT
-# ----------------------------
-components.html(f"""
-<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" 
-     style="cursor:pointer; font-size:20px; display:flex; align-items:center; gap:8px;">
-    <span id="toggleIcon">{'☀' if st.session_state["theme"] == 'light' else '🌙'}</span>
-    <span id="toggleText">{st.session_state["theme"].capitalize()}</span>
-</div>
+# Sidebar toggle for dark/light mode
+with st.sidebar:
+    st.markdown("## Theme Settings")
+    dark_mode = st.checkbox("Dark Mode", value=st.session_state.dark_mode)
+    st.session_state.dark_mode = dark_mode
 
-<script>
-function toggleTheme() {{
-    const html = parent.document.documentElement; 
-    const currentTheme = html.getAttribute('data-theme') || '{st.session_state["theme"]}';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
+# Define CSS for light and dark themes
+light_theme_css = """
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #000000;
+    }
+    .tool-card {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: 0px 4px 8px rgba(0,0,0,0.1) !important;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px;
+        text-align: center;
+    }
+    h4 {
+        color: #000000 !important;
+    }
+    p {
+        color: #555555 !important;
+    }
+    a {
+        color: #ffffff !important;
+        background-color: #4CAF50;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 10px;
+    }
+</style>
+"""
 
-    const icon = parent.document.getElementById('toggleIcon');
-    const text = parent.document.getElementById('toggleText');
-    if (newTheme === 'dark') {{
-        icon.textContent = '🌙';
-        text.textContent = 'Dark';
-    }} else {{
-        icon.textContent = '☀';
-        text.textContent = 'Light';
-    }}
+dark_theme_css = """
+<style>
+    body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #ffffff;
+    }
+    .tool-card {
+        background-color: #2c3e50 !important;
+        color: #ffffff !important;
+        box-shadow: 0px 4px 8px rgba(0,0,0,0.5) !important;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px;
+        text-align: center;
+    }
+    h4 {
+        color: #ffffff !important;
+    }
+    p {
+        color: #bbbbbb !important;
+    }
+    a {
+        color: #ffffff !important;
+        background-color: #4CAF50;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 10px;
+    }
+</style>
+"""
 
-    // Update Streamlit state via localStorage
-    localStorage.setItem('theme', newTheme);
-}}
+# Apply theme CSS
+if st.session_state.dark_mode:
+    st.markdown(dark_theme_css, unsafe_allow_html=True)
+else:
+    st.markdown(light_theme_css, unsafe_allow_html=True)
 
-// Initialize theme on load
-document.addEventListener("DOMContentLoaded", function() {{
-    let savedTheme = localStorage.getItem("theme") || "{st.session_state["theme"]}";
-    parent.document.documentElement.setAttribute('data-theme', savedTheme);
+# Main title centered
+st.markdown(
+    """
+    <h1 style="text-align:center; font-family:sans-serif; font-size:3rem; margin-bottom:1rem;">
+    Finance Tools
+    </h1>
+    <p style="text-align:center; font-family:sans-serif; font-size:1.2rem; margin-top:0; color:gray;">
+    Your comprehensive financial companion for smart money management
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
 
-    const icon = parent.document.getElementById('toggleIcon');
-    const text = parent.document.getElementById('toggleText');
-    if (savedTheme === 'dark') {{
-        icon.textContent = '🌙';
-        text.textContent = 'Dark';
-    }} else {{
-        icon.textContent = '☀';
-        text.textContent = 'Light';
-    }}
-}});
-</script>
-""", height=50)
-
-# ----------------------------
-# DASHBOARD CONTENT
-# ----------------------------
-st.title("💰 Finance Tools Dashboard")
-st.write("Welcome! Use the links below to navigate to your preferred financial tool.")
-
+st.write("Welcome! Select a tool below to get started:")
 st.markdown("---")
 
+# List of tools
 tools = [
-    ("📈", "SIP Calculator", "Calculate SIP returns and profit percentage.", "https://financialreach.streamlit.app/"),
-    ("💳", "Credit Score Estimator", "Estimate your credit score based on CIBIL-like logic.", "https://creditscores.streamlit.app/"),
-    ("🧾", "Tax Calculator", "Calculate your income tax under the new regime.", "https://yourname-tax.streamlit.app"),
-    ("🏦", "EMI Calculator", "Calculate your loan EMI easily.", "https://emicalculatorsj.streamlit.app/"),
-    ("📊", "Expense Tracker", "Track and analyze your monthly expenses.", "https://expensetrac.streamlit.app/")
+    {
+        "name": "SIP Calculator",
+        "desc": "Calculate SIP returns and profit percentage.",
+        "link": "https://financialreach.streamlit.app/",
+        "icon": "📈",
+    },
+    {
+        "name": "Credit Score Estimator",
+        "desc": "Estimate your credit score based on CIBIL-like logic.",
+        "link": "https://creditscores.streamlit.app/",
+        "icon": "💳",
+    },
+    {
+        "name": "Tax Calculator",
+        "desc": "Calculate your income tax under the new regime.",
+        "link": "https://taxreturncalc.streamlit.app/",
+        "icon": "🧾",
+    },
+    {
+        "name": "EMI Calculator",
+        "desc": "Calculate your monthly loan EMI.",
+        "link": "https://emicalculatorsj.streamlit.app/",
+        "icon": "🏦",
+    },
+    {
+        "name": "Expense Tracker",
+        "desc": "Track your monthly and overall expenses.",
+        "link": "https://expensetrac.streamlit.app/",
+        "icon": "💵",
+    },
 ]
 
-for icon, title, desc, link in tools:
-    st.markdown(f"""
-    <div style="padding:15px; border-radius:12px; border:1px solid #ddd; margin-bottom:15px;">
-        <h3 style="font-size:24px;">{icon} {title}</h3>
-        <p style="font-size:16px;">{desc}</p>
-        <a href="{link}" target="_blank" style="text-decoration:none; 
-            background:#4CAF50; color:white; padding:8px 15px; 
-            border-radius:8px; font-size:16px;">Open Tool</a>
-    </div>
-    """, unsafe_allow_html=True)
+# Display tools in 3 columns
+cols = st.columns(3)
+for i, tool in enumerate(tools):
+    with cols[i % 3]:
+        st.markdown(
+            f"""
+            <div class="tool-card">
+                <div style="font-size:100px; margin-bottom:10px;">{tool['icon']}</div>
+                <h4>{tool['name']}</h4>
+                <p style="font-size:20px;">{tool['desc']}</p>
+                <a href="{tool['link']}" target="_blank" rel="noopener noreferrer">Open Tool ➡️</a>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 st.markdown("---")
-st.info("Each tool opens in a new tab on Streamlit Cloud.")
+st.info("Each tool will open in a new tab on Streamlit Cloud.")
