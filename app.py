@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 def sip_calculator(monthly_investment, annual_rate, years):
     r = annual_rate / 100
@@ -47,13 +46,7 @@ if st.button("Calculate"):
     df = sip_growth_table(monthly, rate, years)
     st.dataframe(df.style.format({"Invested (₹)": "{:,.2f}", "Future Value (₹)": "{:,.2f}", "Profit (₹)": "{:,.2f}"}))
 
-    # Chart
-    fig, ax = plt.subplots(figsize=(8,4))
-    ax.plot(df["Year"], df["Invested (₹)"], label="Invested Amount", marker="o")
-    ax.plot(df["Year"], df["Future Value (₹)"], label="Future Value", marker="o")
-    ax.fill_between(df["Year"], df["Invested (₹)"], df["Future Value (₹)"], alpha=0.2, color="green")
-    ax.set_xlabel("Year")
-    ax.set_ylabel("Amount (₹)")
-    ax.set_title("SIP Growth Over Time")
-    ax.legend()
-    st.pyplot(fig)
+    # Chart (using Streamlit built-in)
+    st.line_chart(
+        df.set_index("Year")[["Invested (₹)", "Future Value (₹)"]]
+    )
