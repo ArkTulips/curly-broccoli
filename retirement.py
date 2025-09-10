@@ -54,7 +54,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App title and description
-st.markdown('<h1 class="main-header"> Indian Retirement Planner</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="main-header">Retirement Planner</h1>', unsafe_allow_html=True)
 st.write("Plan your retirement with this interactive calculator. Adjust the inputs in the sidebar to see how different factors affect your retirement savings.")
 
 # Sidebar for user inputs
