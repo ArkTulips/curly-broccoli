@@ -7,9 +7,9 @@ import numpy as np
 
 # Set page configuration
 st.set_page_config(
-    page_title="📊 Advanced SIP Calculator", 
+    page_title=" Advanced SIP Calculator", 
     layout="wide",
-    page_icon="📈"
+    page_icon=""
 )
 
 # Custom CSS for better styling
