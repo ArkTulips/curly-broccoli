@@ -19,7 +19,7 @@ def calculate_cibil_score(payment_history, credit_utilization, credit_history_ye
     return int(300 + (total_percentage / 100) * 600)
 
 st.set_page_config(page_title="CIBIL Score Estimator", layout="centered")
-st.title("📊 CIBIL Score Estimator")
+st.title("CIBIL Score Estimator")
 
 ph = st.slider("Payment History (% on-time)", 0, 100, 90)
 cu = st.slider("Credit Utilization (%)", 0, 100, 30)
