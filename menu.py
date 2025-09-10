@@ -808,7 +808,7 @@ st.markdown("""
 # Enhanced description section
 st.markdown("""
 <div class="features-section">
-    <h2 class="features-title">🌟 What Makes FinanceHub Pro Unique?</h2>
+    <h2 class="features-title">🌟 What Makes Finance Hub Unique?</h2>
     <div class="features-list">
         <div class="feature-item">
             <div class="feature-title">🚀 <strong>AI-Powered Precision</strong></div>
