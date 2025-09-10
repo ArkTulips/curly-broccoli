@@ -580,7 +580,7 @@ tools = [
         "name": "Retirement plan",
         "desc": "Plan your retirement with this interactive calculator. ",
         "link": "https://retirementtrack.streamlit.app/",
-        "icon": "💵"
+        "icon": "👨‍🦳"
     }
 ]
 
