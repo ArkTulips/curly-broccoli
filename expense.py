@@ -84,7 +84,7 @@ class EnhancedExpenseTracker:
 
 # Streamlit App Configuration
 st.set_page_config(
-    page_title="💰 Enhanced Expense Tracker",
+    page_title=" Enhanced Expense Tracker",
     page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
