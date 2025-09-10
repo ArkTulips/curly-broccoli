@@ -13,7 +13,7 @@ def calculate_emi(principal, annual_rate, tenure_years):
     return emi
 
 # Streamlit App
-st.title("💰 EMI Calculator")
+st.title("EMI Calculator")
 
 # Input fields
 P = st.number_input("Enter the loan amount (Principal):", min_value=0.0, step=1000.0)
@@ -26,7 +26,7 @@ if st.button("Calculate EMI"):
         total_payment = emi * N * 12
         total_interest = total_payment - P
 
-        st.success(f"📌 For a loan of ₹{P:,.2f} at {R}% annual interest over {N} years:")
+        st.success(f" For a loan of ₹{P:,.2f} at {R}% annual interest over {N} years:")
         st.write(f"*Monthly EMI:* ₹{emi:,.2f}")
         st.write(f"*Total Payment:* ₹{total_payment:,.2f}")
         st.write(f"*Total Interest:* ₹{total_interest:,.2f}")
