@@ -19,7 +19,7 @@ st.set_page_config(
 USERS_FILE = "users_data.json"
 USER_PROFILES_FILE = "user_profiles.json"
 
-# Custom CSS for professional styling with solid colors only
+# Custom CSS for humanized styling with natural images and white color scheme
 def load_custom_css():
     st.markdown("""
     <style>
@@ -32,34 +32,35 @@ def load_custom_css():
     footer {visibility: hidden;}
     .stApp > header {height: 0;}
 
-    /* Global styles with solid dark background */
+    /* Global styles with natural dark background */
     .stApp {
-        background: #1a1a2e;
+        background: #2c3e50;
         font-family: 'Inter', sans-serif;
         min-height: 100vh;
     }
 
-    /* Main container */
+    /* Main container with slightly imperfect rounded corners */
     .main-container {
         display: flex;
         min-height: 100vh;
-        background: #000000;
-        border-radius: 20px;
+        background: #34495e;
+        border-radius: 18px 25px 20px 22px;
         overflow: hidden;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        margin: 20px;
-        max-width: 1400px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.2);
+        margin: 15px 25px 20px 18px;
+        max-width: 1380px;
         margin-left: auto;
         margin-right: auto;
-        border: 1px solid #8b5fbf;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transform: rotate(-0.2deg);
     }
 
-    /* Left panel with financial dashboard image */
+    /* Left panel with natural business meeting image */
     .left-panel {
-        flex: 1.2;
-        background: #16213e;
+        flex: 1.1;
+        background: #2c3e50;
         color: white;
-        padding: 60px 50px;
+        padding: 55px 45px 60px 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -74,11 +75,12 @@ def load_custom_css():
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85');
         background-size: cover;
-        background-position: center;
-        opacity: 0.15;
+        background-position: center 30%;
+        opacity: 0.12;
         z-index: 0;
+        transform: scale(1.05);
     }
 
     .left-panel::after {
@@ -88,8 +90,8 @@ def load_custom_css():
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(139,95,191,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        opacity: 0.4;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        opacity: 0.3;
         z-index: 1;
     }
 
@@ -99,98 +101,107 @@ def load_custom_css():
     }
 
     .brand-logo {
-        width: 100px;
-        height: 100px;
-        background: #8b5fbf;
-        border-radius: 20px;
+        width: 95px;
+        height: 98px;
+        background: #ffffff;
+        border-radius: 16px 20px 18px 19px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 30px;
-        font-size: 36px;
+        margin-bottom: 28px;
+        font-size: 34px;
         font-weight: 700;
-        color: white;
-        box-shadow: 0 10px 30px rgba(139, 95, 191, 0.3);
+        color: #2c3e50;
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        transform: rotate(1deg);
     }
 
     .brand-title {
-        font-size: 58px;
+        font-size: 54px;
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         color: #ffffff;
-        line-height: 1.1;
-        text-shadow: 0 0 30px rgba(139, 95, 191, 0.5);
+        line-height: 1.05;
+        text-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+        letter-spacing: -1px;
     }
 
     .brand-subtitle {
-        font-size: 22px;
-        opacity: 0.9;
-        margin-bottom: 20px;
-        line-height: 1.4;
+        font-size: 21px;
+        opacity: 0.88;
+        margin-bottom: 18px;
+        line-height: 1.35;
         font-weight: 500;
-        color: #e0e0ff;
+        color: #ecf0f1;
     }
 
     .brand-tagline {
-        font-size: 18px;
-        opacity: 0.8;
-        margin-bottom: 50px;
+        font-size: 17px;
+        opacity: 0.75;
+        margin-bottom: 45px;
         font-style: italic;
-        color: #c0c0ff;
+        color: #bdc3c7;
         font-weight: 300;
+        line-height: 1.4;
     }
 
     .features-list {
-        margin-top: 20px;
+        margin-top: 22px;
     }
 
     .feature-item {
         display: flex;
         align-items: center;
-        margin-bottom: 25px;
-        padding: 22px 28px;
-        background: #533a7d;
-        border-radius: 15px;
-        border-left: 5px solid #00d4ff;
-        backdrop-filter: blur(15px);
+        margin-bottom: 22px;
+        padding: 20px 25px 21px 26px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 12px 15px 13px 14px;
+        border-left: 4px solid #00d4ff;
+        backdrop-filter: blur(10px);
         transition: all 0.3s ease;
+        transform: rotate(-0.1deg);
+    }
+
+    .feature-item:nth-child(even) {
+        transform: rotate(0.1deg);
+        margin-left: 5px;
     }
 
     .feature-item:hover {
-        background: #8b5fbf;
-        transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateX(3px) rotate(0deg);
     }
 
     .feature-icon {
-        width: 32px;
-        height: 32px;
-        background: #00d4ff;
-        border-radius: 8px;
+        width: 30px;
+        height: 30px;
+        background: #ffffff;
+        border-radius: 6px 8px 7px 7px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 20px;
-        font-size: 14px;
+        margin-right: 18px;
+        font-size: 13px;
         font-weight: bold;
-        color: white;
-        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        color: #2c3e50;
+        box-shadow: 0 3px 12px rgba(255, 255, 255, 0.25);
     }
 
     .feature-text {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 500;
-        line-height: 1.4;
-        color: #f0f0ff;
+        line-height: 1.3;
+        color: #ecf0f1;
     }
 
-    /* Right panel */
+    /* Right panel with natural workspace image */
     .right-panel {
         flex: 1;
-        padding: 60px 50px;
+        padding: 55px 45px 60px 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: #0f3460;
+        background: #34495e;
         position: relative;
     }
 
@@ -201,11 +212,12 @@ def load_custom_css():
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85');
         background-size: cover;
         background-position: center;
-        opacity: 0.05;
+        opacity: 0.08;
         z-index: 0;
+        transform: scale(1.02);
     }
 
     .right-panel-content {
@@ -213,271 +225,284 @@ def load_custom_css():
         z-index: 1;
     }
 
-    /* Financial dashboard image container */
+    /* Natural business meeting image container */
     .dashboard-image {
         width: 100%;
-        max-width: 400px;
-        height: 250px;
-        background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+        max-width: 390px;
+        height: 240px;
+        background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85');
         background-size: cover;
-        background-position: center;
-        border-radius: 15px;
-        margin-bottom: 30px;
-        box-shadow: 0 15px 35px rgba(139, 95, 191, 0.3);
-        border: 2px solid #8b5fbf;
+        background-position: center 35%;
+        border-radius: 12px 18px 15px 16px;
+        margin-bottom: 28px;
+        box-shadow: 0 12px 30px rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transform: rotate(0.3deg);
     }
 
-    /* Form styles */
+    /* Form styles with natural, slightly imperfect styling */
     .stTextInput > div > div > input {
-        padding: 20px 26px !important;
-        border: 2px solid #8b5fbf !important;
-        border-radius: 15px !important;
+        padding: 18px 24px 19px 25px !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 10px 14px 12px 13px !important;
         font-size: 16px !important;
         transition: all 0.3s ease !important;
-        background: #000000 !important;
+        background: rgba(52, 73, 94, 0.8) !important;
         color: white !important;
         font-weight: 500 !important;
     }
 
     .stTextInput > div > div > input:focus {
-        border-color: #00d4ff !important;
-        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
+        border-color: #ffffff !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
         outline: none !important;
-        background: #1a1a2e !important;
+        background: rgba(44, 62, 80, 0.9) !important;
     }
 
     .stTextInput > div > div > input::placeholder {
-        color: #a0a0c0 !important;
+        color: #bdc3c7 !important;
         font-weight: 400 !important;
     }
 
     .stTextInput > label {
         font-weight: 600 !important;
-        color: #e0e0ff !important;
-        margin-bottom: 10px !important;
-        font-size: 15px !important;
+        color: #ecf0f1 !important;
+        margin-bottom: 8px !important;
+        font-size: 14px !important;
     }
 
     .stSelectbox > div > div > div {
-        background: #000000 !important;
-        border: 2px solid #8b5fbf !important;
-        border-radius: 15px !important;
+        background: rgba(52, 73, 94, 0.8) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 10px 14px 12px 13px !important;
         color: white !important;
     }
 
     .stNumberInput > div > div > input {
-        padding: 20px 26px !important;
-        border: 2px solid #8b5fbf !important;
-        border-radius: 15px !important;
+        padding: 18px 24px 19px 25px !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 10px 14px 12px 13px !important;
         font-size: 16px !important;
-        background: #000000 !important;
+        background: rgba(52, 73, 94, 0.8) !important;
         color: white !important;
         font-weight: 500 !important;
     }
 
-    /* Button styles */
+    /* Button styles with organic feel */
     .stButton > button {
         width: 100% !important;
-        padding: 20px 36px !important;
-        background: #00d4ff !important;
-        color: white !important;
+        padding: 18px 32px 19px 34px !important;
+        background: #ffffff !important;
+        color: #2c3e50 !important;
         border: none !important;
-        border-radius: 15px !important;
-        font-size: 17px !important;
+        border-radius: 11px 16px 13px 14px !important;
+        font-size: 16px !important;
         font-weight: 600 !important;
         transition: all 0.3s ease !important;
         cursor: pointer !important;
-        margin: 10px 0 !important;
-        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4) !important;
+        margin: 8px 0 10px 0 !important;
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
     }
 
     .stButton > button:hover {
-        background: #0099cc !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 12px 35px rgba(0, 212, 255, 0.6) !important;
+        background: #ecf0f1 !important;
+        transform: translateY(-2px) rotate(-0.1deg) !important;
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35) !important;
     }
 
-    /* Create Account Button - More Visible */
+    /* Create Account Button - More Visible with natural styling */
     .create-account-btn {
-        background: #ff6b35 !important;
+        background: #3498db !important;
         color: white !important;
         font-weight: 700 !important;
-        font-size: 19px !important;
-        padding: 22px 36px !important;
-        margin: 18px 0 !important;
-        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4) !important;
+        font-size: 17px !important;
+        padding: 20px 34px 21px 36px !important;
+        margin: 15px 0 17px 0 !important;
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.35) !important;
     }
 
     .create-account-btn:hover {
-        background: #e55a2b !important;
-        box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6) !important;
+        background: #2980b9 !important;
+        box-shadow: 0 8px 25px rgba(52, 152, 219, 0.45) !important;
     }
 
     /* GitHub button */
     .github-btn {
-        background: #24292e !important;
+        background: #95a5a6 !important;
         color: white !important;
     }
 
     .github-btn:hover {
-        background: #1a1e22 !important;
+        background: #7f8c8d !important;
     }
 
-    /* Success/Error messages */
+    /* Success/Error messages with natural styling */
     .stAlert {
-        border-radius: 15px !important;
-        margin: 18px 0 !important;
-        padding: 18px 22px !important;
-        background: #1a1a2e !important;
-        border: 1px solid #8b5fbf !important;
+        border-radius: 8px 12px 10px 11px !important;
+        margin: 15px 0 17px 0 !important;
+        padding: 16px 20px 17px 21px !important;
+        background: rgba(44, 62, 80, 0.9) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
         color: white !important;
     }
 
-    /* Onboarding styles */
+    /* Onboarding styles with organic feel */
     .onboarding-container {
-        background: #000000;
-        border-radius: 25px;
-        padding: 50px;
-        margin: 25px;
-        border: 2px solid #8b5fbf;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        background: #2c3e50;
+        border-radius: 18px 25px 20px 22px;
+        padding: 45px 50px 48px 52px;
+        margin: 20px 25px 22px 23px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        transform: rotate(-0.1deg);
     }
 
     .onboarding-title {
-        color: #00d4ff;
-        font-size: 36px;
+        color: #ffffff;
+        font-size: 34px;
         font-weight: 700;
         text-align: center;
-        margin-bottom: 20px;
-        text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        margin-bottom: 18px;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     }
 
     .onboarding-subtitle {
-        color: #e0e0ff;
-        font-size: 20px;
+        color: #ecf0f1;
+        font-size: 19px;
         text-align: center;
-        margin-bottom: 50px;
-        line-height: 1.5;
+        margin-bottom: 45px;
+        line-height: 1.4;
     }
 
     .section-header {
-        color: #8b5fbf;
-        font-size: 26px;
+        color: #ffffff;
+        font-size: 24px;
         font-weight: 600;
-        margin: 40px 0 20px 0;
-        padding-bottom: 12px;
-        border-bottom: 3px solid #8b5fbf;
+        margin: 35px 0 18px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     }
 
     /* Responsive design */
     @media (max-width: 768px) {
         .main-container {
             flex-direction: column;
-            margin: 10px;
+            margin: 10px 15px;
+            transform: rotate(0deg);
         }
 
         .left-panel, .right-panel {
-            padding: 40px 30px;
+            padding: 35px 25px;
         }
 
         .brand-title {
-            font-size: 44px;
+            font-size: 40px;
         }
 
         .dashboard-image {
-            height: 200px;
+            height: 180px;
+            transform: rotate(0deg);
         }
     }
 
-    /* Signup prompt */
+    /* Signup prompt with natural styling */
     .signup-prompt {
-        background: #533a7d;
-        border: 2px solid #ff6b35;
-        border-radius: 20px;
-        padding: 28px;
-        margin: 28px 0;
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px 20px 16px 18px;
+        padding: 25px 28px 26px 30px;
+        margin: 25px 0 27px 0;
         text-align: center;
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(10px);
+        transform: rotate(-0.1deg);
     }
 
     .signup-prompt h3 {
-        color: #ffaa00;
-        margin-bottom: 15px;
-        font-size: 22px;
+        color: #ffffff;
+        margin-bottom: 12px;
+        font-size: 20px;
         font-weight: 700;
-        text-shadow: 0 0 15px rgba(255, 170, 0, 0.3);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
 
     .signup-prompt p {
-        color: #ffc966;
-        margin-bottom: 20px;
-        font-size: 17px;
-        line-height: 1.4;
+        color: #bdc3c7;
+        margin-bottom: 18px;
+        font-size: 16px;
+        line-height: 1.35;
     }
 
-    /* Stats display */
+    /* Stats display with human touch */
     .stats-container {
-        background: #16213e;
-        border-radius: 15px;
-        padding: 20px;
-        margin: 20px 0;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 10px 15px 12px 13px;
+        padding: 18px 20px 19px 22px;
+        margin: 18px 0 20px 0;
         text-align: center;
-        backdrop-filter: blur(15px);
-        border: 1px solid #8b5fbf;
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .stats-container:nth-child(even) {
+        transform: rotate(0.1deg);
+    }
+
+    .stats-container:nth-child(odd) {
+        transform: rotate(-0.1deg);
     }
 
     .stat-number {
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 700;
-        color: #00d4ff;
-        text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
 
     .stat-label {
-        font-size: 15px;
-        color: #c0c0ff;
-        margin-top: 8px;
+        font-size: 14px;
+        color: #bdc3c7;
+        margin-top: 6px;
         font-weight: 500;
     }
 
     /* Checkbox styles */
     .stCheckbox {
-        color: #e0e0ff !important;
+        color: #ecf0f1 !important;
     }
 
     .stCheckbox > div {
-        color: #e0e0ff !important;
+        color: #ecf0f1 !important;
     }
 
     /* Form section headers */
     .stSubheader {
-        color: #8b5fbf !important;
+        color: #ffffff !important;
         font-weight: 600 !important;
-        margin-bottom: 20px !important;
-        border-bottom: 2px solid #8b5fbf !important;
-        padding-bottom: 10px !important;
+        margin-bottom: 18px !important;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+        padding-bottom: 8px !important;
     }
 
     /* Multiselect styling */
     .stMultiSelect > div > div {
-        background: #000000 !important;
-        border: 2px solid #8b5fbf !important;
-        border-radius: 15px !important;
+        background: rgba(52, 73, 94, 0.8) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 10px 14px 12px 13px !important;
         color: white !important;
     }
 
     /* Text area styling */
     .stTextArea > div > div > textarea {
-        background: #000000 !important;
-        border: 2px solid #8b5fbf !important;
-        border-radius: 15px !important;
+        background: rgba(52, 73, 94, 0.8) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 10px 14px 12px 13px !important;
         color: white !important;
-        padding: 15px 20px !important;
+        padding: 14px 18px 15px 19px !important;
     }
 
     .stTextArea > div > div > textarea:focus {
-        border-color: #00d4ff !important;
-        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
+        border-color: #ffffff !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -974,11 +999,11 @@ def render_success_page():
     user_name = st.session_state.user_info.get('name', 'User')
 
     st.markdown(f"""
-    <div style="text-align: center; padding: 60px 20px; background: #000000; 
-         border-radius: 20px; margin: 20px; border: 2px solid #8b5fbf;">
-        <h1 style="color: #00d4ff; margin-bottom: 20px; font-size: 36px; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);">
+    <div style="text-align: center; padding: 50px 20px 52px 22px; background: #2c3e50; 
+         border-radius: 15px 20px 17px 18px; margin: 18px 22px 20px 25px; border: 2px solid rgba(255, 255, 255, 0.2);">
+        <h1 style="color: #ffffff; margin-bottom: 18px; font-size: 34px; text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);">
             Welcome, {user_name}!</h1>
-        <p style="font-size: 18px; color: #e0e0ff; margin-bottom: 30px;">
+        <p style="font-size: 17px; color: #ecf0f1; margin-bottom: 28px;">
             Successfully logged into Capital Compass
         </p>
     </div>
@@ -990,11 +1015,11 @@ def render_success_page():
 
     # Redirect link
     st.markdown("""
-    <div style="text-align: center; margin: 40px 0;">
+    <div style="text-align: center; margin: 35px 0 38px 0;">
         <a href="https://menufin.streamlit.app/" target="_blank" 
-           style="background: #00d4ff; color: white; 
-                  padding: 16px 32px; border-radius: 15px; text-decoration: none; 
-                  font-weight: 600; font-size: 18px; box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);">
+           style="background: #ffffff; color: #2c3e50; 
+                  padding: 14px 28px 16px 30px; border-radius: 12px 16px 14px 15px; text-decoration: none; 
+                  font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);">
             Open Capital Compass Dashboard
         </a>
     </div>
