@@ -914,7 +914,7 @@ st.markdown("""
 # Navigation Dashboard with internal anchor links
 st.markdown("""
 <div class="nav-dashboard">
-    <h3 class="nav-title">🚀 Quick Access Financial Tools Dashboard</h3>
+    <h3 class="nav-title"> Quick Access to our Financial Tools</h3>
     <div class="nav-grid">
         <a href="#sip-calculator" class="nav-link">📈 SIP Calculator</a>
         <a href="#credit-score" class="nav-link">💳 Credit Score</a>
