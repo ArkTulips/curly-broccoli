@@ -16,9 +16,7 @@ st.set_page_config(
     page_icon="📈"
 )
 
-# File paths for data storage (same as login page)
-USERS_FILE = "user_profiles.json"
-USER_PROFILES_FILE = "user_profiles.json"
+
 
 # Custom CSS for better styling
 st.markdown("""
