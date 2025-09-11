@@ -23,7 +23,7 @@ with col3:
 # Professional Images Integration
 hero_image_url = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
 dashboard_image_url = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-analytics_image_url = "https://images.unsplash.com/photo-1693141373442-e75d22b59c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+analytics_image_url = "https://plus.unsplash.com/premium_photo-1682310156923-3f4a463610f0?q=80&w=912&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 calculator_image_url = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
 
 # Apply CSS based on theme state
