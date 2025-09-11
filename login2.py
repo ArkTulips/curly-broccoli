@@ -348,9 +348,10 @@ def render_login_page():
         with col1:
             remember_me = st.checkbox("Remember Me")
         with col2:
-            forgot_password = st.button("Forgot Password?", type="secondary")
+            forgot_password = st.form_submit_button("Forgot Password?")  # ✅ FIXED
 
         login_submitted = st.form_submit_button("Sign In", use_container_width=True)
+
 
         if login_submitted:
             if not email or not password:
