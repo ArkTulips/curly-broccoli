@@ -416,6 +416,12 @@ else:
         }
     </style>
     """, unsafe_allow_html=True)
+# Header section without emojis
+st.markdown("""
+<h1 class="main-title">Capital Compass</h1>
+<p class="subtitle"><strong>All your financial solutions in one place</strong></p>
+<p class="tagline">"Where Smart Money Decisions Begin"</p>
+""", unsafe_allow_html=True)
 
 
 
@@ -471,12 +477,6 @@ for tool in tools:
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("---")
-# Header section without emojis
-st.markdown("""
-<h1 class="main-title">Capital Compass</h1>
-<p class="subtitle"><strong>All your financial solutions in one place</strong></p>
-<p class="tagline">"Where Smart Money Decisions Begin"</p>
-""", unsafe_allow_html=True)
 
 # Enhanced description section without emojis
 st.markdown("""
