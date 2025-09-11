@@ -369,10 +369,7 @@ def main():
     st.markdown("**Powered by your financial profile - Get personalized SIP recommendations**")
 
     # User email input for profile loading
-    with st.sidebar:
-        st.markdown("## 👤 User Profile")
-        user_email = st.text_input("Enter your email to load profile:", placeholder="email@example.com")
-
+   
         # Load user profile
         user_profile = {}
         if user_email:
