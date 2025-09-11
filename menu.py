@@ -752,6 +752,11 @@ tools = [
         "name": "Retirement Planner",
         "desc": "Strategic Retirement Planning with inflation-adjusted calculations and corpus estimation tools.",
         "link": "https://retirementtrack.streamlit.app/"
+    },
+    {
+        "name": "Stock Market checker",
+        "desc": "Check realtime stock prices of your favourite stocks",
+        "link": "https://demo-stockpeers.streamlit.app/?ref=streamlit-io-gallery-favorites&stocks=AAPL%2CMSFT%2CGOOGL%2CNVDA%2CAMZN%2CTSLA%2CMETA"
     }
 ]
 
