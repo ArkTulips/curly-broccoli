@@ -916,12 +916,12 @@ st.markdown("""
 <div class="nav-dashboard">
     <h3 class="nav-title"> Quick Access to our Financial Tools</h3>
     <div class="nav-grid">
-        <a href="#sip-calculator" class="nav-link">📈 SIP Calculator</a>
-        <a href="#credit-score" class="nav-link">💳 Credit Score</a>
-        <a href="#tax-calculator" class="nav-link">📊 Tax Calculator</a>
-        <a href="#emi-calculator" class="nav-link">🏠 EMI Calculator</a>
-        <a href="#expense-tracker" class="nav-link">💰 Expense Tracker</a>
-        <a href="#retirement-planner" class="nav-link">🏖️ Retirement Planner</a>
+        <a href="#sip-calculator" class="nav-link">SIP Calculator</a>
+        <a href="#credit-score" class="nav-link">Credit Score</a>
+        <a href="#tax-calculator" class="nav-link">Tax Calculator</a>
+        <a href="#emi-calculator" class="nav-link">EMI Calculator</a>
+        <a href="#expense-tracker" class="nav-link">Expense Tracker</a>
+        <a href="#retirement-planner" class="nav-link">Retirement Planner</a>
         <a href="#stock-market" class="nav-link">📈 Stock Market</a>
     </div>
 </div>
