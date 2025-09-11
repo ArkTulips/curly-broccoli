@@ -38,6 +38,11 @@ if st.session_state.dark_mode:
         footer {{visibility: hidden;}}
         header {{visibility: hidden;}}
         
+        /* Smooth scrolling */
+        html {{
+            scroll-behavior: smooth;
+        }}
+        
         /* Dark theme styling */
         .stApp {{
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
@@ -54,6 +59,9 @@ if st.session_state.dark_mode:
             margin: 30px auto;
             max-width: 1200px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
         }}
         
         .nav-title {{
@@ -85,9 +93,10 @@ if st.session_state.dark_mode:
             font-weight: 500;
             font-size: 0.9rem;
             text-align: center;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             border: 1px solid #4b5563;
             min-height: 45px;
+            cursor: pointer;
         }}
         
         .nav-link:hover {{
@@ -197,6 +206,28 @@ if st.session_state.dark_mode:
         .badge-success {{ background: #10B981; }}
         .badge-warning {{ background: #F59E0B; }}
         
+        /* Tools section header */
+        .tools-header {{
+            text-align: center;
+            margin: 60px auto 40px auto;
+            max-width: 800px;
+        }}
+        
+        .tools-main-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }}
+        
+        .tools-subtitle {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #cbd5e0;
+            margin-bottom: 40px;
+        }}
+        
         /* Professional tool cards */
         .tools-grid {{
             display: grid;
@@ -214,16 +245,29 @@ if st.session_state.dark_mode:
             padding: 24px;
             text-align: left;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             min-height: 160px;
             display: flex;
             flex-direction: column;
+            scroll-margin-top: 120px;
         }}
         
         .tool-card:hover {{
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             transform: translateY(-2px);
             border-color: #718096;
+        }}
+        
+        .tool-card:target {{
+            border-color: #4F46E5;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+            animation: highlight 2s ease-in-out;
+        }}
+        
+        @keyframes highlight {{
+            0% {{ box-shadow: 0 0 20px rgba(79, 70, 229, 0.8); }}
+            50% {{ box-shadow: 0 0 30px rgba(79, 70, 229, 0.6); }}
+            100% {{ box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); }}
         }}
         
         .tool-title {{
@@ -404,6 +448,9 @@ if st.session_state.dark_mode:
             .nav-grid {{
                 grid-template-columns: repeat(2, 1fr);
             }}
+            .nav-dashboard {{
+                position: static;
+            }}
         }}
         
         @media (max-width: 480px) {{
@@ -425,6 +472,11 @@ else:
         footer {{visibility: hidden;}}
         header {{visibility: hidden;}}
         
+        /* Smooth scrolling */
+        html {{
+            scroll-behavior: smooth;
+        }}
+        
         /* Professional light theme styling */
         .stApp {{
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
@@ -441,6 +493,9 @@ else:
             margin: 30px auto;
             max-width: 1200px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
         }}
         
         .nav-title {{
@@ -472,9 +527,10 @@ else:
             font-weight: 500;
             font-size: 0.9rem;
             text-align: center;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             border: 1px solid #e2e8f0;
             min-height: 45px;
+            cursor: pointer;
         }}
         
         .nav-link:hover {{
@@ -585,6 +641,28 @@ else:
         .badge-success {{ background: #10B981; }}
         .badge-warning {{ background: #F59E0B; }}
         
+        /* Tools section header */
+        .tools-header {{
+            text-align: center;
+            margin: 60px auto 40px auto;
+            max-width: 800px;
+        }}
+        
+        .tools-main-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }}
+        
+        .tools-subtitle {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+        }}
+        
         /* Professional tool cards */
         .tools-grid {{
             display: grid;
@@ -602,16 +680,29 @@ else:
             padding: 24px;
             text-align: left;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             min-height: 160px;
             display: flex;
             flex-direction: column;
+            scroll-margin-top: 120px;
         }}
         
         .tool-card:hover {{
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
             border-color: #cbd5e0;
+        }}
+        
+        .tool-card:target {{
+            border-color: #4F46E5;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+            animation: highlight 2s ease-in-out;
+        }}
+        
+        @keyframes highlight {{
+            0% {{ box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }}
+            50% {{ box-shadow: 0 0 30px rgba(79, 70, 229, 0.4); }}
+            100% {{ box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }}
         }}
         
         .tool-title {{
@@ -792,6 +883,9 @@ else:
             .nav-grid {{
                 grid-template-columns: repeat(2, 1fr);
             }}
+            .nav-dashboard {{
+                position: static;
+            }}
         }}
         
         @media (max-width: 480px) {{
@@ -809,18 +903,18 @@ st.markdown("""
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
 
-# Navigation Dashboard with all tools
+# Navigation Dashboard with internal anchor links
 st.markdown("""
 <div class="nav-dashboard">
     <h3 class="nav-title">🚀 Quick Access Financial Tools Dashboard</h3>
     <div class="nav-grid">
-        <a href="https://financialreach.streamlit.app/" target="_blank" class="nav-link">📈 SIP Calculator</a>
-        <a href="https://creditscores.streamlit.app/" target="_blank" class="nav-link">💳 Credit Score</a>
-        <a href="https://taxreturncalc.streamlit.app/" target="_blank" class="nav-link">📊 Tax Calculator</a>
-        <a href="https://emicalculatorsj.streamlit.app/" target="_blank" class="nav-link">🏠 EMI Calculator</a>
-        <a href="https://expensetrac.streamlit.app/" target="_blank" class="nav-link">💰 Expense Tracker</a>
-        <a href="https://retirementtrack.streamlit.app/" target="_blank" class="nav-link">🏖️ Retirement Planner</a>
-        <a href="https://demo-stockpeers.streamlit.app/?ref=streamlit-io-gallery-favorites&stocks=AAPL%2CMSFT%2CGOOGL%2CNVDA%2CAMZN%2CTSLA%2CMETA" target="_blank" class="nav-link">📈 Stock Market</a>
+        <a href="#sip-calculator" class="nav-link">📈 SIP Calculator</a>
+        <a href="#credit-score" class="nav-link">💳 Credit Score</a>
+        <a href="#tax-calculator" class="nav-link">📊 Tax Calculator</a>
+        <a href="#emi-calculator" class="nav-link">🏠 EMI Calculator</a>
+        <a href="#expense-tracker" class="nav-link">💰 Expense Tracker</a>
+        <a href="#retirement-planner" class="nav-link">🏖️ Retirement Planner</a>
+        <a href="#stock-market" class="nav-link">📈 Stock Market</a>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -871,41 +965,56 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Tools section header
+st.markdown("""
+<div class="tools-header">
+    <h2 class="tools-main-title">🛠️ Our Financial Tools Suite</h2>
+    <p class="tools-subtitle">Comprehensive tools to manage every aspect of your financial journey</p>
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("---")
 
-# Tools section
+# Tools section with anchor IDs
 tools = [
     {
+        "id": "sip-calculator",
         "name": "SIP Calculator",
         "desc": "Master Systematic Investment Planning with advanced projections and wealth growth analysis for mutual funds and equity investments.",
         "link": "https://financialreach.streamlit.app/"
     },
     {
+        "id": "credit-score",
         "name": "Credit Score Estimator", 
         "desc": "AI-Powered Credit Analysis using CIBIL-compatible algorithms with accurate score estimates and improvement strategies.",
         "link": "https://creditscores.streamlit.app/"
     },
     {
+        "id": "tax-calculator",
         "name": "Tax Calculator",
         "desc": "Smart Tax Optimization for India's tax regime with liability calculations and deduction comparisons.",
         "link": "https://taxreturncalc.streamlit.app/"
     },
     {
+        "id": "emi-calculator",
         "name": "EMI Calculator",
         "desc": "Complete Loan Planning Suite with EMI calculations, amortization schedules, and prepayment analysis.",
         "link": "https://emicalculatorsj.streamlit.app/"
     },
     {
+        "id": "expense-tracker",
         "name": "Expense Tracker",
         "desc": "Intelligent Expense Management with AI-powered categorization and smart budgeting insights.",
         "link": "https://expensetrac.streamlit.app/"
     },
     {
+        "id": "retirement-planner",
         "name": "Retirement Planner",
         "desc": "Strategic Retirement Planning with inflation-adjusted calculations and corpus estimation tools.",
         "link": "https://retirementtrack.streamlit.app/"
     },
     {
+        "id": "stock-market",
         "name": "Stock Market checker",
         "desc": "Check realtime stock prices of your favourite stocks",
         "link": "https://demo-stockpeers.streamlit.app/?ref=streamlit-io-gallery-favorites&stocks=AAPL%2CMSFT%2CGOOGL%2CNVDA%2CAMZN%2CTSLA%2CMETA"
@@ -916,7 +1025,7 @@ st.markdown('<div class="tools-grid">', unsafe_allow_html=True)
 for tool in tools:
     st.markdown(
         f"""
-        <div class="tool-card">
+        <div class="tool-card" id="{tool["id"]}">
             <h4 class="tool-title">{tool["name"]}</h4>
             <p class="tool-desc">{tool["desc"]}</p>
             <a href="{tool["link"]}" target="_blank" class="tool-button">
