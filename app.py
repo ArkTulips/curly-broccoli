@@ -368,21 +368,6 @@ def main():
     st.markdown('<h1 class="main-header">📈 Personalized Advanced SIP Calculator</h1>', unsafe_allow_html=True)
     st.markdown("**Powered by your financial profile - Get personalized SIP recommendations**")
 
-    # User email input for profile loading
-   
-        # Load user profile
-        user_profile = {}
-        if user_email:
-            user_profile = get_user_profile(user_email)
-            if user_profile:
-                st.success(f"✅ Profile loaded for {user_email}")
-                suggestions = get_investment_suggestions(user_profile)
-            else:
-                st.warning("⚠️ No profile found. Using default values.")
-                suggestions = get_investment_suggestions({})
-        else:
-            suggestions = get_investment_suggestions({})
-
     # Display user profile summary
     if user_profile and user_email:
         display_user_profile_summary(user_profile, user_email)
