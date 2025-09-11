@@ -871,13 +871,7 @@ def render_login_page():
                             st.error(f"Invalid credentials. {remaining} attempts remaining.")
                             st.info("Don't have an account? Create one using the button above!")
 
-    # GitHub login
-    st.markdown("---")
-    if st.button("Continue with GitHub", use_container_width=True, type="secondary"):
-        st.info("GitHub OAuth integration coming soon! Please create an account for now.")
-
-    st.markdown("</div></div>", unsafe_allow_html=True)
-
+ 
 # Success page with redirect
 def render_success_page():
     user_name = st.session_state.user_info.get('name', 'User')
