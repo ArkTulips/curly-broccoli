@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 # File paths for data storage
-USERS_FILE = "user_profiles.json"
+USERS_FILE = "users_data.json"
 USER_PROFILES_FILE = "user_profiles.json"
 
 # Custom CSS for humanized styling with natural images and white color scheme
