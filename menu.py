@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Capital Compass - Your Ultimate Financial Companion", 
     layout="wide",
-    page_icon="",
+    page_icon="💰",
     initial_sidebar_state="collapsed"
 )
 
@@ -28,7 +28,7 @@ calculator_image_url = "https://images.unsplash.com/photo-1554224155-6726b3ff858
 
 # Apply CSS based on theme state
 if st.session_state.dark_mode:
-    # Professional Dark theme CSS with images
+    # Professional Dark theme CSS with navigation dashboard
     st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -43,6 +43,63 @@ if st.session_state.dark_mode:
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
             font-family: 'Inter', sans-serif;
+        }}
+        
+        /* Navigation Dashboard Styling */
+        .nav-dashboard {{
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }}
+        
+        .nav-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }}
+        
+        .nav-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }}
+        
+        .nav-link {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 16px;
+            background: #374151;
+            color: #e5e7eb;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 1px solid #4b5563;
+            min-height: 45px;
+        }}
+        
+        .nav-link:hover {{
+            background: #4F46E5;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }}
+        
+        .nav-link:active {{
+            transform: translateY(0px);
         }}
         
         /* Main title styling */
@@ -188,25 +245,23 @@ if st.session_state.dark_mode:
         }}
         
         .tool-button {{
-    display: inline-block;
-    padding: 8px 16px;
-    background: #4F46E5;
-    color: white;
-    text-decoration: none;           /* <--- Add this line */
-    border-radius: 6px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    align-self: flex-start;
-}}
-
-.tool-button:hover {{
-    background: #3B37DB;
-    text-decoration: none;           /* <--- Add this line as well */
-    color: white;
-}}
-
+            display: inline-block;
+            padding: 8px 16px;
+            background: #4F46E5;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }}
+        
+        .tool-button:hover {{
+            background: #3B37DB;
+            text-decoration: none;
+            color: white;
         }}
         
         /* Professional info sections */
@@ -331,6 +386,9 @@ if st.session_state.dark_mode:
                 flex-direction: column;
                 text-align: center;
             }}
+            .nav-grid {{
+                grid-template-columns: repeat(3, 1fr);
+            }}
         }}
         
         @media (max-width: 768px) {{
@@ -343,12 +401,21 @@ if st.session_state.dark_mode:
             .tool-card {{
                 min-height: 140px;
             }}
+            .nav-grid {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
+        }}
+        
+        @media (max-width: 480px) {{
+            .nav-grid {{
+                grid-template-columns: 1fr;
+            }}
         }}
     </style>
     """, unsafe_allow_html=True)
     
 else:
-    # Professional Light theme CSS with images
+    # Professional Light theme CSS with navigation dashboard
     st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -363,6 +430,63 @@ else:
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1a202c;
             font-family: 'Inter', sans-serif;
+        }}
+        
+        /* Navigation Dashboard Styling */
+        .nav-dashboard {{
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }}
+        
+        .nav-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }}
+        
+        .nav-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }}
+        
+        .nav-link {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 16px;
+            background: #f7fafc;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 1px solid #e2e8f0;
+            min-height: 45px;
+        }}
+        
+        .nav-link:hover {{
+            background: #4F46E5;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }}
+        
+        .nav-link:active {{
+            transform: translateY(0px);
         }}
         
         /* Main title styling */
@@ -650,6 +774,9 @@ else:
                 flex-direction: column;
                 text-align: center;
             }}
+            .nav-grid {{
+                grid-template-columns: repeat(3, 1fr);
+            }}
         }}
         
         @media (max-width: 768px) {{
@@ -662,6 +789,15 @@ else:
             .tool-card {{
                 min-height: 140px;
             }}
+            .nav-grid {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
+        }}
+        
+        @media (max-width: 480px) {{
+            .nav-grid {{
+                grid-template-columns: 1fr;
+            }}
         }}
     </style>
     """, unsafe_allow_html=True)
@@ -671,6 +807,22 @@ st.markdown("""
 <h1 class="main-title">Capital Compass</h1>
 <p class="subtitle"><strong>All your financial solutions in one place</strong></p>
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
+""", unsafe_allow_html=True)
+
+# Navigation Dashboard with all tools
+st.markdown("""
+<div class="nav-dashboard">
+    <h3 class="nav-title">🚀 Quick Access Financial Tools Dashboard</h3>
+    <div class="nav-grid">
+        <a href="https://financialreach.streamlit.app/" target="_blank" class="nav-link">📈 SIP Calculator</a>
+        <a href="https://creditscores.streamlit.app/" target="_blank" class="nav-link">💳 Credit Score</a>
+        <a href="https://taxreturncalc.streamlit.app/" target="_blank" class="nav-link">📊 Tax Calculator</a>
+        <a href="https://emicalculatorsj.streamlit.app/" target="_blank" class="nav-link">🏠 EMI Calculator</a>
+        <a href="https://expensetrac.streamlit.app/" target="_blank" class="nav-link">💰 Expense Tracker</a>
+        <a href="https://retirementtrack.streamlit.app/" target="_blank" class="nav-link">🏖️ Retirement Planner</a>
+        <a href="https://demo-stockpeers.streamlit.app/?ref=streamlit-io-gallery-favorites&stocks=AAPL%2CMSFT%2CGOOGL%2CNVDA%2CAMZN%2CTSLA%2CMETA" target="_blank" class="nav-link">📈 Stock Market</a>
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
 # Hero section with professional image
