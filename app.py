@@ -1,16 +1,24 @@
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
+import json
+import os
+from datetime import datetime
 
 # Set page configuration
 st.set_page_config(
-    page_title=" Advanced SIP Calculator", 
+    page_title="Personalized Advanced SIP Calculator", 
     layout="wide",
-    page_icon=""
+    page_icon="📈"
 )
+
+# File paths for data storage (same as login page)
+USERS_FILE = "users_data.json"
+USER_PROFILES_FILE = "user_profiles.json"
 
 # Custom CSS for better styling
 st.markdown("""
@@ -33,8 +41,155 @@ st.markdown("""
         margin-bottom: 1rem;
         border-left: 5px solid #1f77b4;
     }
+    .user-profile-card {
+        background-color: #e8f4f8;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        border-left: 5px solid #28a745;
+    }
+    .personalized-section {
+        background-color: #fff3cd;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ffeaa7;
+    }
 </style>
 """, unsafe_allow_html=True)
+
+def load_users():
+    """Load users from JSON file"""
+    try:
+        if os.path.exists(USERS_FILE):
+            with open(USERS_FILE, 'r') as f:
+                return json.load(f)
+        return {}
+    except Exception as e:
+        st.error(f"Error loading users: {e}")
+        return {}
+
+def load_user_profiles():
+    """Load user profiles from JSON file"""
+    try:
+        if os.path.exists(USER_PROFILES_FILE):
+            with open(USER_PROFILES_FILE, 'r') as f:
+                return json.load(f)
+        return {}
+    except Exception as e:
+        st.error(f"Error loading user profiles: {e}")
+        return {}
+
+def get_user_profile(email):
+    """Get specific user profile data"""
+    profiles = load_user_profiles()
+    return profiles.get(email, {})
+
+def get_investment_suggestions(profile):
+    """Get personalized investment suggestions based on user profile"""
+    suggestions = {
+        'recommended_sip': 5000,
+        'investment_duration': 15,
+        'expected_return': 12.0,
+        'step_up_rate': 5.0,
+        'investment_type': 'Equity Mutual Funds'
+    }
+
+    if profile:
+        # Extract financial data
+        personal_info = profile.get('personal_info', {})
+        investments = profile.get('investments', {})
+        expenses = profile.get('expenses', {})
+        retirement_tax = profile.get('retirement_tax', {})
+        stock_market = profile.get('stock_market', {})
+
+        # Calculate recommended SIP based on income and expenses
+        monthly_income = personal_info.get('monthly_income', 0)
+        total_expenses = sum([
+            expenses.get('rent_mortgage', 0),
+            expenses.get('utilities', 0),
+            expenses.get('food_dining', 0),
+            expenses.get('transportation', 0),
+            expenses.get('entertainment', 0),
+            expenses.get('healthcare', 0)
+        ])
+
+        # Suggest 20-30% of surplus income for SIP
+        surplus = monthly_income - total_expenses
+        if surplus > 0:
+            suggestions['recommended_sip'] = max(int(surplus * 0.25), investments.get('current_sip', 5000))
+
+        # Set duration based on age and retirement plans
+        age = personal_info.get('age', 30)
+        retirement_age = retirement_tax.get('retirement_age', 60)
+        suggestions['investment_duration'] = min(max(retirement_age - age, 5), 40)
+
+        # Adjust returns based on risk tolerance
+        risk_tolerance = personal_info.get('risk_tolerance', 'Moderate')
+        if risk_tolerance == 'Conservative':
+            suggestions['expected_return'] = 8.0
+            suggestions['investment_type'] = 'Hybrid Funds'
+        elif risk_tolerance == 'Aggressive':
+            suggestions['expected_return'] = 15.0
+            suggestions['investment_type'] = 'Equity Mutual Funds'
+        else:
+            suggestions['expected_return'] = 12.0
+            suggestions['investment_type'] = 'Equity Mutual Funds'
+
+        # Set step-up rate based on experience
+        experience = investments.get('experience', 'Beginner')
+        if 'Advanced' in experience or 'Expert' in experience:
+            suggestions['step_up_rate'] = 10.0
+        elif 'Intermediate' in experience:
+            suggestions['step_up_rate'] = 7.5
+        else:
+            suggestions['step_up_rate'] = 5.0
+
+    return suggestions
+
+def display_user_profile_summary(profile, user_email):
+    """Display user profile summary"""
+    if profile:
+        st.markdown('<div class="user-profile-card">', unsafe_allow_html=True)
+        st.markdown("### 👤 Your Financial Profile")
+
+        personal_info = profile.get('personal_info', {})
+        investments = profile.get('investments', {})
+        expenses = profile.get('expenses', {})
+
+        col1, col2, col3, col4 = st.columns(4)
+
+        with col1:
+            st.metric("📊 Monthly Income", f"₹{personal_info.get('monthly_income', 0):,}")
+            st.metric("🎯 Current SIP", f"₹{investments.get('current_sip', 0):,}")
+
+        with col2:
+            st.metric("💰 Current Savings", f"₹{personal_info.get('current_savings', 0):,}")
+            st.metric("📈 Risk Tolerance", personal_info.get('risk_tolerance', 'Not Set'))
+
+        with col3:
+            total_expenses = sum([
+                expenses.get('rent_mortgage', 0),
+                expenses.get('utilities', 0),
+                expenses.get('food_dining', 0),
+                expenses.get('transportation', 0),
+                expenses.get('entertainment', 0),
+                expenses.get('healthcare', 0)
+            ])
+            st.metric("💳 Monthly Expenses", f"₹{total_expenses:,}")
+            st.metric("🎓 Experience", investments.get('experience', 'Not Set'))
+
+        with col4:
+            surplus = personal_info.get('monthly_income', 0) - total_expenses
+            st.metric("💡 Surplus Income", f"₹{surplus:,}")
+            st.metric("🎯 Financial Goal", personal_info.get('financial_goal', 'Not Set'))
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+        # Display preferred investment types
+        preferred_types = investments.get('preferred_types', [])
+        if preferred_types:
+            st.markdown(f"**Preferred Investment Types:** {', '.join(preferred_types)}")
 
 def calculate_sip_with_stepup(monthly_investment, annual_rate, years, step_up_rate=0, inflation_rate=0):
     """Enhanced SIP calculator with step-up and inflation adjustment"""
@@ -42,7 +197,6 @@ def calculate_sip_with_stepup(monthly_investment, annual_rate, years, step_up_ra
     total_invested = 0
     future_value = 0
     yearly_data = []
-
     current_monthly = monthly_investment
 
     for year in range(1, years + 1):
@@ -92,26 +246,22 @@ def create_pie_chart(invested, returns):
     """Create pie chart for investment breakdown"""
     labels = ['Total Investment', 'Returns Generated']
     values = [invested, returns]
-
     fig = go.Figure(data=[go.Pie(
         labels=labels, 
         values=values,
         hole=0.4,
         marker_colors=['#ff9999', '#66b3ff']
     )])
-
     fig.update_layout(
         title="Investment vs Returns Breakdown",
         title_x=0.5,
         height=400
     )
-
     return fig
 
 def create_growth_chart(yearly_data):
     """Create line chart showing growth over time"""
     df = pd.DataFrame(yearly_data)
-
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(
@@ -146,96 +296,203 @@ def create_growth_chart(yearly_data):
         yaxis_title="Amount (₹)",
         height=500
     )
-
     return fig
+
+def display_personalized_insights(profile, result, monthly_investment, years):
+    """Display personalized insights based on user profile"""
+    if not profile:
+        return
+
+    st.markdown('<div class="personalized-section">', unsafe_allow_html=True)
+    st.markdown("### 🎯 Personalized Financial Insights")
+
+    personal_info = profile.get('personal_info', {})
+    retirement_tax = profile.get('retirement_tax', {})
+    expenses = profile.get('expenses', {})
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("#### 💼 Career & Income Analysis")
+        monthly_income = personal_info.get('monthly_income', 0)
+        sip_percentage = (monthly_investment / monthly_income * 100) if monthly_income > 0 else 0
+
+        st.markdown(f"""
+        - **SIP as % of Income:** {sip_percentage:.1f}%
+        - **Recommended:** 15-25% of income
+        - **Current Status:** {"✅ Good" if sip_percentage >= 15 else "⚠️ Consider increasing"}
+        - **Investment Horizon:** {years} years
+        """)
+
+        # Retirement planning
+        age = personal_info.get('age', 30)
+        retirement_age = retirement_tax.get('retirement_age', 60)
+        years_to_retirement = retirement_age - age
+
+        st.markdown("#### 🎯 Retirement Planning")
+        target_corpus = retirement_tax.get('retirement_corpus', 100) * 100000  # Convert lakhs to rupees
+        st.markdown(f"""
+        - **Years to Retirement:** {years_to_retirement}
+        - **Target Corpus:** ₹{target_corpus:,}
+        - **Current Path:** ₹{result['future_value']:,}
+        - **Gap:** ₹{max(0, target_corpus - result['future_value']):,}
+        """)
+
+    with col2:
+        st.markdown("#### 📊 Investment Optimization")
+        total_expenses = sum(expenses.values()) if expenses else 0
+        surplus = monthly_income - total_expenses
+
+        st.markdown(f"""
+        - **Monthly Surplus:** ₹{surplus:,}
+        - **Current SIP Allocation:** {(monthly_investment/surplus*100) if surplus > 0 else 0:.1f}% of surplus
+        - **Optimization Scope:** ₹{max(0, surplus * 0.4 - monthly_investment):,}
+        """)
+
+        # Tax planning
+        tax_bracket = retirement_tax.get('tax_bracket', '')
+        annual_tax_saving = retirement_tax.get('annual_tax_saving', 0)
+
+        st.markdown("#### 💰 Tax Optimization")
+        st.markdown(f"""
+        - **Tax Bracket:** {tax_bracket}
+        - **Current Tax Saving:** ₹{annual_tax_saving:,}
+        - **ELSS Potential:** ₹{monthly_investment * 12:,}/year
+        - **Tax Benefit:** Up to ₹46,800/year (if 31% bracket)
+        """)
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Main Streamlit App
 def main():
-    st.markdown('<h1 class="main-header"> Advanced SIP Calculator</h1>', unsafe_allow_html=True)
-    st.markdown("**Calculate SIP returns with step-up, inflation adjustment, and interactive visualizations**")
+    st.markdown('<h1 class="main-header">📈 Personalized Advanced SIP Calculator</h1>', unsafe_allow_html=True)
+    st.markdown("**Powered by your financial profile - Get personalized SIP recommendations**")
+
+    # User email input for profile loading
+    with st.sidebar:
+        st.markdown("## 👤 User Profile")
+        user_email = st.text_input("Enter your email to load profile:", placeholder="email@example.com")
+
+        # Load user profile
+        user_profile = {}
+        if user_email:
+            user_profile = get_user_profile(user_email)
+            if user_profile:
+                st.success(f"✅ Profile loaded for {user_email}")
+                suggestions = get_investment_suggestions(user_profile)
+            else:
+                st.warning("⚠️ No profile found. Using default values.")
+                suggestions = get_investment_suggestions({})
+        else:
+            suggestions = get_investment_suggestions({})
+
+    # Display user profile summary
+    if user_profile and user_email:
+        display_user_profile_summary(user_profile, user_email)
 
     # Sidebar for inputs
     with st.sidebar:
         st.markdown("## 📋 Investment Parameters")
 
+        # Show personalized recommendations
+        if user_profile:
+            st.markdown("### 🤖 AI Recommendations")
+            st.info(f"""
+            **Recommended Monthly SIP:** ₹{suggestions['recommended_sip']:,}
+
+            **Duration:** {suggestions['investment_duration']} years
+
+            **Expected Return:** {suggestions['expected_return']}%
+
+            **Step-up Rate:** {suggestions['step_up_rate']}%
+            """)
+
         # Calculation type
         calc_type = st.selectbox(
             "Calculation Type",
-            ["Regular SIP", "Step-up SIP", "Goal Planning"]
+            ["Regular SIP", "Step-up SIP", "Goal Planning", "Personalized Recommendation"]
         )
 
-        if calc_type == "Goal Planning":
+        if calc_type == "Personalized Recommendation" and user_profile:
+            # Use AI suggestions
+            monthly_investment = suggestions['recommended_sip']
+            years = suggestions['investment_duration']
+            annual_rate = suggestions['expected_return']
+            step_up_rate = suggestions['step_up_rate']
+            investment_type = suggestions['investment_type']
+
+            st.success("Using personalized recommendations based on your profile!")
+
+        elif calc_type == "Goal Planning":
             target_amount = st.number_input(
                 "Target Amount (₹)", 
                 min_value=100000, 
-                value=1000000, 
+                value=int(user_profile.get('retirement_tax', {}).get('retirement_corpus', 100) * 100000) if user_profile else 1000000,
                 step=50000
             )
-
             years = st.number_input(
                 "Time to Goal (Years)", 
                 min_value=1, 
                 max_value=40, 
-                value=10, 
+                value=suggestions['investment_duration'], 
                 step=1
             )
-
             annual_rate = st.slider(
                 "Expected Annual Return (%)", 
                 min_value=5.0, 
                 max_value=20.0, 
-                value=12.0, 
+                value=suggestions['expected_return'], 
                 step=0.5
             )
-
             # Calculate required SIP
             monthly_rate = annual_rate / (100 * 12)
             total_months = years * 12
-
             if monthly_rate > 0:
                 future_value_factor = ((1 + monthly_rate) ** total_months - 1) / monthly_rate
                 required_sip = target_amount / (future_value_factor * (1 + monthly_rate))
             else:
                 required_sip = target_amount / total_months
-
             monthly_investment = required_sip
-
             st.success(f"Required Monthly SIP: ₹{required_sip:,.0f}")
+            step_up_rate = suggestions['step_up_rate']
+            investment_type = suggestions['investment_type']
 
         else:
+            # Regular inputs with suggestions as defaults
             monthly_investment = st.number_input(
                 "Monthly SIP Amount (₹)", 
                 min_value=500, 
-                value=10000, 
+                value=suggestions['recommended_sip'],
                 step=500
             )
-
             years = st.number_input(
                 "Investment Duration (Years)", 
                 min_value=1, 
                 max_value=40, 
-                value=15, 
+                value=suggestions['investment_duration'], 
                 step=1
             )
-
             annual_rate = st.slider(
                 "Expected Annual Return (%)", 
                 min_value=5.0, 
                 max_value=20.0, 
-                value=12.0, 
+                value=suggestions['expected_return'], 
                 step=0.5
+            )
+            step_up_rate = st.slider(
+                "Annual Step-up Rate (%)", 
+                min_value=0.0, 
+                max_value=15.0, 
+                value=suggestions['step_up_rate'] if calc_type == "Step-up SIP" else 0.0, 
+                step=0.5
+            )
+            investment_type = st.selectbox(
+                "Investment Type",
+                ["Equity Mutual Funds", "Hybrid Funds", "Debt Funds", "ELSS", "Index Funds"],
+                index=0 if suggestions['investment_type'] == "Equity Mutual Funds" else 1
             )
 
         st.markdown("### Advanced Options")
-
-        step_up_rate = st.slider(
-            "Annual Step-up Rate (%)", 
-            min_value=0.0, 
-            max_value=15.0, 
-            value=5.0 if calc_type == "Step-up SIP" else 0.0, 
-            step=0.5
-        )
-
         inflation_rate = st.slider(
             "Expected Inflation Rate (%)", 
             min_value=0.0, 
@@ -244,13 +501,8 @@ def main():
             step=0.5
         )
 
-        investment_type = st.selectbox(
-            "Investment Type",
-            ["Equity Mutual Funds", "Hybrid Funds", "Debt Funds", "ELSS", "Index Funds"]
-        )
-
     # Calculate button
-    if st.button("🧮 Calculate", type="primary"):
+    if st.button("🧮 Calculate Personalized SIP", type="primary"):
         result = calculate_sip_with_stepup(
             monthly_investment, annual_rate, years, step_up_rate, inflation_rate
         )
@@ -260,24 +512,20 @@ def main():
 
         # Key metrics
         col1, col2, col3, col4 = st.columns(4)
-
         with col1:
             st.metric("💰 Total Invested", f"₹{result['total_invested']:,.0f}")
-
         with col2:
             st.metric(
                 "🎯 Future Value", 
                 f"₹{result['future_value']:,.0f}",
                 delta=f"+{((result['future_value']/result['total_invested'])*100-100):.1f}%"
             )
-
         with col3:
             st.metric(
                 "📈 Total Returns", 
                 f"₹{result['total_returns']:,.0f}",
                 delta=f"{result['effective_rate']:.1f}% annually"
             )
-
         with col4:
             st.metric(
                 "💵 Real Value", 
@@ -285,9 +533,12 @@ def main():
                 delta=f"After {inflation_rate}% inflation"
             )
 
+        # Personalized insights
+        if user_profile:
+            display_personalized_insights(user_profile, result, monthly_investment, years)
+
         # Charts section
         st.markdown('<h2 class="sub-header">📊 Visual Analysis</h2>', unsafe_allow_html=True)
-
         col1, col2 = st.columns(2)
 
         with col1:
@@ -310,19 +561,15 @@ def main():
 
         # Detailed breakdown
         st.markdown('<h2 class="sub-header">📋 Year-wise Breakdown</h2>', unsafe_allow_html=True)
-
         df = pd.DataFrame(result['yearly_data'])
-
         # Format for display
         df_display = df.copy()
         for col in ['Monthly SIP', 'Yearly Investment', 'Cumulative Investment', 'Future Value', 'Real Value']:
             df_display[col] = df_display[col].apply(lambda x: f"₹{x:,.0f}")
-
         st.dataframe(df_display, use_container_width=True)
 
         # Insights
         st.markdown('<h2 class="sub-header">💡 Key Insights</h2>', unsafe_allow_html=True)
-
         col1, col2 = st.columns(2)
 
         with col1:
@@ -344,22 +591,30 @@ def main():
             - Real growth: **{(result['inflation_adjusted_value']/result['total_invested']):.1f}x**
             """)
 
-        # Recommendations
-        st.markdown('<h2 class="sub-header">🎯 Recommendations</h2>', unsafe_allow_html=True)
-
+        # Personalized Recommendations
+        st.markdown('<h2 class="sub-header">🎯 Personalized Recommendations</h2>', unsafe_allow_html=True)
         recommendations = []
 
-        if step_up_rate == 0:
-            recommendations.append("🔄 Consider Step-up SIP to beat inflation")
+        if user_profile:
+            personal_info = user_profile.get('personal_info', {})
+            monthly_income = personal_info.get('monthly_income', 0)
+            sip_percentage = (monthly_investment / monthly_income * 100) if monthly_income > 0 else 0
 
-        if annual_rate < 10:
-            recommendations.append("⚡ Consider equity funds for higher growth")
-
-        if years > 15:
-            recommendations.append("🎯 Long horizon perfect for equity investments")
-
-        if investment_type == "ELSS":
-            recommendations.append("💼 Tax benefit: Up to ₹1.5L deduction under 80C")
+            if sip_percentage < 15:
+                recommendations.append("📈 Increase SIP to 15-25% of income for better wealth creation")
+            if step_up_rate == 0:
+                recommendations.append("🔄 Consider Step-up SIP to beat inflation and salary increments")
+            if personal_info.get('risk_tolerance') == 'Conservative' and annual_rate > 10:
+                recommendations.append("⚖️ Consider balanced funds matching your risk profile")
+            if investment_type == "ELSS":
+                recommendations.append("💼 Tax benefit: Up to ₹1.5L deduction under 80C")
+        else:
+            if step_up_rate == 0:
+                recommendations.append("🔄 Consider Step-up SIP to beat inflation")
+            if annual_rate < 10:
+                recommendations.append("⚡ Consider equity funds for higher growth")
+            if years > 15:
+                recommendations.append("🎯 Long horizon perfect for equity investments")
 
         for rec in recommendations:
             st.markdown(f"- {rec}")
@@ -367,7 +622,6 @@ def main():
         # Scenario analysis
         with st.expander("🔬 Scenario Analysis"):
             st.markdown("### Different Investment Amounts:")
-
             scenarios = []
             for mult in [0.5, 1, 1.5, 2]:
                 amount = monthly_investment * mult
@@ -377,43 +631,59 @@ def main():
                     'Future Value': f"₹{scenario_result['future_value']:,.0f}",
                     'Returns': f"₹{scenario_result['total_returns']:,.0f}"
                 })
-
             st.table(pd.DataFrame(scenarios))
+
+    # Show available profiles for testing
+    if st.checkbox("🔍 Show Available User Profiles (for testing)"):
+        profiles = load_user_profiles()
+        if profiles:
+            st.markdown("### Available User Profiles:")
+            for email in profiles.keys():
+                profile = profiles[email]
+                personal_info = profile.get('personal_info', {})
+                st.markdown(f"""
+                **{email}**
+                - Age: {personal_info.get('age', 'N/A')}
+                - Income: ₹{personal_info.get('monthly_income', 0):,}
+                - Risk: {personal_info.get('risk_tolerance', 'N/A')}
+                - Current SIP: ₹{profile.get('investments', {}).get('current_sip', 0):,}
+                """)
+        else:
+            st.info("No user profiles found. Please register through the login page first.")
 
     # Information section
     st.markdown("---")
-    st.markdown("### ℹ️ About This Calculator")
-
+    st.markdown("### ℹ️ About This Personalized Calculator")
     col1, col2, col3 = st.columns(3)
 
     with col1:
         st.markdown("""
-        **Features:**
-        - Step-up SIP calculation
-        - Inflation adjustment  
+        **Personalized Features:**
+        - Profile-based recommendations
+        - AI-suggested parameters
+        - Income-based SIP calculation
+        - Risk-adjusted returns
         - Goal-based planning
-        - Interactive charts
-        - Scenario analysis
         """)
 
     with col2:
         st.markdown("""
-        **Benefits:**
-        - Accurate projections
-        - Visual insights
-        - Tax planning tips
-        - Multiple scenarios
-        - Easy to use
+        **Data Integration:**
+        - User financial profile
+        - Expense analysis
+        - Retirement planning
+        - Tax optimization
+        - Investment preferences
         """)
 
     with col3:
         st.markdown("""
-        **Disclaimers:**
-        - Estimates only
-        - Market risks apply
-        - Consult advisor
-        - Review regularly
-        - Past ≠ future
+        **Enhanced Analytics:**
+        - Personalized insights
+        - Career-based projections
+        - Surplus income analysis
+        - Goal gap analysis
+        - Tax-efficient planning
         """)
 
 if __name__ == "__main__":
