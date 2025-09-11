@@ -417,39 +417,7 @@ else:
     </style>
     """, unsafe_allow_html=True)
 
-# Header section without emojis
-st.markdown("""
-<h1 class="main-title">Capital Compass</h1>
-<p class="subtitle"><strong>All your financial solutions in one place</strong></p>
-<p class="tagline">"Where Smart Money Decisions Begin"</p>
-""", unsafe_allow_html=True)
 
-# Enhanced description section without emojis
-st.markdown("""
-<div class="features-section">
-    <h2 class="features-title">What Makes Capital Compass Unique?</h2>
-    <div class="features-list">        
-        <div class="feature-item">
-            <div class="feature-title"><strong>Lightning Fast</strong></div>
-            <div class="feature-desc">Get instant results with our optimized calculation engine - no waiting, no delays</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-title"><strong>Mobile-First Design</strong></div>
-            <div class="feature-desc">Perfect experience across all devices with responsive, touch-friendly interfaces</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-title"><strong>Personalized Insights</strong></div>
-            <div class="feature-desc">Smart recommendations based on your financial profile and Indian market conditions</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-title"><strong>Interactive Visualizations</strong></div>
-            <div class="feature-desc">Beautiful charts and graphs that make complex financial data easy to understand</div>
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("---")
 
 # Simplified tools data without emojis
 tools = [
@@ -501,6 +469,39 @@ for tool in tools:
         unsafe_allow_html=True
     )
 st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown("---")
+# Header section without emojis
+st.markdown("""
+<h1 class="main-title">Capital Compass</h1>
+<p class="subtitle"><strong>All your financial solutions in one place</strong></p>
+<p class="tagline">"Where Smart Money Decisions Begin"</p>
+""", unsafe_allow_html=True)
+
+# Enhanced description section without emojis
+st.markdown("""
+<div class="features-section">
+    <h2 class="features-title">What Makes Capital Compass Unique?</h2>
+    <div class="features-list">        
+        <div class="feature-item">
+            <div class="feature-title"><strong>Lightning Fast</strong></div>
+            <div class="feature-desc">Get instant results with our optimized calculation engine - no waiting, no delays</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-title"><strong>Mobile-First Design</strong></div>
+            <div class="feature-desc">Perfect experience across all devices with responsive, touch-friendly interfaces</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-title"><strong>Personalized Insights</strong></div>
+            <div class="feature-desc">Smart recommendations based on your financial profile and Indian market conditions</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-title"><strong>Interactive Visualizations</strong></div>
+            <div class="feature-desc">Beautiful charts and graphs that make complex financial data easy to understand</div>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("---")
 
