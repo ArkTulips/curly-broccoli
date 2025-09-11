@@ -150,24 +150,27 @@ if st.session_state.dark_mode:
             padding: 0 20px;
         }}
         
-        .tool-card {{
-            background: #2d3748;
-            border: 1px solid #4a5568;
-            border-radius: 12px;
-            padding: 24px;
-            text-align: left;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        .tool-button {{
+            display: inline-block;
+            padding: 8px 16px;
+            background: #4F46E5;
+            color: white;
+            text-decoration: none !important;  /* no underline */
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
             transition: all 0.2s ease;
-            min-height: 160px;
-            display: flex;
-            flex-direction: column;
+            align-self: flex-start;
+            cursor: pointer;
         }}
         
-        .tool-card:hover {{
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            transform: translateY(-2px);
-            border-color: #718096;
+        .tool-button:hover {{
+            background: #3B37DB;
+            color: white;
+            text-decoration: none !important;  /* keep no underline */
         }}
+
         
         .tool-title {{
             font-family: 'Inter', sans-serif;
