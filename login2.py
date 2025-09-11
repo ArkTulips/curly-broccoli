@@ -949,9 +949,7 @@ def render_login_page():
         col1, col2 = st.columns([1, 1])
         with col1:
             remember_me = st.checkbox("Remember Me")
-        with col2:
-            if st.form_submit_button("Forgot Password?", type="secondary"):
-                st.info("Password reset functionality coming soon!")
+       
 
         login_submitted = st.form_submit_button("Sign In to Capital Compass", use_container_width=True, type="primary")
 
