@@ -70,7 +70,7 @@ if st.session_state.dark_mode:
             font-weight: 600;
             text-align: center;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 2px;
             letter-spacing: 0.02em;
         }}
         
