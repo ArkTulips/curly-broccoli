@@ -45,7 +45,7 @@ def load_custom_css():
     .stApp {
         background: linear-gradient(135 deg, #667eea 0%, #764ba2 100%);
         font-family: 'Inter', sans-serif;
-    }
+                                   )
 
     /* Main container */
     .main-container {
