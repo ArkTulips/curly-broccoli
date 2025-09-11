@@ -21,6 +21,19 @@ def load_custom_css():
     <style>
     /* Import Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    /* ... existing CSS ... */
+    .stTextInput > div > div > input {
+        padding: 16px 20px;
+        border: 2px solid #e1e8ed;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: white;
+        color: black !important;  /* This makes input text black */
+    }
+    /* ... rest of your CSS ... */
+    </style>
+    """, unsafe_allow_html=True)
 
     /* Hide Streamlit default elements */
     #MainMenu {visibility: hidden;}
@@ -155,7 +168,7 @@ def load_custom_css():
 
     .stTextInput > label {
         font-weight: 600;
-        color: #040608;
+        color: #2c3e50;
         margin-bottom: 8px;
     }
 
