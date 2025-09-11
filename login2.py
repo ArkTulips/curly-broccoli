@@ -230,7 +230,7 @@ def load_custom_css():
         width: 100%;
         max-width: 390px;
         height: 240px;
-        background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85');
+        background-image: url('https://pngtree.com/so/financial-logo');
         background-size: cover;
         background-position: center 35%;
         border-radius: 12px 18px 15px 16px;
