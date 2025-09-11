@@ -922,7 +922,7 @@ st.markdown("""
         <a href="#emi-calculator" class="nav-link">EMI Calculator</a>
         <a href="#expense-tracker" class="nav-link">Expense Tracker</a>
         <a href="#retirement-planner" class="nav-link">Retirement Planner</a>
-        <a href="#stock-market" class="nav-link">📈 Stock Market</a>
+        <a href="#stock-market" class="nav-link">Stock Market</a>
     </div>
 </div>
 """, unsafe_allow_html=True)
