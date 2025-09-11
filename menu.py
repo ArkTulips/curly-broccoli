@@ -792,7 +792,7 @@ def show_main_dashboard():
         {
             "name": "SIP Calculator",
             "desc": "Master Systematic Investment Planning with your profile data pre-loaded for personalized calculations.",
-            "link": "#"
+            "link": "https://financialreach.streamlit.app/"
         },
         {
             "name": "Credit Score Analyzer", 
