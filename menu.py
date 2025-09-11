@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Capital Compass - Your Ultimate Financial Companion", 
     layout="wide",
-    page_icon="💰",
+    page_icon="",
     initial_sidebar_state="collapsed"
 )
 
@@ -552,7 +552,7 @@ else:
             font-weight: 700;
             text-align: center;
             color: #1a365d;
-            margin: 40px 0 20px 0;
+            margin: 4px 0 2px 0;
             letter-spacing: -0.02em;
         }}
         
@@ -906,7 +906,7 @@ st.markdown("""
 # Navigation Dashboard with internal anchor links
 st.markdown("""
 <div class="nav-dashboard">
-    <h3 class="nav-title"> Quick Access Financial Tools </h3>
+    <h3 class="nav-title"> Quick Access to Financial Tools </h3>
     <div class="nav-grid">
         <a href="#sip-calculator" class="nav-link">📈 SIP Calculator</a>
         <a href="#credit-score" class="nav-link">💳 Credit Score</a>
