@@ -10,8 +10,7 @@ st.set_page_config(
 
 # Initialize theme state
 if "dark_mode" not in st.session_state:
-    st.session_state.dark_mode = true
-
+    st.session_state.dark_mode = False
 # Create toggle button using Streamlit columns for positioning
 col1, col2, col3 = st.columns([6, 1, 1])
 with col3:
