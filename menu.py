@@ -3,7 +3,7 @@ import streamlit as st
 # Page configuration
 st.set_page_config(
     page_title="Capital Compass - Your Ultimate Financial Companion", 
-    layout="wide",
+    layout="narrow",
     page_icon="💰",
     initial_sidebar_state="collapsed"
 )
