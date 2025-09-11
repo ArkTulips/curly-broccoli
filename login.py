@@ -30,12 +30,12 @@ password = st.text_input("Password", type="password")
 if st.button("Login"):
     if username in users and users[username] == password:
         st.success("✅ Login successful!")
-        st.markdown(
-            """
-            <meta http-equiv="refresh" content="0; url='https://menufin.streamlit.app/'" />
-            """,
-            unsafe_allow_html=True,
-        )
+          js = """
+        <script>
+        window.open("https://menufin.streamlit.app/", "_self");
+        </script>
+        """
+        st.markdown(js, unsafe_allow_html=True)
     else:
         st.error("❌ Invalid credentials")
 
