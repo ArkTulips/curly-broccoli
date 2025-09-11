@@ -476,7 +476,10 @@ else:
         #MainMenu {{visibility: hidden;}}
         footer {{visibility: hidden;}}
         header {{visibility: hidden;}}
-        
+        /* Reduce top padding */
+        .block-container {{
+            padding-top: 1rem !important;
+        }}
         /* Smooth scrolling */
         html {{
             scroll-behavior: smooth;
