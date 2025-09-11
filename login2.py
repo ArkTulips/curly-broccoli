@@ -50,7 +50,7 @@ def load_custom_css():
     /* Main container */
     .main-container {
         display: flex;
-        min-height: 100vh;
+        min-height: 100 vh;
         background: white;
         border-radius: 12px;
         overflow: hidden;
@@ -61,7 +61,7 @@ def load_custom_css():
     /* Left panel */
     .left-panel {
         flex: 1;
-        background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        background: linear-gradient(135 deg, #2c3e50 0%, #3498db 100%);
         color: white;
         padding: 60px 40px;
         display: flex;
@@ -91,7 +91,7 @@ def load_custom_css():
         font-size: 48px;
         font-weight: 700;
         margin-bottom: 16px;
-        background: linear-gradient(45deg, #ffffff, #e8f4f8);
+        background: linear-gradient(45 deg, #ffffff, #e8f4f8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
