@@ -20,27 +20,33 @@ with col3:
         st.session_state.dark_mode = not st.session_state.dark_mode
         st.rerun()
 
+# Professional Images Integration
+hero_image_url = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+dashboard_image_url = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+analytics_image_url = "https://images.unsplash.com/photo-1693141373442-e75d22b59c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+calculator_image_url = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+
 # Apply CSS based on theme state
 if st.session_state.dark_mode:
-    # Professional Dark theme CSS with consistent tool cards
-    st.markdown("""
+    # Professional Dark theme CSS with images
+    st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         /* Hide Streamlit elements */
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
+        #MainMenu {{visibility: hidden;}}
+        footer {{visibility: hidden;}}
+        header {{visibility: hidden;}}
         
         /* Dark theme styling */
-        .stApp {
+        .stApp {{
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
             font-family: 'Inter', sans-serif;
-        }
+        }}
         
         /* Main title styling */
-        .main-title {
+        .main-title {{
             font-family: 'Inter', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
@@ -48,38 +54,103 @@ if st.session_state.dark_mode:
             color: #ffffff;
             margin: 40px 0 20px 0;
             letter-spacing: -0.02em;
-        }
+        }}
         
-        .subtitle {
+        .subtitle {{
             text-align: center;
             font-family: 'Inter', sans-serif;
             font-size: 1.3rem;
             color: #e2e8f0;
             margin-bottom: 20px;
             font-weight: 500;
-        }
+        }}
         
-        .tagline {
+        .tagline {{
             text-align: center;
             font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
             color: #cbd5e0;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             font-weight: 400;
             font-style: italic;
-        }
+        }}
         
-        /* Professional tool cards - SAME AS LIGHT THEME */
-        .tools-grid {
+        /* Hero section styling */
+        .hero-section {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 40px auto 60px auto;
+            max-width: 1200px;
+            padding: 40px 20px;
+            background: rgba(45, 55, 72, 0.6);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 40px;
+        }}
+        
+        .hero-content {{
+            flex: 1;
+            max-width: 500px;
+        }}
+        
+        .hero-image {{
+            flex: 1;
+            max-width: 500px;
+        }}
+        
+        .hero-image img {{
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }}
+        
+        .hero-title {{
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }}
+        
+        .hero-desc {{
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #cbd5e0;
+            margin-bottom: 25px;
+        }}
+        
+        .badge-container {{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }}
+        
+        .badge {{
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }}
+        
+        .badge-primary {{ background: #4F46E5; }}
+        .badge-success {{ background: #10B981; }}
+        .badge-warning {{ background: #F59E0B; }}
+        
+        /* Professional tool cards */
+        .tools-grid {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
+        }}
         
-        .tool-card {
+        .tool-card {{
             background: #2d3748;
             border: 1px solid #4a5568;
             border-radius: 12px;
@@ -90,33 +161,33 @@ if st.session_state.dark_mode:
             min-height: 160px;
             display: flex;
             flex-direction: column;
-        }
+        }}
         
-        .tool-card:hover {
+        .tool-card:hover {{
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             transform: translateY(-2px);
             border-color: #718096;
-        }
+        }}
         
-        .tool-title {
+        .tool-title {{
             font-family: 'Inter', sans-serif;
             font-size: 1.25rem;
             font-weight: 600;
             color: #ffffff;
             margin-bottom: 8px;
             line-height: 1.4;
-        }
+        }}
         
-        .tool-desc {
+        .tool-desc {{
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             color: #cbd5e0;
             line-height: 1.5;
             margin-bottom: 16px;
             flex-grow: 1;
-        }
+        }}
         
-        .tool-button {
+        .tool-button {{
             display: inline-block;
             padding: 8px 16px;
             background: #4F46E5;
@@ -128,16 +199,16 @@ if st.session_state.dark_mode:
             font-size: 0.9rem;
             transition: all 0.2s ease;
             align-self: flex-start;
-        }
+        }}
         
-        .tool-button:hover {
+        .tool-button:hover {{
             background: #3B37DB;
             text-decoration: none;
             color: white;
-        }
+        }}
         
         /* Professional info sections */
-        .features-section {
+        .features-section {{
             background: #2d3748;
             border: 1px solid #4a5568;
             border-radius: 12px;
@@ -145,44 +216,44 @@ if st.session_state.dark_mode:
             margin: 48px auto;
             max-width: 1000px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+        }}
         
-        .features-title {
+        .features-title {{
             font-family: 'Inter', sans-serif;
             font-size: 1.75rem;
             font-weight: 600;
             text-align: center;
             color: #ffffff;
             margin-bottom: 28px;
-        }
+        }}
         
-        .features-list {
+        .features-list {{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-        }
+        }}
         
-        .feature-item {
+        .feature-item {{
             background: #374151;
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #4F46E5;
-        }
+        }}
         
-        .feature-title {
+        .feature-title {{
             font-weight: 600;
             color: #ffffff;
             font-size: 1rem;
             margin-bottom: 8px;
-        }
+        }}
         
-        .feature-desc {
+        .feature-desc {{
             color: #d1d5db;
             font-size: 0.9rem;
             line-height: 1.5;
-        }
+        }}
         
-        .info-section {
+        .info-section {{
             background: #2d3748;
             border: 1px solid #4a5568;
             border-radius: 12px;
@@ -193,49 +264,107 @@ if st.session_state.dark_mode:
             font-family: 'Inter', sans-serif;
             max-width: 900px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+        }}
+        
+        /* Image showcase section */
+        .showcase-section {{
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }}
+        
+        .showcase-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }}
+        
+        .showcase-subtitle {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            color: #cbd5e0;
+            margin-bottom: 40px;
+        }}
+        
+        .showcase-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }}
+        
+        .showcase-item {{
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }}
+        
+        .showcase-item img {{
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }}
+        
+        .showcase-caption {{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #cbd5e0;
+            line-height: 1.4;
+        }}
         
         /* Responsive design */
-        @media (max-width: 1024px) {
-            .tools-grid {
+        @media (max-width: 1024px) {{
+            .tools-grid {{
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
+            }}
+            .hero-section {{
+                flex-direction: column;
+                text-align: center;
+            }}
+        }}
         
-        @media (max-width: 768px) {
-            .main-title {
+        @media (max-width: 768px) {{
+            .main-title {{
                 font-size: 2.5rem;
-            }
-            .tools-grid {
+            }}
+            .tools-grid {{
                 grid-template-columns: 1fr;
-            }
-            .tool-card {
+            }}
+            .tool-card {{
                 min-height: 140px;
-            }
-        }
+            }}
+        }}
     </style>
     """, unsafe_allow_html=True)
     
 else:
-    # Professional Light theme CSS (unchanged)
-    st.markdown("""
+    # Professional Light theme CSS with images
+    st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         /* Hide Streamlit elements */
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
+        #MainMenu {{visibility: hidden;}}
+        footer {{visibility: hidden;}}
+        header {{visibility: hidden;}}
         
         /* Professional light theme styling */
-        .stApp {
+        .stApp {{
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1a202c;
             font-family: 'Inter', sans-serif;
-        }
+        }}
         
         /* Main title styling */
-        .main-title {
+        .main-title {{
             font-family: 'Inter', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
@@ -243,38 +372,104 @@ else:
             color: #1a365d;
             margin: 40px 0 20px 0;
             letter-spacing: -0.02em;
-        }
+        }}
         
-        .subtitle {
+        .subtitle {{
             text-align: center;
             font-family: 'Inter', sans-serif;
             font-size: 1.3rem;
             color: #4a5568;
             margin-bottom: 20px;
             font-weight: 500;
-        }
+        }}
         
-        .tagline {
+        .tagline {{
             text-align: center;
             font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
             color: #718096;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             font-weight: 400;
             font-style: italic;
-        }
+        }}
+        
+        /* Hero section styling */
+        .hero-section {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 40px auto 60px auto;
+            max-width: 1200px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            gap: 40px;
+        }}
+        
+        .hero-content {{
+            flex: 1;
+            max-width: 500px;
+        }}
+        
+        .hero-image {{
+            flex: 1;
+            max-width: 500px;
+        }}
+        
+        .hero-image img {{
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }}
+        
+        .hero-title {{
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }}
+        
+        .hero-desc {{
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 25px;
+        }}
+        
+        .badge-container {{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }}
+        
+        .badge {{
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }}
+        
+        .badge-primary {{ background: #4F46E5; }}
+        .badge-success {{ background: #10B981; }}
+        .badge-warning {{ background: #F59E0B; }}
         
         /* Professional tool cards */
-        .tools-grid {
+        .tools-grid {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
+        }}
         
-        .tool-card {
+        .tool-card {{
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -285,33 +480,33 @@ else:
             min-height: 160px;
             display: flex;
             flex-direction: column;
-        }
+        }}
         
-        .tool-card:hover {
+        .tool-card:hover {{
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
             border-color: #cbd5e0;
-        }
+        }}
         
-        .tool-title {
+        .tool-title {{
             font-family: 'Inter', sans-serif;
             font-size: 1.25rem;
             font-weight: 600;
             color: #2d3748;
             margin-bottom: 8px;
             line-height: 1.4;
-        }
+        }}
         
-        .tool-desc {
+        .tool-desc {{
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             color: #718096;
             line-height: 1.5;
             margin-bottom: 16px;
             flex-grow: 1;
-        }
+        }}
         
-        .tool-button {
+        .tool-button {{
             display: inline-block;
             padding: 8px 16px;
             background: #4F46E5;
@@ -323,16 +518,16 @@ else:
             font-size: 0.9rem;
             transition: all 0.2s ease;
             align-self: flex-start;
-        }
+        }}
         
-        .tool-button:hover {
+        .tool-button:hover {{
             background: #3B37DB;
             text-decoration: none;
             color: white;
-        }
+        }}
         
         /* Professional info sections */
-        .features-section {
+        .features-section {{
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -340,44 +535,44 @@ else:
             margin: 48px auto;
             max-width: 1000px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+        }}
         
-        .features-title {
+        .features-title {{
             font-family: 'Inter', sans-serif;
             font-size: 1.75rem;
             font-weight: 600;
             text-align: center;
             color: #2d3748;
             margin-bottom: 28px;
-        }
+        }}
         
-        .features-list {
+        .features-list {{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-        }
+        }}
         
-        .feature-item {
+        .feature-item {{
             background: #f7fafc;
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #4F46E5;
-        }
+        }}
         
-        .feature-title {
+        .feature-title {{
             font-weight: 600;
             color: #2d3748;
             font-size: 1rem;
             margin-bottom: 8px;
-        }
+        }}
         
-        .feature-desc {
+        .feature-desc {{
             color: #4a5568;
             font-size: 0.9rem;
             line-height: 1.5;
-        }
+        }}
         
-        .info-section {
+        .info-section {{
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -388,37 +583,116 @@ else:
             font-family: 'Inter', sans-serif;
             max-width: 900px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+        }}
+        
+        /* Image showcase section */
+        .showcase-section {{
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }}
+        
+        .showcase-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }}
+        
+        .showcase-subtitle {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            color: #718096;
+            margin-bottom: 40px;
+        }}
+        
+        .showcase-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }}
+        
+        .showcase-item {{
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }}
+        
+        .showcase-item img {{
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }}
+        
+        .showcase-caption {{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.4;
+        }}
         
         /* Responsive design */
-        @media (max-width: 1024px) {
-            .tools-grid {
+        @media (max-width: 1024px) {{
+            .tools-grid {{
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
+            }}
+            .hero-section {{
+                flex-direction: column;
+                text-align: center;
+            }}
+        }}
         
-        @media (max-width: 768px) {
-            .main-title {
+        @media (max-width: 768px) {{
+            .main-title {{
                 font-size: 2.5rem;
-            }
-            .tools-grid {
+            }}
+            .tools-grid {{
                 grid-template-columns: 1fr;
-            }
-            .tool-card {
+            }}
+            .tool-card {{
                 min-height: 140px;
-            }
-        }
+            }}
+        }}
     </style>
     """, unsafe_allow_html=True)
 
-# Header section without emojis
+# Header section
 st.markdown("""
 <h1 class="main-title">Capital Compass</h1>
 <p class="subtitle"><strong>All your financial solutions in one place</strong></p>
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
 
-# Enhanced description section without emojis
+# Hero section with professional image
+st.markdown(f"""
+<div class="hero-section">
+    <div class="hero-content">
+        <h2 class="hero-title">Professional Financial Management Made Simple</h2>
+        <p class="hero-desc">
+            Experience the power of comprehensive financial planning with our suite of professional-grade calculators and tools. 
+            Designed for accuracy, built for professionals, trusted by thousands.
+        </p>
+        <div class="badge-container">
+            <span class="badge badge-primary">Enterprise Ready</span>
+            <span class="badge badge-success">Bank-Grade Security</span>
+            <span class="badge badge-warning">Real-time Analytics</span>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="{hero_image_url}" alt="Professional Financial Dashboard" />
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Enhanced description section
 st.markdown("""
 <div class="features-section">
     <h2 class="features-title">What Makes Capital Compass Unique?</h2>
@@ -445,7 +719,7 @@ st.markdown("""
 
 st.markdown("---")
 
-# Simplified tools data without emojis
+# Tools section
 tools = [
     {
         "name": "SIP Calculator",
@@ -476,15 +750,9 @@ tools = [
         "name": "Retirement Planner",
         "desc": "Strategic Retirement Planning with inflation-adjusted calculations and corpus estimation tools.",
         "link": "https://retirementtrack.streamlit.app/"
-    },
-     {
-        "name": "Stock Tracker",
-        "desc": "Check the market performance of your favourite stocks in real-time",
-        "link": "https://demo-stockpeers.streamlit.app/?ref=streamlit-io-gallery-favorites&stocks=AAPL%2CMSFT%2CGOOGL%2CNVDA%2CAMZN%2CTSLA%2CMETA"
     }
 ]
 
-# Create simple tools grid
 st.markdown('<div class="tools-grid">', unsafe_allow_html=True)
 for tool in tools:
     st.markdown(
@@ -501,9 +769,31 @@ for tool in tools:
     )
 st.markdown('</div>', unsafe_allow_html=True)
 
+# Professional showcase section with images
+st.markdown(f"""
+<div class="showcase-section">
+    <h2 class="showcase-title">Trusted by Financial Professionals</h2>
+    <p class="showcase-subtitle">See how our tools compare to industry-leading financial platforms</p>
+    <div class="showcase-grid">
+        <div class="showcase-item">
+            <img src="{dashboard_image_url}" alt="Modern Financial Dashboard" />
+            <p class="showcase-caption">Advanced Analytics Dashboard - Real-time portfolio tracking and performance analysis</p>
+        </div>
+        <div class="showcase-item">
+            <img src="{analytics_image_url}" alt="Investment Portfolio Interface" />
+            <p class="showcase-caption">Investment Portfolio Management - Professional-grade tools for wealth management</p>
+        </div>
+        <div class="showcase-item">
+            <img src="{calculator_image_url}" alt="Financial Calculator Interface" />
+            <p class="showcase-caption">Professional Calculator Interface - Precision tools for complex financial calculations</p>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("---")
 
-# Enhanced info section without emojis
+# Enhanced info section
 st.markdown("""
 <div class="info-section">
     <strong>Completely Free Forever</strong><br>
