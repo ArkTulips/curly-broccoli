@@ -19,7 +19,7 @@ st.set_page_config(
 USERS_FILE = "users_data.json"
 USER_PROFILES_FILE = "user_profiles.json"
 
-# Custom CSS for professional styling with dark contrasting background
+# Custom CSS for professional styling with solid colors only
 def load_custom_css():
     st.markdown("""
     <style>
@@ -32,9 +32,9 @@ def load_custom_css():
     footer {visibility: hidden;}
     .stApp > header {height: 0;}
 
-    /* Global styles with contrasting dark background */
+    /* Global styles with solid dark background */
     .stApp {
-        background: linear-gradient(135deg, #000000 0%, #1a1a2e 20%, #16213e 40%, #0f3460 60%, #533a7d 80%, #8b5fbf 100%);
+        background: #1a1a2e;
         font-family: 'Inter', sans-serif;
         min-height: 100vh;
     }
@@ -43,7 +43,7 @@ def load_custom_css():
     .main-container {
         display: flex;
         min-height: 100vh;
-        background: rgba(0, 0, 0, 0.8);
+        background: #000000;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 30px 60px rgba(0,0,0,0.5);
@@ -51,13 +51,13 @@ def load_custom_css():
         max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
-        border: 1px solid rgba(139, 95, 191, 0.3);
+        border: 1px solid #8b5fbf;
     }
 
     /* Left panel with financial dashboard image */
     .left-panel {
         flex: 1.2;
-        background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,46,0.9) 50%, rgba(83,58,125,0.85) 100%);
+        background: #16213e;
         color: white;
         padding: 60px 50px;
         display: flex;
@@ -101,7 +101,7 @@ def load_custom_css():
     .brand-logo {
         width: 100px;
         height: 100px;
-        background: linear-gradient(45deg, #8b5fbf, #533a7d, #00d4ff);
+        background: #8b5fbf;
         border-radius: 20px;
         display: flex;
         align-items: center;
@@ -117,10 +117,7 @@ def load_custom_css():
         font-size: 58px;
         font-weight: 700;
         margin-bottom: 20px;
-        background: linear-gradient(45deg, #ffffff, #8b5fbf, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #ffffff;
         line-height: 1.1;
         text-shadow: 0 0 30px rgba(139, 95, 191, 0.5);
     }
@@ -152,7 +149,7 @@ def load_custom_css():
         align-items: center;
         margin-bottom: 25px;
         padding: 22px 28px;
-        background: rgba(139, 95, 191, 0.2);
+        background: #533a7d;
         border-radius: 15px;
         border-left: 5px solid #00d4ff;
         backdrop-filter: blur(15px);
@@ -160,14 +157,14 @@ def load_custom_css():
     }
 
     .feature-item:hover {
-        background: rgba(139, 95, 191, 0.3);
+        background: #8b5fbf;
         transform: translateX(5px);
     }
 
     .feature-icon {
         width: 32px;
         height: 32px;
-        background: linear-gradient(45deg, #00d4ff, #8b5fbf);
+        background: #00d4ff;
         border-radius: 8px;
         display: flex;
         align-items: center;
@@ -193,7 +190,7 @@ def load_custom_css():
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,40,0.95) 100%);
+        background: #0f3460;
         position: relative;
     }
 
@@ -227,17 +224,17 @@ def load_custom_css():
         border-radius: 15px;
         margin-bottom: 30px;
         box-shadow: 0 15px 35px rgba(139, 95, 191, 0.3);
-        border: 2px solid rgba(139, 95, 191, 0.4);
+        border: 2px solid #8b5fbf;
     }
 
     /* Form styles */
     .stTextInput > div > div > input {
         padding: 20px 26px !important;
-        border: 2px solid rgba(139, 95, 191, 0.4) !important;
+        border: 2px solid #8b5fbf !important;
         border-radius: 15px !important;
         font-size: 16px !important;
         transition: all 0.3s ease !important;
-        background: rgba(0, 0, 0, 0.7) !important;
+        background: #000000 !important;
         color: white !important;
         font-weight: 500 !important;
     }
@@ -246,7 +243,7 @@ def load_custom_css():
         border-color: #00d4ff !important;
         box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
         outline: none !important;
-        background: rgba(0, 0, 0, 0.8) !important;
+        background: #1a1a2e !important;
     }
 
     .stTextInput > div > div > input::placeholder {
@@ -262,18 +259,18 @@ def load_custom_css():
     }
 
     .stSelectbox > div > div > div {
-        background: rgba(0, 0, 0, 0.7) !important;
-        border: 2px solid rgba(139, 95, 191, 0.4) !important;
+        background: #000000 !important;
+        border: 2px solid #8b5fbf !important;
         border-radius: 15px !important;
         color: white !important;
     }
 
     .stNumberInput > div > div > input {
         padding: 20px 26px !important;
-        border: 2px solid rgba(139, 95, 191, 0.4) !important;
+        border: 2px solid #8b5fbf !important;
         border-radius: 15px !important;
         font-size: 16px !important;
-        background: rgba(0, 0, 0, 0.7) !important;
+        background: #000000 !important;
         color: white !important;
         font-weight: 500 !important;
     }
@@ -282,7 +279,7 @@ def load_custom_css():
     .stButton > button {
         width: 100% !important;
         padding: 20px 36px !important;
-        background: linear-gradient(135deg, #8b5fbf, #00d4ff) !important;
+        background: #00d4ff !important;
         color: white !important;
         border: none !important;
         border-radius: 15px !important;
@@ -291,18 +288,18 @@ def load_custom_css():
         transition: all 0.3s ease !important;
         cursor: pointer !important;
         margin: 10px 0 !important;
-        box-shadow: 0 8px 25px rgba(139, 95, 191, 0.4) !important;
+        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4) !important;
     }
 
     .stButton > button:hover {
-        background: linear-gradient(135deg, #00d4ff, #8b5fbf) !important;
+        background: #0099cc !important;
         transform: translateY(-3px) !important;
-        box-shadow: 0 12px 35px rgba(0, 212, 255, 0.4) !important;
+        box-shadow: 0 12px 35px rgba(0, 212, 255, 0.6) !important;
     }
 
     /* Create Account Button - More Visible */
     .create-account-btn {
-        background: linear-gradient(135deg, #ff6b35, #f7931e, #ffaa00) !important;
+        background: #ff6b35 !important;
         color: white !important;
         font-weight: 700 !important;
         font-size: 19px !important;
@@ -312,18 +309,18 @@ def load_custom_css():
     }
 
     .create-account-btn:hover {
-        background: linear-gradient(135deg, #ffaa00, #f7931e, #ff6b35) !important;
-        box-shadow: 0 12px 35px rgba(255, 170, 0, 0.5) !important;
+        background: #e55a2b !important;
+        box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6) !important;
     }
 
     /* GitHub button */
     .github-btn {
-        background: linear-gradient(135deg, #24292e, #40464f, #586069) !important;
+        background: #24292e !important;
         color: white !important;
     }
 
     .github-btn:hover {
-        background: linear-gradient(135deg, #586069, #40464f, #24292e) !important;
+        background: #1a1e22 !important;
     }
 
     /* Success/Error messages */
@@ -331,18 +328,18 @@ def load_custom_css():
         border-radius: 15px !important;
         margin: 18px 0 !important;
         padding: 18px 22px !important;
-        background: rgba(0, 0, 0, 0.8) !important;
-        border: 1px solid rgba(139, 95, 191, 0.3) !important;
+        background: #1a1a2e !important;
+        border: 1px solid #8b5fbf !important;
         color: white !important;
     }
 
     /* Onboarding styles */
     .onboarding-container {
-        background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,40,0.95));
+        background: #000000;
         border-radius: 25px;
         padding: 50px;
         margin: 25px;
-        border: 2px solid rgba(139, 95, 191, 0.3);
+        border: 2px solid #8b5fbf;
         box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
@@ -369,7 +366,7 @@ def load_custom_css():
         font-weight: 600;
         margin: 40px 0 20px 0;
         padding-bottom: 12px;
-        border-bottom: 3px solid rgba(139, 95, 191, 0.4);
+        border-bottom: 3px solid #8b5fbf;
     }
 
     /* Responsive design */
@@ -394,8 +391,8 @@ def load_custom_css():
 
     /* Signup prompt */
     .signup-prompt {
-        background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 170, 0, 0.2));
-        border: 2px solid rgba(255, 107, 53, 0.5);
+        background: #533a7d;
+        border: 2px solid #ff6b35;
         border-radius: 20px;
         padding: 28px;
         margin: 28px 0;
@@ -420,13 +417,13 @@ def load_custom_css():
 
     /* Stats display */
     .stats-container {
-        background: linear-gradient(135deg, rgba(139, 95, 191, 0.3), rgba(0, 212, 255, 0.2));
+        background: #16213e;
         border-radius: 15px;
         padding: 20px;
         margin: 20px 0;
         text-align: center;
         backdrop-filter: blur(15px);
-        border: 1px solid rgba(139, 95, 191, 0.4);
+        border: 1px solid #8b5fbf;
     }
 
     .stat-number {
@@ -457,8 +454,30 @@ def load_custom_css():
         color: #8b5fbf !important;
         font-weight: 600 !important;
         margin-bottom: 20px !important;
-        border-bottom: 2px solid rgba(139, 95, 191, 0.3) !important;
+        border-bottom: 2px solid #8b5fbf !important;
         padding-bottom: 10px !important;
+    }
+
+    /* Multiselect styling */
+    .stMultiSelect > div > div {
+        background: #000000 !important;
+        border: 2px solid #8b5fbf !important;
+        border-radius: 15px !important;
+        color: white !important;
+    }
+
+    /* Text area styling */
+    .stTextArea > div > div > textarea {
+        background: #000000 !important;
+        border: 2px solid #8b5fbf !important;
+        border-radius: 15px !important;
+        color: white !important;
+        padding: 15px 20px !important;
+    }
+
+    .stTextArea > div > div > textarea:focus {
+        border-color: #00d4ff !important;
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -955,8 +974,8 @@ def render_success_page():
     user_name = st.session_state.user_info.get('name', 'User')
 
     st.markdown(f"""
-    <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,40,0.95)); 
-         border-radius: 20px; margin: 20px; border: 2px solid rgba(139, 95, 191, 0.3);">
+    <div style="text-align: center; padding: 60px 20px; background: #000000; 
+         border-radius: 20px; margin: 20px; border: 2px solid #8b5fbf;">
         <h1 style="color: #00d4ff; margin-bottom: 20px; font-size: 36px; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);">
             Welcome, {user_name}!</h1>
         <p style="font-size: 18px; color: #e0e0ff; margin-bottom: 30px;">
@@ -973,9 +992,9 @@ def render_success_page():
     st.markdown("""
     <div style="text-align: center; margin: 40px 0;">
         <a href="https://menufin.streamlit.app/" target="_blank" 
-           style="background: linear-gradient(135deg, #8b5fbf, #00d4ff); color: white; 
+           style="background: #00d4ff; color: white; 
                   padding: 16px 32px; border-radius: 15px; text-decoration: none; 
-                  font-weight: 600; font-size: 18px; box-shadow: 0 8px 25px rgba(139, 95, 191, 0.4);">
+                  font-weight: 600; font-size: 18px; box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);">
             Open Capital Compass Dashboard
         </a>
     </div>
