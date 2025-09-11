@@ -38,12 +38,10 @@ if st.session_state.dark_mode:
         footer {{visibility: hidden;}}
         header {{visibility: hidden;}}
 
-    
-    
         /* Reduce top padding */
-        .block-container {
+        .block-container {{
             padding-top: 1rem !important;
-        }
+        }}
         
         /* Smooth scrolling */
         html {{
