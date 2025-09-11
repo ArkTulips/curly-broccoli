@@ -19,7 +19,7 @@ st.set_page_config(
 USERS_FILE = "users_data.json"
 USER_PROFILES_FILE = "user_profiles.json"
 
-# Custom CSS for professional styling
+# Custom CSS for professional styling with dark contrasting background
 def load_custom_css():
     st.markdown("""
     <style>
@@ -32,9 +32,9 @@ def load_custom_css():
     footer {visibility: hidden;}
     .stApp > header {height: 0;}
 
-    /* Global styles */
+    /* Global styles with contrasting dark background */
     .stApp {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+        background: linear-gradient(135deg, #000000 0%, #1a1a2e 20%, #16213e 40%, #0f3460 60%, #533a7d 80%, #8b5fbf 100%);
         font-family: 'Inter', sans-serif;
         min-height: 100vh;
     }
@@ -43,20 +43,21 @@ def load_custom_css():
     .main-container {
         display: flex;
         min-height: 100vh;
-        background: white;
-        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         margin: 20px;
-        max-width: 1200px;
+        max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
+        border: 1px solid rgba(139, 95, 191, 0.3);
     }
 
-    /* Left panel */
+    /* Left panel with financial dashboard image */
     .left-panel {
         flex: 1.2;
-        background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+        background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,46,0.9) 50%, rgba(83,58,125,0.85) 100%);
         color: white;
         padding: 60px 50px;
         display: flex;
@@ -73,54 +74,73 @@ def load_custom_css():
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        z-index: 0;
+    }
+
+    .left-panel::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(139,95,191,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
         opacity: 0.4;
+        z-index: 1;
     }
 
     .brand-content {
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
 
     .brand-logo {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(45deg, #ffffff, #e3f2fd);
-        border-radius: 16px;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #8b5fbf, #533a7d, #00d4ff);
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 24px;
-        font-size: 32px;
+        margin-bottom: 30px;
+        font-size: 36px;
         font-weight: 700;
-        color: #1a237e;
+        color: white;
+        box-shadow: 0 10px 30px rgba(139, 95, 191, 0.3);
     }
 
     .brand-title {
-        font-size: 52px;
+        font-size: 58px;
         font-weight: 700;
-        margin-bottom: 16px;
-        background: linear-gradient(45deg, #ffffff, #e8eaf6);
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #ffffff, #8b5fbf, #00d4ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         line-height: 1.1;
+        text-shadow: 0 0 30px rgba(139, 95, 191, 0.5);
     }
 
     .brand-subtitle {
-        font-size: 20px;
+        font-size: 22px;
         opacity: 0.9;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         line-height: 1.4;
         font-weight: 500;
+        color: #e0e0ff;
     }
 
     .brand-tagline {
-        font-size: 16px;
+        font-size: 18px;
         opacity: 0.8;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         font-style: italic;
-        color: #e8eaf6;
+        color: #c0c0ff;
+        font-weight: 300;
     }
 
     .features-list {
@@ -130,32 +150,40 @@ def load_custom_css():
     .feature-item {
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
-        padding: 18px 24px;
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 12px;
-        border-left: 4px solid #64b5f6;
-        backdrop-filter: blur(10px);
+        margin-bottom: 25px;
+        padding: 22px 28px;
+        background: rgba(139, 95, 191, 0.2);
+        border-radius: 15px;
+        border-left: 5px solid #00d4ff;
+        backdrop-filter: blur(15px);
+        transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+        background: rgba(139, 95, 191, 0.3);
+        transform: translateX(5px);
     }
 
     .feature-icon {
-        width: 24px;
-        height: 24px;
-        background: #64b5f6;
-        border-radius: 6px;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(45deg, #00d4ff, #8b5fbf);
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 16px;
-        font-size: 12px;
+        margin-right: 20px;
+        font-size: 14px;
         font-weight: bold;
-        color: #1a237e;
+        color: white;
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
     }
 
     .feature-text {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 500;
         line-height: 1.4;
+        color: #f0f0ff;
     }
 
     /* Right panel */
@@ -165,158 +193,183 @@ def load_custom_css():
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: #fafbfc;
+        background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,40,0.95) 100%);
+        position: relative;
     }
 
-    .login-header {
-        text-align: center;
-        margin-bottom: 40px;
+    .right-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.05;
+        z-index: 0;
     }
 
-    .login-title {
-        font-size: 36px;
-        font-weight: 700;
-        color: #1a237e;
-        margin-bottom: 12px;
+    .right-panel-content {
+        position: relative;
+        z-index: 1;
     }
 
-    .login-subtitle {
-        font-size: 18px;
-        color: #5f6368;
-        line-height: 1.5;
-        margin-bottom: 8px;
-    }
-
-    .login-description {
-        font-size: 14px;
-        color: #80868b;
-        line-height: 1.4;
+    /* Financial dashboard image container */
+    .dashboard-image {
+        width: 100%;
+        max-width: 400px;
+        height: 250px;
+        background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 15px 35px rgba(139, 95, 191, 0.3);
+        border: 2px solid rgba(139, 95, 191, 0.4);
     }
 
     /* Form styles */
     .stTextInput > div > div > input {
-        padding: 18px 24px !important;
-        border: 2px solid #e8eaed !important;
-        border-radius: 12px !important;
+        padding: 20px 26px !important;
+        border: 2px solid rgba(139, 95, 191, 0.4) !important;
+        border-radius: 15px !important;
         font-size: 16px !important;
         transition: all 0.3s ease !important;
-        background: white !important;
-        color: black !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        color: white !important;
         font-weight: 500 !important;
     }
 
     .stTextInput > div > div > input:focus {
-        border-color: #1a237e !important;
-        box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1) !important;
+        border-color: #00d4ff !important;
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
         outline: none !important;
+        background: rgba(0, 0, 0, 0.8) !important;
     }
 
     .stTextInput > div > div > input::placeholder {
-        color: #9aa0a6 !important;
+        color: #a0a0c0 !important;
         font-weight: 400 !important;
     }
 
     .stTextInput > label {
         font-weight: 600 !important;
-        color: #1a237e !important;
-        margin-bottom: 8px !important;
-        font-size: 14px !important;
+        color: #e0e0ff !important;
+        margin-bottom: 10px !important;
+        font-size: 15px !important;
     }
 
     .stSelectbox > div > div > div {
-        background: white !important;
-        border: 2px solid #e8eaed !important;
-        border-radius: 12px !important;
-        color: black !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        border: 2px solid rgba(139, 95, 191, 0.4) !important;
+        border-radius: 15px !important;
+        color: white !important;
     }
 
     .stNumberInput > div > div > input {
-        padding: 18px 24px !important;
-        border: 2px solid #e8eaed !important;
-        border-radius: 12px !important;
+        padding: 20px 26px !important;
+        border: 2px solid rgba(139, 95, 191, 0.4) !important;
+        border-radius: 15px !important;
         font-size: 16px !important;
-        background: white !important;
-        color: black !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        color: white !important;
         font-weight: 500 !important;
     }
 
     /* Button styles */
     .stButton > button {
         width: 100% !important;
-        padding: 18px 32px !important;
-        background: linear-gradient(135deg, #1a237e, #3949ab) !important;
+        padding: 20px 36px !important;
+        background: linear-gradient(135deg, #8b5fbf, #00d4ff) !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px !important;
-        font-size: 16px !important;
+        border-radius: 15px !important;
+        font-size: 17px !important;
         font-weight: 600 !important;
         transition: all 0.3s ease !important;
         cursor: pointer !important;
-        margin: 8px 0 !important;
+        margin: 10px 0 !important;
+        box-shadow: 0 8px 25px rgba(139, 95, 191, 0.4) !important;
     }
 
     .stButton > button:hover {
-        background: linear-gradient(135deg, #3949ab, #1a237e) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 24px rgba(26, 35, 126, 0.3) !important;
+        background: linear-gradient(135deg, #00d4ff, #8b5fbf) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 12px 35px rgba(0, 212, 255, 0.4) !important;
     }
 
     /* Create Account Button - More Visible */
     .create-account-btn {
-        background: linear-gradient(135deg, #ff6b35, #f7931e) !important;
+        background: linear-gradient(135deg, #ff6b35, #f7931e, #ffaa00) !important;
         color: white !important;
         font-weight: 700 !important;
-        font-size: 18px !important;
-        padding: 20px 32px !important;
-        margin: 16px 0 !important;
-        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
-    }
-
-    .create-account-btn:hover {
-        background: linear-gradient(135deg, #f7931e, #ff6b35) !important;
+        font-size: 19px !important;
+        padding: 22px 36px !important;
+        margin: 18px 0 !important;
         box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4) !important;
     }
 
-  
+    .create-account-btn:hover {
+        background: linear-gradient(135deg, #ffaa00, #f7931e, #ff6b35) !important;
+        box-shadow: 0 12px 35px rgba(255, 170, 0, 0.5) !important;
+    }
+
+    /* GitHub button */
+    .github-btn {
+        background: linear-gradient(135deg, #24292e, #40464f, #586069) !important;
+        color: white !important;
+    }
+
+    .github-btn:hover {
+        background: linear-gradient(135deg, #586069, #40464f, #24292e) !important;
+    }
 
     /* Success/Error messages */
     .stAlert {
-        border-radius: 12px !important;
-        margin: 16px 0 !important;
-        padding: 16px 20px !important;
+        border-radius: 15px !important;
+        margin: 18px 0 !important;
+        padding: 18px 22px !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        border: 1px solid rgba(139, 95, 191, 0.3) !important;
+        color: white !important;
     }
 
     /* Onboarding styles */
     .onboarding-container {
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        border-radius: 20px;
-        padding: 40px;
-        margin: 20px;
+        background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,40,0.95));
+        border-radius: 25px;
+        padding: 50px;
+        margin: 25px;
+        border: 2px solid rgba(139, 95, 191, 0.3);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
     .onboarding-title {
-        color: #1a237e;
-        font-size: 32px;
+        color: #00d4ff;
+        font-size: 36px;
         font-weight: 700;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
     }
 
     .onboarding-subtitle {
-        color: #5f6368;
-        font-size: 18px;
+        color: #e0e0ff;
+        font-size: 20px;
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         line-height: 1.5;
     }
 
     .section-header {
-        color: #1a237e;
-        font-size: 24px;
+        color: #8b5fbf;
+        font-size: 26px;
         font-weight: 600;
-        margin: 32px 0 16px 0;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #e8eaed;
+        margin: 40px 0 20px 0;
+        padding-bottom: 12px;
+        border-bottom: 3px solid rgba(139, 95, 191, 0.4);
     }
 
     /* Responsive design */
@@ -331,56 +384,81 @@ def load_custom_css():
         }
 
         .brand-title {
-            font-size: 40px;
+            font-size: 44px;
         }
 
-        .login-title {
-            font-size: 28px;
+        .dashboard-image {
+            height: 200px;
         }
     }
 
     /* Signup prompt */
     .signup-prompt {
-        background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-        border: 2px solid #ff9800;
-        border-radius: 16px;
-        padding: 24px;
-        margin: 24px 0;
+        background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 170, 0, 0.2));
+        border: 2px solid rgba(255, 107, 53, 0.5);
+        border-radius: 20px;
+        padding: 28px;
+        margin: 28px 0;
         text-align: center;
+        backdrop-filter: blur(15px);
     }
 
     .signup-prompt h3 {
-        color: #e65100;
-        margin-bottom: 12px;
-        font-size: 20px;
+        color: #ffaa00;
+        margin-bottom: 15px;
+        font-size: 22px;
         font-weight: 700;
+        text-shadow: 0 0 15px rgba(255, 170, 0, 0.3);
     }
 
     .signup-prompt p {
-        color: #bf360c;
-        margin-bottom: 16px;
-        font-size: 16px;
+        color: #ffc966;
+        margin-bottom: 20px;
+        font-size: 17px;
+        line-height: 1.4;
     }
 
     /* Stats display */
     .stats-container {
-        background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-        border-radius: 12px;
-        padding: 16px;
-        margin: 16px 0;
+        background: linear-gradient(135deg, rgba(139, 95, 191, 0.3), rgba(0, 212, 255, 0.2));
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
         text-align: center;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(139, 95, 191, 0.4);
     }
 
     .stat-number {
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 700;
-        color: #1a237e;
+        color: #00d4ff;
+        text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
     }
 
     .stat-label {
-        font-size: 14px;
-        color: #5f6368;
-        margin-top: 4px;
+        font-size: 15px;
+        color: #c0c0ff;
+        margin-top: 8px;
+        font-weight: 500;
+    }
+
+    /* Checkbox styles */
+    .stCheckbox {
+        color: #e0e0ff !important;
+    }
+
+    .stCheckbox > div {
+        color: #e0e0ff !important;
+    }
+
+    /* Form section headers */
+    .stSubheader {
+        color: #8b5fbf !important;
+        font-weight: 600 !important;
+        margin-bottom: 20px !important;
+        border-bottom: 2px solid rgba(139, 95, 191, 0.3) !important;
+        padding-bottom: 10px !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -538,11 +616,8 @@ def render_signup_form():
             </div>
         </div>
         <div class="right-panel">
-            <div class="login-header">
-                <h2 class="login-title">Create Account</h2>
-                <p class="login-subtitle">Join professionals managing their finances smartly</p>
-                <p class="login-description">Get access to powerful financial tools and insights</p>
-            </div>
+            <div class="right-panel-content">
+                <div class="dashboard-image"></div>
     """, unsafe_allow_html=True)
 
     with st.form("signup_form"):
@@ -597,7 +672,7 @@ def render_signup_form():
         st.session_state.show_signup = False
         st.rerun()
 
-    st.markdown("</div></div>", unsafe_allow_html=True)
+    st.markdown("</div></div></div>", unsafe_allow_html=True)
 
 # Onboarding form for new users
 def render_onboarding():
@@ -794,11 +869,8 @@ def render_login_page():
             </div>
         </div>
         <div class="right-panel">
-            <div class="login-header">
-                <h2 class="login-title">Welcome Back</h2>
-                <p class="login-subtitle">Access Your Financial Dashboard</p>
-                <p class="login-description">Sign in to continue to Capital Compass</p>
-            </div>
+            <div class="right-panel-content">
+                <div class="dashboard-image"></div>
     """, unsafe_allow_html=True)
 
     # Show user statistics
@@ -871,15 +943,23 @@ def render_login_page():
                             st.error(f"Invalid credentials. {remaining} attempts remaining.")
                             st.info("Don't have an account? Create one using the button above!")
 
- 
+    # GitHub login
+    st.markdown("---")
+    if st.button("Continue with GitHub", use_container_width=True, type="secondary"):
+        st.info("GitHub OAuth integration coming soon! Please create an account for now.")
+
+    st.markdown("</div></div></div>", unsafe_allow_html=True)
+
 # Success page with redirect
 def render_success_page():
     user_name = st.session_state.user_info.get('name', 'User')
 
     st.markdown(f"""
-    <div style="text-align: center; padding: 60px 20px;">
-        <h1 style="color: #1b5e20; margin-bottom: 20px; font-size: 36px;">Welcome, {user_name}!</h1>
-        <p style="font-size: 18px; color: #2e7d32; margin-bottom: 30px;">
+    <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,40,0.95)); 
+         border-radius: 20px; margin: 20px; border: 2px solid rgba(139, 95, 191, 0.3);">
+        <h1 style="color: #00d4ff; margin-bottom: 20px; font-size: 36px; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);">
+            Welcome, {user_name}!</h1>
+        <p style="font-size: 18px; color: #e0e0ff; margin-bottom: 30px;">
             Successfully logged into Capital Compass
         </p>
     </div>
@@ -893,9 +973,9 @@ def render_success_page():
     st.markdown("""
     <div style="text-align: center; margin: 40px 0;">
         <a href="https://menufin.streamlit.app/" target="_blank" 
-           style="background: linear-gradient(135deg, #1a237e, #3949ab); color: white; 
-                  padding: 16px 32px; border-radius: 12px; text-decoration: none; 
-                  font-weight: 600; font-size: 18px;">
+           style="background: linear-gradient(135deg, #8b5fbf, #00d4ff); color: white; 
+                  padding: 16px 32px; border-radius: 15px; text-decoration: none; 
+                  font-weight: 600; font-size: 18px; box-shadow: 0 8px 25px rgba(139, 95, 191, 0.4);">
             Open Capital Compass Dashboard
         </a>
     </div>
