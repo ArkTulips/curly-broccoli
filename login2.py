@@ -155,7 +155,7 @@ def load_custom_css():
 
     .stTextInput > label {
         font-weight: 600;
-        color: #2c3e50;
+        color: #040608;
         margin-bottom: 8px;
     }
 
