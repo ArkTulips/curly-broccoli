@@ -3,6 +3,9 @@ streamlit
 pandas
 numpy
 yfinance
+mysql-connector-python
+python-dotenv
+cryptography
 
 
 # Visualization
