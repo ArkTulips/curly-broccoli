@@ -527,19 +527,19 @@ def render_signup_form():
                 <p class="brand-tagline">"Your Gateway to Smart Financial Management"</p>
                 <div class="features-list">
                     <div class="feature-item">
-                        <div class="feature-icon">📊</div>
+                        <div class="feature-icon">A</div>
                         <span class="feature-text">Advanced Financial Calculators</span>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
+                        <div class="feature-icon">P</div>
                         <span class="feature-text">Personalized Investment Planning</span>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">📈</div>
+                        <div class="feature-icon">M</div>
                         <span class="feature-text">Real-time Market Analysis</span>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">💡</div>
+                        <div class="feature-icon">I</div>
                         <span class="feature-text">Smart Financial Insights</span>
                     </div>
                 </div>
@@ -578,29 +578,28 @@ def render_signup_form():
 
             # Validation
             if not all([first_name, last_name, email, phone, password, confirm_password]):
-                st.error("⚠️ Please fill in all required fields")
+                st.error("Please fill in all required fields")
             elif not "@" in email or not "." in email.split("@")[-1]:
-                st.error("⚠️ Please enter a valid email address")
+                st.error("Please enter a valid email address")
             elif len(phone) < 10:
-                st.error("⚠️ Please enter a valid phone number")
+                st.error("Please enter a valid phone number")
             elif len(password) < 8:
-                st.error("⚠️ Password must be at least 8 characters long")
+                st.error("Password must be at least 8 characters long")
             elif password != confirm_password:
-                st.error("⚠️ Passwords do not match")
+                st.error("Passwords do not match")
             elif not agree_terms:
-                st.error("⚠️ Please agree to the Terms of Service and Privacy Policy")
+                st.error("Please agree to the Terms of Service and Privacy Policy")
             else:
-                with st.spinner("🔧 Creating your Capital Compass account..."):
+                with st.spinner("Creating your Capital Compass account..."):
                     time.sleep(2)
                     success, message = create_user_account(email, password, full_name, phone)
                     if success:
-                        st.success(f"🎉 {message}! Welcome to Capital Compass!")
-                        st.balloons()
+                        st.success(f"{message}! Welcome to Capital Compass!")
                         time.sleep(3)
                         st.session_state.show_signup = False
                         st.rerun()
                     else:
-                        st.error(f"❌ {message}")
+                        st.error(f"{message}")
 
     if st.button("Already have an account? Sign In", use_container_width=True, type="secondary"):
         st.session_state.show_signup = False
@@ -619,7 +618,7 @@ def render_onboarding():
 
     with st.form("onboarding_form"):
         # Personal Finance Information
-        st.markdown('<h2 class="section-header">📊 Personal Finance Profile</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">Personal Finance Profile</h2>', unsafe_allow_html=True)
 
         col1, col2 = st.columns(2)
         with col1:
@@ -641,7 +640,7 @@ def render_onboarding():
             ])
 
         # Investment Information
-        st.markdown('<h2 class="section-header">💰 Investment & SIP Details</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">Investment & SIP Details</h2>', unsafe_allow_html=True)
 
         col3, col4 = st.columns(2)
         with col3:
@@ -658,7 +657,7 @@ def render_onboarding():
             ])
 
         # Loan & Credit Information
-        st.markdown('<h2 class="section-header">🏦 Loans & Credit Profile</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">Loans & Credit Profile</h2>', unsafe_allow_html=True)
 
         col5, col6 = st.columns(2)
         with col5:
@@ -673,7 +672,7 @@ def render_onboarding():
             ])
 
         # Expense Tracking
-        st.markdown('<h2 class="section-header">💳 Monthly Expenses</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">Monthly Expenses</h2>', unsafe_allow_html=True)
 
         col7, col8 = st.columns(2)
         with col7:
@@ -687,7 +686,7 @@ def render_onboarding():
             healthcare = st.number_input("Healthcare (₹)", min_value=0, value=2000, step=500)
 
         # Retirement Planning
-        st.markdown('<h2 class="section-header">🎯 Retirement & Tax Planning</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">Retirement & Tax Planning</h2>', unsafe_allow_html=True)
 
         col9, col10 = st.columns(2)
         with col9:
@@ -702,7 +701,7 @@ def render_onboarding():
             annual_tax_saving = st.number_input("Annual Tax Saving Investment (₹)", min_value=0, value=50000, step=10000)
 
         # Stock Market Interest
-        st.markdown('<h2 class="section-header">📈 Stock Market Preferences</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">Stock Market Preferences</h2>', unsafe_allow_html=True)
 
         favorite_stocks = st.text_area("Favorite Stocks to Track (comma separated)", 
                                      placeholder="e.g., RELIANCE, TCS, INFY, HDFC")
@@ -759,13 +758,12 @@ def render_onboarding():
             profiles[st.session_state.user_info['email']] = user_profile
 
             if save_user_profiles(profiles):
-                st.success("🎉 Profile setup complete! Welcome to Capital Compass!")
-                st.balloons()
+                st.success("Profile setup complete! Welcome to Capital Compass!")
                 st.session_state.onboarding_complete = True
                 time.sleep(3)
                 st.rerun()
             else:
-                st.error("❌ Error saving profile. Please try again.")
+                st.error("Error saving profile. Please try again.")
 
 # Main login interface
 def render_login_page():
@@ -785,19 +783,19 @@ def render_login_page():
                 <p class="brand-tagline">"Where Smart Money Decisions Begin"</p>
                 <div class="features-list">
                     <div class="feature-item">
-                        <div class="feature-icon">⚡</div>
+                        <div class="feature-icon">L</div>
                         <span class="feature-text">Lightning Fast Calculations</span>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">📱</div>
+                        <div class="feature-icon">M</div>
                         <span class="feature-text">Mobile-First Design</span>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">🔒</div>
+                        <div class="feature-icon">S</div>
                         <span class="feature-text">Bank-Grade Security</span>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">📊</div>
+                        <div class="feature-icon">R</div>
                         <span class="feature-text">Real-time Analytics</span>
                     </div>
                 </div>
@@ -832,12 +830,12 @@ def render_login_page():
     # Prominent Create Account Section
     st.markdown("""
     <div class="signup-prompt">
-        <h3>🚀 New to Capital Compass?</h3>
+        <h3>New to Capital Compass?</h3>
         <p>Join professionals who trust us with their financial planning!</p>
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("📝 Create Your Free Account Now!", use_container_width=True, key="create_account_main"):
+    if st.button("Create Your Free Account Now!", use_container_width=True, key="create_account_main"):
         st.session_state.show_signup = True
         st.rerun()
 
@@ -853,44 +851,38 @@ def render_login_page():
             remember_me = st.checkbox("Remember Me")
         with col2:
             if st.form_submit_button("Forgot Password?", type="secondary"):
-                st.info("🔄 Password reset functionality coming soon!")
+                st.info("Password reset functionality coming soon!")
 
         login_submitted = st.form_submit_button("Sign In to Capital Compass", use_container_width=True, type="primary")
 
         if login_submitted:
             if not email or not password:
-                st.error("⚠️ Please enter both email and password.")
+                st.error("Please enter both email and password.")
             elif not "@" in email or not "." in email.split("@")[-1]:
-                st.error("⚠️ Please enter a valid email address.")
+                st.error("Please enter a valid email address.")
             elif len(password) < 3:
-                st.error("⚠️ Password must be at least 3 characters long.")
+                st.error("Password must be at least 3 characters long.")
             else:
-                with st.spinner("🔐 Authenticating your credentials..."):
+                with st.spinner("Authenticating your credentials..."):
                     time.sleep(1.5)
 
                     if authenticate_user(email, password):
-                        st.success("✅ Login successful! Welcome back!")
+                        st.success("Login successful! Welcome back!")
                         time.sleep(2)
                         st.rerun()
                     else:
                         st.session_state.login_attempts += 1
                         if st.session_state.login_attempts >= 5:
-                            st.error("🚫 Too many failed attempts. Please try creating an account or contact support.")
+                            st.error("Too many failed attempts. Please try creating an account or contact support.")
                         else:
                             remaining = 5 - st.session_state.login_attempts
-                            st.error(f"❌ Invalid credentials. {remaining} attempts remaining.")
-                            st.info("💡 Don't have an account? Create one using the button above!")
+                            st.error(f"Invalid credentials. {remaining} attempts remaining.")
+                            st.info("Don't have an account? Create one using the button above!")
 
     # GitHub login
     st.markdown("---")
-    if st.button("🐙 Continue with GitHub", use_container_width=True, type="secondary"):
-        st.info("🔄 GitHub OAuth integration coming soon! Please create an account for now.")
-
-    # Create account button (secondary)
-    st.markdown("---")
-    if st.button("🎯 Don't have an account? Join Capital Compass!", use_container_width=True, type="secondary"):
-        st.session_state.show_signup = True
-        st.rerun()
+    if st.button("Continue with GitHub", use_container_width=True, type="secondary"):
+        st.info("GitHub OAuth integration coming soon! Please create an account for now.")
 
     st.markdown("</div></div>", unsafe_allow_html=True)
 
@@ -900,7 +892,7 @@ def render_success_page():
 
     st.markdown(f"""
     <div style="text-align: center; padding: 60px 20px;">
-        <h1 style="color: #1b5e20; margin-bottom: 20px; font-size: 36px;">🎉 Welcome, {user_name}!</h1>
+        <h1 style="color: #1b5e20; margin-bottom: 20px; font-size: 36px;">Welcome, {user_name}!</h1>
         <p style="font-size: 18px; color: #2e7d32; margin-bottom: 30px;">
             Successfully logged into Capital Compass
         </p>
@@ -908,7 +900,7 @@ def render_success_page():
     """, unsafe_allow_html=True)
 
     # Auto redirect
-    with st.spinner("🚀 Redirecting to your Capital Compass dashboard..."):
+    with st.spinner("Redirecting to your Capital Compass dashboard..."):
         time.sleep(3)
 
     # Redirect link
@@ -918,7 +910,7 @@ def render_success_page():
            style="background: linear-gradient(135deg, #1a237e, #3949ab); color: white; 
                   padding: 16px 32px; border-radius: 12px; text-decoration: none; 
                   font-weight: 600; font-size: 18px;">
-            🧭 Open Capital Compass Dashboard
+            Open Capital Compass Dashboard
         </a>
     </div>
     """, unsafe_allow_html=True)
@@ -935,11 +927,11 @@ def render_success_page():
     # Logout button
     col1, col2, col3 = st.columns([1, 1, 1])
     with col2:
-        if st.button("🚪 Logout", type="secondary", use_container_width=True):
+        if st.button("Logout", type="secondary", use_container_width=True):
             # Reset all session states
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
-            st.success("👋 Logged out successfully!")
+            st.success("Logged out successfully!")
             time.sleep(1)
             st.rerun()
 
