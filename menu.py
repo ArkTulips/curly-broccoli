@@ -37,6 +37,13 @@ if st.session_state.dark_mode:
         #MainMenu {{visibility: hidden;}}
         footer {{visibility: hidden;}}
         header {{visibility: hidden;}}
+
+    
+    
+        /* Reduce top padding */
+        .block-container {
+            padding-top: 1rem !important;
+        }
         
         /* Smooth scrolling */
         html {{
