@@ -1,11 +1,10 @@
-
 import streamlit as st
 
 # Page configuration
 st.set_page_config(
     page_title="Capital Compass - Your Ultimate Financial Companion", 
     layout="wide",
-    page_icon="",
+    page_icon="💰",
     initial_sidebar_state="collapsed"
 )
 
@@ -23,46 +22,22 @@ with col3:
 
 # Apply CSS based on theme state
 if st.session_state.dark_mode:
-    # Dark theme CSS
+    # Dark theme CSS (keeping original dark theme)
     st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
         /* Hide Streamlit elements */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
-
+        
         /* Dark theme styling */
         .stApp {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
         }
-
-        /* Animated background overlay */
-        .stApp::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(118, 75, 162, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 40% 80%, rgba(74, 144, 226, 0.10) 0%, transparent 30%);
-            animation: backgroundFloat 12s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes backgroundFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            33% { transform: translateY(-15px) rotate(1deg); opacity: 0.8; }
-            66% { transform: translateY(-30px) rotate(-1deg); opacity: 0.9; }
-        }
-
-        /* Creative title styling */
+        
+        /* Main title styling */
         .main-title {
             font-family: 'Poppins', sans-serif;
             font-size: 4.5rem;
@@ -77,14 +52,8 @@ if st.session_state.dark_mode:
             text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
             position: relative;
             z-index: 1;
-            animation: gradientShift 4s ease-in-out infinite;
         }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
+        
         .subtitle {
             text-align: center;
             font-family: 'Poppins', sans-serif;
@@ -96,7 +65,7 @@ if st.session_state.dark_mode:
             z-index: 1;
             letter-spacing: 0.5px;
         }
-
+        
         .tagline {
             text-align: center;
             font-family: 'Poppins', sans-serif;
@@ -108,55 +77,8 @@ if st.session_state.dark_mode:
             z-index: 1;
             font-style: italic;
         }
-
-        /* Logo styling */
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            background: rgba(40, 44, 52, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(15px);
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-            font-size: 3.5rem;
-            animation: logoFloat 4s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: logoShine 3s linear infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
-            50% { transform: translateY(-15px) scale(1.05) rotate(2deg); }
-        }
-
-        @keyframes logoShine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        /* Enhanced tool cards - dark theme */
+        
+        /* Tool cards - dark theme */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -166,7 +88,7 @@ if st.session_state.dark_mode:
             margin: 0 auto;
             padding: 25px;
         }
-
+        
         .tool-card {
             background: rgba(40, 44, 52, 0.95);
             backdrop-filter: blur(20px);
@@ -175,197 +97,111 @@ if st.session_state.dark_mode:
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            min-height: 350px;
+            transition: all 0.3s ease;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
         }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-            background-size: 400% 100%;
-            animation: borderShift 4s ease infinite;
-        }
-
-        .tool-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-
-        @keyframes borderShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
+        
         .tool-card:hover {
-            transform: translateY(-20px) scale(1.03);
-            box-shadow: 0 25px 70px rgba(102, 126, 234, 0.5);
-            background: rgba(50, 54, 62, 1);
-            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
-
-        .tool-card:hover::after {
-            opacity: 1;
-        }
-
-        .tool-icon {
-            font-size: 5rem;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .tool-card:hover .tool-icon {
-            transform: scale(1.15) rotate(8deg);
-            filter: drop-shadow(0 15px 30px rgba(102, 126, 234, 0.6));
-        }
-
+        
         .tool-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: #ffffff;
-            margin-bottom: 18px;
-            line-height: 1.3;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 15px;
         }
-
+        
         .tool-desc {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #c1c7d0;
-            line-height: 1.7;
-            margin-bottom: 30px;
-            flex-grow: 1;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
-
+        
         .tool-button {
             display: inline-block;
-            padding: 18px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px 24px;
+            background: #4F46E5;
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-
-        .tool-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
+        
         .tool-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.7);
+            background: #3B37DB;
             text-decoration: none;
             color: white;
         }
-
-        .tool-button:hover::before {
-            left: 100%;
-        }
-
-        /* Enhanced info sections */
+        
+        /* Info sections */
         .features-section {
             background: rgba(40, 44, 52, 0.85);
             backdrop-filter: blur(25px);
-            border-radius: 25px;
-            padding: 40px;
-            margin: 50px auto;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px auto;
             max-width: 1000px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .features-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 600;
             text-align: center;
             color: #ffffff;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
-
+        
         .features-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            gap: 20px;
         }
-
+        
         .feature-item {
             background: rgba(60, 64, 72, 0.6);
             padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
+            border-radius: 10px;
+            border-left: 4px solid #4F46E5;
         }
-
+        
         .feature-title {
             font-weight: 600;
             color: #ffffff;
             font-size: 1.1rem;
             margin-bottom: 8px;
         }
-
+        
         .feature-desc {
             color: rgba(255, 255, 255, 0.85);
             font-size: 0.95rem;
             line-height: 1.5;
         }
-
+        
         .info-section {
             background: rgba(40, 44, 52, 0.85);
             backdrop-filter: blur(25px);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 50px auto;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 40px auto;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.95);
             font-family: 'Poppins', sans-serif;
-            font-size: 1.15rem;
             max-width: 900px;
-            position: relative;
-            z-index: 1;
         }
-
+        
         /* Responsive design */
         @media (max-width: 1024px) {
             .tools-grid {
@@ -373,457 +209,240 @@ if st.session_state.dark_mode:
                 grid-template-rows: repeat(3, 1fr);
             }
         }
-
+        
         @media (max-width: 768px) {
             .main-title {
                 font-size: 3.2rem;
             }
             .tools-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(6, 1fr);
                 padding: 15px;
-            }
-            .tool-card {
-                margin: 10px 0;
-                padding: 30px 25px;
-                min-height: 320px;
-            }
-            .logo {
-                width: 90px;
-                height: 90px;
-                font-size: 2.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 2.5rem;
-            }
-            .tool-icon {
-                font-size: 4rem;
-            }
-            .tool-title {
-                font-size: 1.5rem;
             }
         }
     </style>
     """, unsafe_allow_html=True)
+    
 else:
-    # Light theme CSS (similar structure with light colors)
+    # Professional Light theme CSS
     st.markdown("""
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
         /* Hide Streamlit elements */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
-
-        /* Light theme styling */
+        
+        /* Professional light theme styling */
         .stApp {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: black;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1a202c;
+            font-family: 'Inter', sans-serif;
         }
-
-        /* Animated background overlay */
-        .stApp::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 30%);
-            animation: backgroundFloat 12s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes backgroundFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            33% { transform: translateY(-15px) rotate(1deg); opacity: 0.8; }
-            66% { transform: translateY(-30px) rotate(-1deg); opacity: 0.9; }
-        }
-
-        /* Creative title styling */
+        
+        /* Main title styling */
         .main-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
             text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 20%, #ffffff 40%, #f1f3f4 60%, #ffffff 80%, #f8f9fa 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 25px 0 15px 0;
-            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
-            position: relative;
-            z-index: 1;
-            animation: gradientShift 4s ease-in-out infinite;
+            color: #1a365d;
+            margin: 40px 0 20px 0;
+            letter-spacing: -0.02em;
         }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
+        
         .subtitle {
             text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 20px;
             font-weight: 500;
-            position: relative;
-            z-index: 1;
-            letter-spacing: 0.5px;
         }
-
+        
         .tagline {
             text-align: center;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 50px;
+            color: #718096;
+            margin-bottom: 60px;
             font-weight: 400;
-            position: relative;
-            z-index: 1;
             font-style: italic;
         }
-
-        /* Logo styling */
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(15px);
-            border: 3px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3);
-            font-size: 3.5rem;
-            animation: logoFloat 4s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: logoShine 3s linear infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
-            50% { transform: translateY(-15px) scale(1.05) rotate(2deg); }
-        }
-
-        @keyframes logoShine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        /* Enhanced tool cards - light theme */
+        
+        /* Professional tool cards */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 25px;
-            max-width: 1400px;
+            gap: 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 25px;
+            padding: 0 20px;
         }
-
+        
         .tool-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            min-height: 350px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            min-height: 160px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-            background-size: 400% 100%;
-            animation: borderShift 4s ease infinite;
-        }
-
-        .tool-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-
-        @keyframes borderShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
+        
         .tool-card:hover {
-            transform: translateY(-20px) scale(1.03);
-            box-shadow: 0 25px 70px rgba(102, 126, 234, 0.4);
-            background: rgba(255, 255, 255, 1);
-            border-color: rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            border-color: #cbd5e0;
         }
-
-        .tool-card:hover::after {
-            opacity: 1;
-        }
-
-        .tool-icon {
-            font-size: 5rem;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .tool-card:hover .tool-icon {
-            transform: scale(1.15) rotate(8deg);
-            filter: drop-shadow(0 15px 30px rgba(102, 126, 234, 0.4));
-        }
-
+        
         .tool-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 18px;
-            line-height: 1.3;
-            position: relative;
-            z-index: 1;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
-
+        
         .tool-desc {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            color: #5a6c7d;
-            line-height: 1.7;
-            margin-bottom: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #718096;
+            line-height: 1.5;
+            margin-bottom: 16px;
             flex-grow: 1;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
         }
-
+        
         .tool-button {
             display: inline-block;
-            padding: 18px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8px 16px;
+            background: #4F46E5;
             color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            align-self: flex-start;
         }
-
-        .tool-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
+        
         .tool-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.7);
+            background: #3B37DB;
             text-decoration: none;
             color: white;
         }
-
-        .tool-button:hover::before {
-            left: 100%;
-        }
-
-        /* Enhanced info sections */
+        
+        /* Professional info sections */
         .features-section {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(25px);
-            border-radius: 25px;
-            padding: 40px;
-            margin: 50px auto;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 48px auto;
             max-width: 1000px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-
+        
         .features-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
             text-align: center;
-            color: #ffffff;
-            margin-bottom: 30px;
+            color: #2d3748;
+            margin-bottom: 28px;
         }
-
+        
         .features-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
-
+        
         .feature-item {
-            background: rgba(255, 255, 255, 0.15);
+            background: #f7fafc;
             padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            border-left: 4px solid #4F46E5;
         }
-
+        
         .feature-title {
             font-weight: 600;
-            color: #ffffff;
-            font-size: 1.1rem;
+            color: #2d3748;
+            font-size: 1rem;
             margin-bottom: 8px;
         }
-
+        
         .feature-desc {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
+            color: #4a5568;
+            font-size: 0.9rem;
             line-height: 1.5;
         }
-
+        
         .info-section {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(25px);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 50px auto;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 48px auto;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.95);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.15rem;
+            color: #4a5568;
+            font-family: 'Inter', sans-serif;
             max-width: 900px;
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-
+        
         /* Responsive design */
         @media (max-width: 1024px) {
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 1fr);
             }
         }
-
+        
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 3.2rem;
-            }
-            .tools-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(6, 1fr);
-                padding: 15px;
-            }
-            .tool-card {
-                margin: 10px 0;
-                padding: 30px 25px;
-                min-height: 320px;
-            }
-            .logo {
-                width: 90px;
-                height: 90px;
-                font-size: 2.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
             .main-title {
                 font-size: 2.5rem;
             }
-            .tool-icon {
-                font-size: 4rem;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
-            .tool-title {
-                font-size: 1.5rem;
+            .tool-card {
+                min-height: 140px;
             }
         }
     </style>
     """, unsafe_allow_html=True)
 
-# Creative logo and centered title
+# Header section without emojis
 st.markdown("""
-<div class="logo-container">
-    <div class="logo">💵</div>
-</div>
-<h1 class="main-title">Capital Compass </h1>
-<p class="subtitle"><strong>All your financial solution in one place</strong></p>
+<h1 class="main-title">Capital Compass</h1>
+<p class="subtitle"><strong>All your financial solutions in one place</strong></p>
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
 
-# Enhanced description section
+# Enhanced description section without emojis
 st.markdown("""
 <div class="features-section">
-    <h2 class="features-title">🌟 What Makes Capital Compass Unique?</h2>
+    <h2 class="features-title">What Makes Capital Compass Unique?</h2>
     <div class="features-list">        
         <div class="feature-item">
-            <div class="feature-title">⚡ <strong>Lightning Fast</strong></div>
+            <div class="feature-title"><strong>Lightning Fast</strong></div>
             <div class="feature-desc">Get instant results with our optimized calculation engine - no waiting, no delays</div>
         </div>
         <div class="feature-item">
-            <div class="feature-title">📱 <strong>Mobile-First Design</strong></div>
+            <div class="feature-title"><strong>Mobile-First Design</strong></div>
             <div class="feature-desc">Perfect experience across all devices with responsive, touch-friendly interfaces</div>
         </div>
         <div class="feature-item">
-            <div class="feature-title">🎯 <strong>Personalized Insights</strong></div>
+            <div class="feature-title"><strong>Personalized Insights</strong></div>
             <div class="feature-desc">Smart recommendations based on your financial profile and Indian market conditions</div>
         </div>
         <div class="feature-item">
-            <div class="feature-title">📊 <strong>Interactive Visualizations</strong></div>
+            <div class="feature-title"><strong>Interactive Visualizations</strong></div>
             <div class="feature-desc">Beautiful charts and graphs that make complex financial data easy to understand</div>
         </div>
     </div>
@@ -832,59 +451,50 @@ st.markdown("""
 
 st.markdown("---")
 
-# Enhanced tools data with better descriptions and bold formatting
+# Simplified tools data without emojis
 tools = [
     {
         "name": "SIP Calculator",
-        "desc": "Master Systematic Investment Planning with advanced projections, goal-based planning, and wealth growth analysis. Calculate returns for mutual funds, equity SIPs, and index funds with Indian market data.",
-        "link": "https://financialreach.streamlit.app/",
-        "icon": "📈"
+        "desc": "Master Systematic Investment Planning with advanced projections and wealth growth analysis for mutual funds and equity investments.",
+        "link": "https://financialreach.streamlit.app/"
     },
     {
         "name": "Credit Score Estimator", 
-        "desc": "AI-Powered Credit Analysis using CIBIL-compatible algorithms. Get accurate score estimates, improvement strategies, and loan eligibility insights with personalized action plans.",
-        "link": "https://creditscores.streamlit.app/",
-        "icon": "💳"
+        "desc": "AI-Powered Credit Analysis using CIBIL-compatible algorithms with accurate score estimates and improvement strategies.",
+        "link": "https://creditscores.streamlit.app/"
     },
     {
         "name": "Tax Calculator",
-        "desc": "Smart Tax Optimization for India's new tax regime. Calculate income tax liability, compare old vs new regimes, and discover maximum savings with HRA, 80C, and other deductions.",
-        "link": "https://taxreturncalc.streamlit.app/",
-        "icon": "🧾"
+        "desc": "Smart Tax Optimization for India's tax regime with liability calculations and deduction comparisons.",
+        "link": "https://taxreturncalc.streamlit.app/"
     },
     {
         "name": "EMI Calculator",
-        "desc": "Complete Loan Planning Suite with advanced EMI calculations, amortization schedules, prepayment analysis, and comparison tools for home loans, personal loans, and vehicle financing.",
-        "link": "https://emicalculatorsj.streamlit.app/",
-        "icon": "🏦"
+        "desc": "Complete Loan Planning Suite with EMI calculations, amortization schedules, and prepayment analysis.",
+        "link": "https://emicalculatorsj.streamlit.app/"
     },
     {
         "name": "Expense Tracker",
-        "desc": "Intelligent Expense Management with AI-powered categorization, smart budgeting, spending pattern analysis, and financial health insights to optimize your money flow.",
-        "link": "https://expensetrac.streamlit.app/",
-        "icon": "💵"
+        "desc": "Intelligent Expense Management with AI-powered categorization and smart budgeting insights.",
+        "link": "https://expensetrac.streamlit.app/"
     },
     {
         "name": "Retirement Planner",
-        "desc": "Strategic Retirement Planning with inflation-adjusted calculations, corpus estimation, pension planning, and lifestyle maintenance analysis for a secure financial future.",
-        "link": "https://retirementtrack.streamlit.app/",
-        "icon": "👨‍🦳"
+        "desc": "Strategic Retirement Planning with inflation-adjusted calculations and corpus estimation tools.",
+        "link": "https://retirementtrack.streamlit.app/"
     }
 ]
 
-# Create enhanced tools grid in 3x2 format
+# Create simple tools grid
 st.markdown('<div class="tools-grid">', unsafe_allow_html=True)
 for tool in tools:
     st.markdown(
         f"""
         <div class="tool-card">
-            <div>
-                <div class="tool-icon">{tool["icon"]}</div>
-                <h4 class="tool-title"><strong>{tool["name"]}</strong></h4>
-                <p class="tool-desc">{tool["desc"]}</p>
-            </div>
+            <h4 class="tool-title">{tool["name"]}</h4>
+            <p class="tool-desc">{tool["desc"]}</p>
             <a href="{tool["link"]}" target="_blank" class="tool-button">
-                <strong>Launch Tool →</strong>
+                Launch Tool
             </a>
         </div>
         """,
@@ -894,11 +504,11 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("---")
 
-# Enhanced info section
+# Enhanced info section without emojis
 st.markdown("""
 <div class="info-section">
-    ✨ <strong>Completely Free Forever</strong> ✨<br>
-    🔒 <strong>Zero Data Storage</strong> • <strong>No Registration Required</strong> • <strong>Instant Results</strong> 🔒<br><br>
+    <strong>Completely Free Forever</strong><br>
+    <strong>Zero Data Storage • No Registration Required • Instant Results</strong><br><br>
     <em>Powered by cutting-edge fintech algorithms trusted by leading financial institutions</em>
 </div>
 """, unsafe_allow_html=True)
