@@ -150,27 +150,24 @@ if st.session_state.dark_mode:
             padding: 0 20px;
         }}
         
-        .tool-button {{
-            display: inline-block;
-            padding: 8px 16px;
-            background: #4F46E5;
-            color: white;
-            text-decoration: none !important;  /* no underline */
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
+        .tool-card {{
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
             transition: all 0.2s ease;
-            align-self: flex-start;
-            cursor: pointer;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
         }}
         
-        .tool-button:hover {{
-            background: #3B37DB;
-            color: white;
-            text-decoration: none !important;  /* keep no underline */
+        .tool-card:hover {{
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            border-color: #718096;
         }}
-
         
         .tool-title {{
             font-family: 'Inter', sans-serif;
@@ -191,23 +188,25 @@ if st.session_state.dark_mode:
         }}
         
         .tool-button {{
-            display: inline-block;
-            padding: 8px 16px;
-            background: #4F46E5;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            align-self: flex-start;
-        }}
-        
-        .tool-button:hover {{
-            background: #3B37DB;
-            text-decoration: none;
-            color: white;
+    display: inline-block;
+    padding: 8px 16px;
+    background: #4F46E5;
+    color: white;
+    text-decoration: none;           /* <--- Add this line */
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+}}
+
+.tool-button:hover {{
+    background: #3B37DB;
+    text-decoration: none;           /* <--- Add this line as well */
+    color: white;
+}}
+
         }}
         
         /* Professional info sections */
@@ -473,18 +472,16 @@ else:
         }}
         
         .tool-card {{
-           display: inline-block;
-            padding: 8px 16px;
-            background: #4F46E5;
-            color: white;
-            text-decoration: none !important;  /* no underline */
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.2s ease;
-            align-self: flex-start;
-            cursor: pointer;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
         }}
         
         .tool-card:hover {{
