@@ -12,13 +12,7 @@ st.set_page_config(
 if "dark_mode" not in st.session_state:
     st.session_state.dark_mode = true
 
-# Create toggle button using Streamlit columns for positioning
-col1, col2, col3 = st.columns([6, 1, 1])
-with col3:
-    if st.button("🌙 Dark" if not st.session_state.dark_mode else "☀️ Light", 
-                 help="Toggle dark/light mode"):
-        st.session_state.dark_mode = not st.session_state.dark_mode
-        st.rerun()
+
 
 # Professional Images Integration
 hero_image_url = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
