@@ -326,15 +326,7 @@ def load_custom_css():
         box-shadow: 0 8px 25px rgba(52, 152, 219, 0.45) !important;
     }
 
-    /* GitHub button */
-    .github-btn {
-        background: #95a5a6 !important;
-        color: white !important;
-    }
-
-    .github-btn:hover {
-        background: #7f8c8d !important;
-    }
+   
 
     /* Success/Error messages with natural styling */
     .stAlert {
@@ -987,13 +979,7 @@ def render_login_page():
                             st.error(f"Invalid credentials. {remaining} attempts remaining.")
                             st.info("Don't have an account? Create one using the button above!")
 
-    # GitHub login
-    st.markdown("---")
-    if st.button("Continue with GitHub", use_container_width=True, type="secondary"):
-        st.info("GitHub OAuth integration coming soon! Please create an account for now.")
-
-    st.markdown("</div></div></div>", unsafe_allow_html=True)
-
+    
 # Success page with redirect
 def render_success_page():
     user_name = st.session_state.user_info.get('name', 'User')
