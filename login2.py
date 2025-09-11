@@ -277,15 +277,7 @@ def load_custom_css():
         box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4) !important;
     }
 
-    /* GitHub button */
-    .github-btn {
-        background: linear-gradient(135deg, #24292e, #40464f) !important;
-        color: white !important;
-    }
-
-    .github-btn:hover {
-        background: linear-gradient(135deg, #40464f, #24292e) !important;
-    }
+  
 
     /* Success/Error messages */
     .stAlert {
