@@ -230,7 +230,7 @@ def load_custom_css():
         width: 100%;
         max-width: 390px;
         height: 240px;
-        background-image: url('https://pngtree.com/so/financial-logo');
+        background-image: url('https://png.pngtree.com/png-clipart/20200226/original/pngtree-financial-consulting-logo-vector-template-png-image_5314396.jpg');
         background-size: cover;
         background-position: center 35%;
         border-radius: 12px 18px 15px 16px;
