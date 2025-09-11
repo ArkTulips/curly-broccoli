@@ -17,7 +17,7 @@ st.set_page_config(
 )
 
 # File paths for data storage (same as login page)
-USERS_FILE = "users_data.json"
+USERS_FILE = "user_profiles.json"
 USER_PROFILES_FILE = "user_profiles.json"
 
 # Custom CSS for better styling
