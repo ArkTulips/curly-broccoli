@@ -367,8 +367,7 @@ def main():
     st.markdown("**Powered by your financial profile - Get personalized SIP recommendations**")
 
     # Display user profile summary
-    if user_profile and user_email:
-        display_user_profile_summary(user_profile, user_email)
+    
 
     # Sidebar for inputs
     with st.sidebar:
