@@ -22,10 +22,11 @@ with col3:
 
 # Apply CSS based on theme state
 if st.session_state.dark_mode:
-    # Dark theme CSS (keeping original dark theme)
+    # Professional Dark theme CSS with consistent tool cards
     st.markdown("""
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
         /* Hide Streamlit elements */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
@@ -35,106 +36,98 @@ if st.session_state.dark_mode:
         .stApp {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
+            font-family: 'Inter', sans-serif;
         }
         
         /* Main title styling */
         .main-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
             text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #4ade80 20%, #3b82f6 40%, #8b5cf6 60%, #ec4899 80%, #ffffff 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 25px 0 15px 0;
-            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
-            position: relative;
-            z-index: 1;
+            color: #ffffff;
+            margin: 40px 0 20px 0;
+            letter-spacing: -0.02em;
         }
         
         .subtitle {
             text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: #e2e8f0;
+            margin-bottom: 20px;
             font-weight: 500;
-            position: relative;
-            z-index: 1;
-            letter-spacing: 0.5px;
         }
         
         .tagline {
             text-align: center;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 50px;
+            color: #cbd5e0;
+            margin-bottom: 60px;
             font-weight: 400;
-            position: relative;
-            z-index: 1;
             font-style: italic;
         }
         
-        /* Tool cards - dark theme */
+        /* Professional tool cards - SAME AS LIGHT THEME */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 25px;
-            max-width: 1400px;
+            gap: 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 25px;
+            padding: 0 20px;
         }
         
         .tool-card {
-            background: rgba(40, 44, 52, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            min-height: 200px;
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+            min-height: 160px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
         
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            border-color: #718096;
         }
         
         .tool-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
         
         .tool-desc {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            color: #c1c7d0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #cbd5e0;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            flex-grow: 1;
         }
         
         .tool-button {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 8px 16px;
             background: #4F46E5;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            align-self: flex-start;
         }
         
         .tool-button:hover {
@@ -143,87 +136,88 @@ if st.session_state.dark_mode:
             color: white;
         }
         
-        /* Info sections */
+        /* Professional info sections */
         .features-section {
-            background: rgba(40, 44, 52, 0.85);
-            backdrop-filter: blur(25px);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px auto;
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 48px auto;
             max-width: 1000px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         .features-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
             font-weight: 600;
             text-align: center;
             color: #ffffff;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
         
         .features-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
         
         .feature-item {
-            background: rgba(60, 64, 72, 0.6);
+            background: #374151;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             border-left: 4px solid #4F46E5;
         }
         
         .feature-title {
             font-weight: 600;
             color: #ffffff;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 8px;
         }
         
         .feature-desc {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.95rem;
+            color: #d1d5db;
+            font-size: 0.9rem;
             line-height: 1.5;
         }
         
         .info-section {
-            background: rgba(40, 44, 52, 0.85);
-            backdrop-filter: blur(25px);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 40px auto;
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 48px auto;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.95);
-            font-family: 'Poppins', sans-serif;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
             max-width: 900px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         /* Responsive design */
         @media (max-width: 1024px) {
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 1fr);
             }
         }
         
         @media (max-width: 768px) {
             .main-title {
-                font-size: 3.2rem;
+                font-size: 2.5rem;
             }
             .tools-grid {
                 grid-template-columns: 1fr;
-                padding: 15px;
+            }
+            .tool-card {
+                min-height: 140px;
             }
         }
     </style>
     """, unsafe_allow_html=True)
     
 else:
-    # Professional Light theme CSS
+    # Professional Light theme CSS (unchanged)
     st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -416,6 +410,7 @@ else:
         }
     </style>
     """, unsafe_allow_html=True)
+
 # Header section without emojis
 st.markdown("""
 <h1 class="main-title">Capital Compass</h1>
@@ -423,7 +418,32 @@ st.markdown("""
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
 
+# Enhanced description section without emojis
+st.markdown("""
+<div class="features-section">
+    <h2 class="features-title">What Makes Capital Compass Unique?</h2>
+    <div class="features-list">        
+        <div class="feature-item">
+            <div class="feature-title"><strong>Lightning Fast</strong></div>
+            <div class="feature-desc">Get instant results with our optimized calculation engine - no waiting, no delays</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-title"><strong>Mobile-First Design</strong></div>
+            <div class="feature-desc">Perfect experience across all devices with responsive, touch-friendly interfaces</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-title"><strong>Personalized Insights</strong></div>
+            <div class="feature-desc">Smart recommendations based on your financial profile and Indian market conditions</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-title"><strong>Interactive Visualizations</strong></div>
+            <div class="feature-desc">Beautiful charts and graphs that make complex financial data easy to understand</div>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
+st.markdown("---")
 
 # Simplified tools data without emojis
 tools = [
@@ -475,33 +495,6 @@ for tool in tools:
         unsafe_allow_html=True
     )
 st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown("---")
-
-# Enhanced description section without emojis
-st.markdown("""
-<div class="features-section">
-    <h2 class="features-title">What Makes Capital Compass Unique?</h2>
-    <div class="features-list">        
-        <div class="feature-item">
-            <div class="feature-title"><strong>Lightning Fast</strong></div>
-            <div class="feature-desc">Get instant results with our optimized calculation engine - no waiting, no delays</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-title"><strong>Mobile-First Design</strong></div>
-            <div class="feature-desc">Perfect experience across all devices with responsive, touch-friendly interfaces</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-title"><strong>Personalized Insights</strong></div>
-            <div class="feature-desc">Smart recommendations based on your financial profile and Indian market conditions</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-title"><strong>Interactive Visualizations</strong></div>
-            <div class="feature-desc">Beautiful charts and graphs that make complex financial data easy to understand</div>
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
 
 st.markdown("---")
 
