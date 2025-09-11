@@ -473,16 +473,18 @@ else:
         }}
         
         .tool-card {{
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 24px;
-            text-align: left;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+           display: inline-block;
+            padding: 8px 16px;
+            background: #4F46E5;
+            color: white;
+            text-decoration: none !important;  /* no underline */
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
             transition: all 0.2s ease;
-            min-height: 160px;
-            display: flex;
-            flex-direction: column;
+            align-self: flex-start;
+            cursor: pointer;
         }}
         
         .tool-card:hover {{
