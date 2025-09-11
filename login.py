@@ -34,6 +34,7 @@ if st.button("Login"):
             """
             <meta http-equiv="refresh" content="0; url='https://menufin.streamlit.app/'" />
             """,
+        )
             unsafe_allow_html=True,
     else:
         st.error("❌ Invalid credentials")
