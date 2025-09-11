@@ -804,7 +804,7 @@ st.markdown("---")
 st.markdown("""
 <div class="info-section">
     <strong>Completely Free Forever</strong><br>
-    <strong>Zero Data Storage • No Registration Required • Instant Results</strong><br><br>
+    <strong></strong><br><br>
     <em>Powered by cutting-edge fintech algorithms trusted by leading financial institutions</em>
 </div>
 """, unsafe_allow_html=True)
