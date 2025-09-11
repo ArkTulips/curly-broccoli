@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Capital Compass - Your Ultimate Financial Companion", 
     layout="wide",
-    page_icon="",
+    page_icon="💰",
     initial_sidebar_state="collapsed"
 )
 
@@ -28,7 +28,7 @@ calculator_image_url = "https://images.unsplash.com/photo-1554224155-6726b3ff858
 
 # Apply CSS based on theme state
 if st.session_state.dark_mode:
-    # Professional Dark theme CSS with navigation dashboard
+    # Professional Dark theme CSS with enhanced header
     st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -48,6 +48,113 @@ if st.session_state.dark_mode:
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
             font-family: 'Inter', sans-serif;
+        }}
+        
+        /* Main title styling */
+        .main-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            margin: 40px 0 20px 0;
+            letter-spacing: -0.02em;
+        }}
+        
+        .subtitle {{
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }}
+        
+        .tagline {{
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #cbd5e0;
+            margin-bottom: 40px;
+            font-weight: 400;
+            font-style: italic;
+        }}
+        
+        /* Header Stats Section */
+        .header-stats {{
+            background: rgba(45, 55, 72, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            backdrop-filter: blur(10px);
+        }}
+        
+        .stats-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 25px;
+        }}
+        
+        .stats-grid {{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }}
+        
+        .stat-item {{
+            padding: 15px;
+        }}
+        
+        .stat-number {{
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4F46E5;
+            margin-bottom: 5px;
+            line-height: 1;
+        }}
+        
+        .stat-label {{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #cbd5e0;
+            font-weight: 500;
+        }}
+        
+        /* Trust Badges */
+        .trust-badges {{
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px auto 0 auto;
+            flex-wrap: wrap;
+        }}
+        
+        .trust-badge {{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(79, 70, 229, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }}
+        
+        .trust-icon {{
+            font-size: 1.1rem;
+        }}
+        
+        .trust-text {{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            font-weight: 500;
         }}
         
         /* Navigation Dashboard Styling */
@@ -109,36 +216,6 @@ if st.session_state.dark_mode:
         
         .nav-link:active {{
             transform: translateY(0px);
-        }}
-        
-        /* Main title styling */
-        .main-title {{
-            font-family: 'Inter', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-align: center;
-            color: #ffffff;
-            margin: 40px 0 20px 0;
-            letter-spacing: -0.02em;
-        }}
-        
-        .subtitle {{
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.3rem;
-            color: #e2e8f0;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }}
-        
-        .tagline {{
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            color: #cbd5e0;
-            margin-bottom: 40px;
-            font-weight: 400;
-            font-style: italic;
         }}
         
         /* Hero section styling */
@@ -433,6 +510,9 @@ if st.session_state.dark_mode:
             .nav-grid {{
                 grid-template-columns: repeat(3, 1fr);
             }}
+            .stats-grid {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
         }}
         
         @media (max-width: 768px) {{
@@ -451,6 +531,14 @@ if st.session_state.dark_mode:
             .nav-dashboard {{
                 position: static;
             }}
+            .stats-grid {{
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }}
+            .trust-badges {{
+                flex-direction: column;
+                align-items: center;
+            }}
         }}
         
         @media (max-width: 480px) {{
@@ -462,7 +550,7 @@ if st.session_state.dark_mode:
     """, unsafe_allow_html=True)
     
 else:
-    # Professional Light theme CSS with navigation dashboard
+    # Professional Light theme CSS with enhanced header
     st.markdown(f"""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -482,6 +570,113 @@ else:
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1a202c;
             font-family: 'Inter', sans-serif;
+        }}
+        
+        /* Main title styling */
+        .main-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: #1a365d;
+            margin: 40px 0 20px 0;
+            letter-spacing: -0.02em;
+        }}
+        
+        .subtitle {{
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }}
+        
+        .tagline {{
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 40px;
+            font-weight: 400;
+            font-style: italic;
+        }}
+        
+        /* Header Stats Section */
+        .header-stats {{
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }}
+        
+        .stats-title {{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 25px;
+        }}
+        
+        .stats-grid {{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }}
+        
+        .stat-item {{
+            padding: 15px;
+        }}
+        
+        .stat-number {{
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4F46E5;
+            margin-bottom: 5px;
+            line-height: 1;
+        }}
+        
+        .stat-label {{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #4a5568;
+            font-weight: 500;
+        }}
+        
+        /* Trust Badges */
+        .trust-badges {{
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px auto 0 auto;
+            flex-wrap: wrap;
+        }}
+        
+        .trust-badge {{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(79, 70, 229, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }}
+        
+        .trust-icon {{
+            font-size: 1.1rem;
+        }}
+        
+        .trust-text {{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #4a5568;
+            font-weight: 500;
         }}
         
         /* Navigation Dashboard Styling */
@@ -543,36 +738,6 @@ else:
         
         .nav-link:active {{
             transform: translateY(0px);
-        }}
-        
-        /* Main title styling */
-        .main-title {{
-            font-family: 'Inter', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-align: center;
-            color: #1a365d;
-            margin: 4px 0 2px 0;
-            letter-spacing: -0.02em;
-        }}
-        
-        .subtitle {{
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.3rem;
-            color: #4a5568;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }}
-        
-        .tagline {{
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            color: #718096;
-            margin-bottom: 40px;
-            font-weight: 400;
-            font-style: italic;
         }}
         
         /* Hero section styling */
@@ -868,6 +1033,9 @@ else:
             .nav-grid {{
                 grid-template-columns: repeat(3, 1fr);
             }}
+            .stats-grid {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
         }}
         
         @media (max-width: 768px) {{
@@ -886,6 +1054,14 @@ else:
             .nav-dashboard {{
                 position: static;
             }}
+            .stats-grid {{
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }}
+            .trust-badges {{
+                flex-direction: column;
+                align-items: center;
+            }}
         }}
         
         @media (max-width: 480px) {{
@@ -903,10 +1079,53 @@ st.markdown("""
 <p class="tagline">"Where Smart Money Decisions Begin"</p>
 """, unsafe_allow_html=True)
 
+# Header Statistics and Trust Section
+st.markdown("""
+<div class="header-stats">
+    <h3 class="stats-title">💎 Trusted by Thousands of Indians for Smart Financial Decisions</h3>
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Happy Users</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">₹100Cr+</div>
+            <div class="stat-label">Money Managed</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">Calculations Done</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Uptime</div>
+        </div>
+    </div>
+    <div class="trust-badges">
+        <div class="trust-badge">
+            <span class="trust-icon">🔒</span>
+            <span class="trust-text">Bank-Grade Security</span>
+        </div>
+        <div class="trust-badge">
+            <span class="trust-icon">🏆</span>
+            <span class="trust-text">Award Winning</span>
+        </div>
+        <div class="trust-badge">
+            <span class="trust-icon">⚡</span>
+            <span class="trust-text">Lightning Fast</span>
+        </div>
+        <div class="trust-badge">
+            <span class="trust-icon">📱</span>
+            <span class="trust-text">Mobile Optimized</span>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 # Navigation Dashboard with internal anchor links
 st.markdown("""
 <div class="nav-dashboard">
-    <h3 class="nav-title"> Quick Access to Financial Tools </h3>
+    <h3 class="nav-title">🚀 Quick Access Financial Tools Dashboard</h3>
     <div class="nav-grid">
         <a href="#sip-calculator" class="nav-link">📈 SIP Calculator</a>
         <a href="#credit-score" class="nav-link">💳 Credit Score</a>
